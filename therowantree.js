@@ -6,15 +6,19 @@
     var apiVersion = '0.1.0';
     var api_url = 'http://localhost:5000';
 
+    var pollButton;
+
     var stores;
     var storesString = '';
     var storesPanel;
 
-    var pollButton;
-
     var status;
     var statusString = '';
     var statusPanel;
+
+    var income;
+    var incomeString = '';
+    var incomePanel;
 
     function UpdateAllTheThings() {
         // set the initial game state
@@ -55,9 +59,31 @@
         return storesString;
     }
 
+    function buildIncome() {
+        if (income == null) {
+            incomeString = 'You have no income while you slumber..';
+        }
+        else{
+            incomeString = '+-- income --------------<br>';
+            for (var key in income){
+                var income_obj = income[key]
+                var amount = income_obj['amount']
+                var description = income_obj['description']
+                incomeString += "| " + key + " (" + amount + ")"
+                if (description != null) {
+                    incomeString += " (" + description + ")";
+                }
+                incomeString += "<br>";
+            }
+            incomeString += '+--------------------------';
+        }
+        return incomeString;
+    }
+
     function updateUI() {
         statusPanel.innerHTML = buildStatus();
         storesPanel.innerHTML = buildStores();
+        incomePanel.innerHTML = buildIncome();
     }
 
     function updateGameState() {
@@ -65,6 +91,7 @@
         var json_out = JSON.stringify(json_packet);
         updateUserStoresGameState(json_out);
         updateUserStatusGameState(json_out);
+        updateUserIncomeGameState(json_out);
     }
 
     function updateUserStoresGameState(guid) {
@@ -80,6 +107,23 @@
             data: guid,
             success: function(data) {
                 stores = data.stores;
+            }
+        });
+    }
+
+    function updateUserIncomeGameState(guid) {
+        $.ajax({
+            url: api_url + '/api/user/income',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: guid,
+            success: function(data) {
+                income = data.income;
             }
         });
     }
@@ -104,6 +148,7 @@
     function initialize() {
         statusPanel = doc.getElementById("statusPanel");
         storesPanel = doc.getElementById("storesPanel");
+        incomePanel = doc.getElementById("incomePanel");
         pollButton = doc.getElementById("pollButton");
         pollButton.addEventListener("click", function(){
             UpdateAllTheThings;

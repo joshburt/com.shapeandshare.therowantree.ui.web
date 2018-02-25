@@ -1,7 +1,7 @@
 (function (doc, nav) {
     "use strict";
 
-    var userGUID;
+    var userGUID = '';
 
     var accessKeyGuid = '285bc061-a271-4463-89f9-c52567656e48';
     var apiVersion = '0.1.0';
@@ -158,27 +158,12 @@
                 },
             success: function(data) {
                 userGUID = data.guid;
-                localStorage.setItem("guid", userGUID);
+                localStorage.setItem("guid", data.guid);
             },
             async: false
         });
     }
 
-    function createUserByGUID(guid) {
-        var json_packet = { 'guid': guid };
-        var json_out = JSON.stringify(json_packet);
-        $.ajax({
-            url: api_url + '/api/user/create/guid',
-            type: 'POST',
-            headers:
-                {
-                    'Content-type': 'application/json',
-                    'API-ACCESS-KEY': accessKeyGuid,
-                    'API-VERSION': apiVersion
-                },
-            data: json_out
-        });
-    }
 
     function initialize() {
         statusPanel = doc.getElementById("statusPanel");
@@ -189,12 +174,14 @@
             UpdateAllTheThings();
         });
 
-        userGUID = localStorage.getItem("guid");
-        if (userGUID == null) {
-            createUser();
-        }
-        else {
-            createUserByGUID(userGUID);
+        
+        if (userGUID == '') {
+            if (localStorage.getItem("guid") == null){
+                createUser();
+            }
+            else {
+                userGUID = localStorage.getItem("guid");
+            }
         }
 
         // Set the initial state

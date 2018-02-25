@@ -13,7 +13,7 @@
     var storesString = '';
     var storesPanel;
 
-    var status;
+    var status = 0;
     var statusString = '';
     var statusPanel;
 
@@ -38,11 +38,16 @@
     }
 
     function buildStatus() {
-        if (status == null) {
-            statusString = 'You are dreaming..';
-        }
-        else{
-            statusString = 'You are active.';
+        switch(status) {
+            case 0:
+                statusString = 'You are NOT active.'; 
+                break;
+            case 1:
+                statusString = 'You are active.'; 
+                break;
+            default:
+                statusString = 'You are dreaming..';
+                break;
         }
         return statusString;
     }
@@ -184,6 +189,22 @@
         });
     }
 
+    function setUserStatusActive() {
+        var json_packet = { 'guid': userGUID, 'active': 1 };
+        var json_out = JSON.stringify(json_packet);
+        $.ajax({
+            url: api_url + '/api/user/active/set',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: json_out
+        });
+    }
+
     function updateUserActiveFeatureState(guid) {
         $.ajax({
             url: api_url + '/api/user/active/feature',
@@ -264,8 +285,11 @@
         // build the initial ui
         updateUI();
 
-        // set the timer to hasnlde future update and refreshes..
+        // set the timer to hanlde future update and refreshes..
         setInterval(UpdateAllTheThings, 1000);
+
+        // user keep alive for in-game character
+        setInterval(setUserStatusActive, 5000);
     }
     addEventListener("DOMContentLoaded", initialize);
 })(document, navigator);

@@ -1,6 +1,7 @@
 (function (doc, nav) {
     "use strict";
-    var userGUID = 'd7ea6c9e-14de-11e8-b845-b3b77b42da81';
+
+    var userGUID;
 
     var accessKeyGuid = '285bc061-a271-4463-89f9-c52567656e48';
     var apiVersion = '0.1.0';
@@ -145,16 +146,64 @@
         });
     }
 
+    function createUser() {
+        $.ajax({
+            url: api_url + '/api/user/create',
+            type: 'GET',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            success: function(data) {
+                userGUID = data.guid;
+                localStorage.setItem("guid", userGUID);
+            },
+            async: false
+        });
+    }
+
+    function createUserByGUID(guid) {
+        var json_packet = { 'guid': guid };
+        var json_out = JSON.stringify(json_packet);
+        $.ajax({
+            url: api_url + '/api/user/create/guid',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: json_out
+        });
+    }
+
     function initialize() {
         statusPanel = doc.getElementById("statusPanel");
         storesPanel = doc.getElementById("storesPanel");
         incomePanel = doc.getElementById("incomePanel");
         pollButton = doc.getElementById("pollButton");
         pollButton.addEventListener("click", function(){
-            UpdateAllTheThings;
+            UpdateAllTheThings();
         });
+
+        userGUID = localStorage.getItem("guid");
+        if (userGUID == null) {
+            createUser();
+        }
+        else {
+            createUserByGUID(userGUID);
+        }
+
+        // Set the initial state
+        UpdateAllTheThings();
+
         // build the initial ui
         updateUI();
+
+        // set the timer to hasnlde future update and refreshes..
         setInterval(UpdateAllTheThings, 1000);
     }
     addEventListener("DOMContentLoaded", initialize);

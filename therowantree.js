@@ -7,7 +7,7 @@
     var apiVersion = '0.1.0';
     var api_url = 'http://localhost:5000';
 
-    var pollButton;
+    // var pollButton;
 
     var stores;
     var storesString = '';
@@ -20,6 +20,14 @@
     var income;
     var incomeString = '';
     var incomePanel;
+
+    var activeFeature;
+    var activeFeatureString = '';
+    var activeFeaturePanel;
+
+    var features;
+    var featuresString = '';
+    var featuresPanel;
 
     function UpdateAllTheThings() {
         // set the initial game state
@@ -81,10 +89,38 @@
         return incomeString;
     }
 
+    function buildActiveFeature() {
+        if (activeFeature == null) {
+            activeFeatureString = 'you are in the void.';
+        }
+        else {
+            activeFeatureString = '+-- active location -----<br>';
+            activeFeatureString += '| ' + activeFeature + '<br>';
+            activeFeatureString += '+--------------------------';
+        }
+        return activeFeatureString;
+    }
+
+    function buildFeatures() {
+        if (features == null) {
+            featuresString = 'you are in the void.';
+        }
+        else {
+                featuresString = '+-- features --------------<br>';
+                for (var feature in features){
+                    featuresString += '| ' + features[feature] + '<br>'
+                }
+                featuresString += '+--------------------------';
+        }
+        return featuresString;
+    }
+
     function updateUI() {
         statusPanel.innerHTML = buildStatus();
         storesPanel.innerHTML = buildStores();
         incomePanel.innerHTML = buildIncome();
+        activeFeaturePanel.innerHTML = buildActiveFeature();
+        featuresPanel.innerHTML = buildFeatures();
     }
 
     function updateGameState() {
@@ -93,6 +129,8 @@
         updateUserStoresGameState(json_out);
         updateUserStatusGameState(json_out);
         updateUserIncomeGameState(json_out);
+        updateUserActiveFeatureState(json_out);
+        updateUserFeaturesState(json_out);
     }
 
     function updateUserStoresGameState(guid) {
@@ -146,6 +184,40 @@
         });
     }
 
+    function updateUserActiveFeatureState(guid) {
+        $.ajax({
+            url: api_url + '/api/user/active/feature',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: guid,
+            success: function(data) {
+                activeFeature = data.active_feature;
+            }
+        });
+    }
+
+    function updateUserFeaturesState(guid) {
+        $.ajax({
+            url: api_url + '/api/user/feature',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: guid,
+            success: function(data) {
+                features = data.features;
+            }
+        });
+    }
+
     function createUser() {
         $.ajax({
             url: api_url + '/api/user/create',
@@ -164,15 +236,17 @@
         });
     }
 
-
     function initialize() {
         statusPanel = doc.getElementById("statusPanel");
         storesPanel = doc.getElementById("storesPanel");
         incomePanel = doc.getElementById("incomePanel");
-        pollButton = doc.getElementById("pollButton");
-        pollButton.addEventListener("click", function(){
-            UpdateAllTheThings();
-        });
+        activeFeaturePanel = doc.getElementById("activeFeaturePanel");
+        featuresPanel = doc.getElementById("featuresPanel");
+
+        // pollButton = doc.getElementById("pollButton");
+        // pollButton.addEventListener("click", function(){
+        //     UpdateAllTheThings();
+        // });
 
         
         if (userGUID == '') {

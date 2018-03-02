@@ -29,6 +29,10 @@
     var featuresString = '';
     var featuresPanel;
 
+    var population;
+    var populationString = '';
+    var populationPanel;
+
     function UpdateAllTheThings() {
         // set the initial game state
         updateGameState();
@@ -120,12 +124,26 @@
         return featuresString;
     }
 
+    function buildPopulation() {
+        if (populationString == null) {
+            populationString = 'you are not even one';
+        }
+        else {
+            populationString = '+-- population ----------<br>';
+            populationString += '| ' + population + '<br>';
+            populationString += '+--------------------------';
+
+        }
+        return populationString;
+    }
+
     function updateUI() {
         statusPanel.innerHTML = buildStatus();
         storesPanel.innerHTML = buildStores();
         incomePanel.innerHTML = buildIncome();
         activeFeaturePanel.innerHTML = buildActiveFeature();
         featuresPanel.innerHTML = buildFeatures();
+        populationPanel.innerHTML = buildPopulation();
     }
 
     function updateGameState() {
@@ -136,6 +154,7 @@
         updateUserIncomeGameState(json_out);
         updateUserActiveFeatureState(json_out);
         updateUserFeaturesState(json_out);
+        updateUserPopulationState(json_out);
     }
 
     function updateUserStoresGameState(guid) {
@@ -239,6 +258,23 @@
         });
     }
 
+    function updateUserPopulationState(guid) {
+        $.ajax({
+            url: api_url + '/api/user/population',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: guid,
+            success: function(data) {
+                population = data.population;
+            }
+        });
+    }
+
     function createUser() {
         $.ajax({
             url: api_url + '/api/user/create',
@@ -263,6 +299,7 @@
         incomePanel = doc.getElementById("incomePanel");
         activeFeaturePanel = doc.getElementById("activeFeaturePanel");
         featuresPanel = doc.getElementById("featuresPanel");
+        populationPanel = doc.getElementById("populationPanel");
 
         // pollButton = doc.getElementById("pollButton");
         // pollButton.addEventListener("click", function(){

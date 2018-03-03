@@ -77,27 +77,6 @@
         return storesString;
     }
 
-    function buildIncome() {
-        if (income == null) {
-            incomeString = 'You have no income while you slumber..';
-        }
-        else{
-            incomeString = '+-- income --------------<br>';
-            for (var key in income){
-                var income_obj = income[key]
-                var amount = income_obj['amount']
-                var description = income_obj['description']
-                incomeString += "| " + key + " (" + amount + ")"
-                if (description != null) {
-                    incomeString += " (" + description + ")";
-                }
-                incomeString += "<br>";
-            }
-            incomeString += '+--------------------------';
-        }
-        return incomeString;
-    }
-
     function buildActiveFeature() {
         if (activeFeature == null) {
             activeFeatureString = 'you are in the void.';
@@ -137,10 +116,69 @@
         return populationString;
     }
 
+    function business_logic() { 
+        alert("hello"); 
+    }
+
+    function createButton(btnName, text, context, func){
+        var button = document.createElement("input");
+        button.type = "button";
+        button.value = text;
+        button.id = btnName;
+        // button.addEventListener ("click", func);
+        button.onclick = func;
+        //button.bind("click", func);
+        // $(document).on('click', btnName, func)
+        context.appendChild(button);
+
+    }
+
     function updateUI() {
         statusPanel.innerHTML = buildStatus();
         storesPanel.innerHTML = buildStores();
-        incomePanel.innerHTML = buildIncome();
+
+        if (income == null) {
+            incomePanel.innerHTML = 'You have no income while you slumber..';
+        } 
+        else {
+            incomePanel.innerHTML = '+-- income ---------------<br>';
+            for (var key in income){
+                var income_obj = income[key]
+                var amount = income_obj['amount']
+                var description = income_obj['description']
+
+                // var increaseButton = document.createElement('button');
+                // increaseButton.innerHTML = '+';
+                // increaseButton.id = key + 'increaseButton';
+                // increaseButton.addEventListener("click", function(){
+                //     business_logic
+                //  });
+
+                // var decreaseButton = document.createElement('button');
+                // decreaseButton.innerHTML = '-';
+                // decreaseButton.id = key + 'decreaseButton';
+
+                incomePanel.innerHTML += "| " + key + " (" + amount + ")"
+                if (description != null) {
+                    incomePanel.innerHTML += " (" + description + ")";
+                }
+                // incomeButtons.push(increaseButton);
+                // incomePanel.appendChild(increaseButton);
+                 //document.getElementById(key + 'increaseButton').onclick=business_logic;
+                 
+                 // createButton('+', document.body, function(){ business_logic(); });
+                 // createButton('-', document.body, function(){ business_logic(); });
+                 createButton(key + 'increaseButton', '+', incomePanel, function(){ business_logic(); });
+                 createButton(key + 'decreaseButton', '-', incomePanel, function(){ business_logic(); });
+                 
+
+                 //incomePanel.appendChild(decreaseButton);
+
+                incomePanel.innerHTML += "<br>";
+            }
+            incomePanel.innerHTML += '+--------------------------';
+        }
+
         activeFeaturePanel.innerHTML = buildActiveFeature();
         featuresPanel.innerHTML = buildFeatures();
         populationPanel.innerHTML = buildPopulation();
@@ -274,6 +312,25 @@
             }
         });
     }
+
+    function updateUserIncomeSourceAllotment(raw_guid, textual_source_name, amount) {
+        var json_packet = { 'guid': raw_guid, 'income_source_name': textual_source_name, 'amount': amount };
+        var json_out = JSON.stringify(json_packet);
+        console.log(json_out);
+        $.ajax({
+            url: api_url + '/api/user/income/set',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: json_out,
+        });
+    }
+
+
 
     function createUser() {
         $.ajax({

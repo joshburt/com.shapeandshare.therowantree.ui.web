@@ -10,52 +10,52 @@
     // var pollButton;
     
     var gathererLabel;
-    var gathererLabelString = '+ gatherer (*)';
+    var gathererLabelString = '| gatherer (*)';
     var gathererIncreaseButton;
     var gathererDecreaseButton;
 
     var hunterLabel;
-    var hunterLabelString = '+ hunter (*)';
+    var hunterLabelString = '| hunter (*)';
     var hunterIncreaseButton;
     var hunterDecreaseButton;
 
     var trapperLabel;
-    var trapperLabelString = '+ trapper (*)';
+    var trapperLabelString = '| trapper (*)';
     var trapperIncreaseButton;
     var trapperDecreaseButton;
 
     var farmerLabel;
-    var farmerLabelString = '+ farmer (*)';
+    var farmerLabelString = '| farmer (*)';
     var farmerIncreaseButton;
     var farmerDecreaseButton;
 
     var tannerLabel;
-    var tannerLabelString = '+ tanner (*)';
+    var tannerLabelString = '| tanner (*)';
     var tannerIncreaseButton;
     var tannerDecreaseButton;
 
     var charcutierLabel;
-    var charcutierLabelString = '+ charcutier (*)';
+    var charcutierLabelString = '| charcutier (*)';
     var charcutierIncreaseButton;
     var charcutierDecreaseButton;
 
     var iron_minerLabel;
-    var iron_minerLabelString = '+ iron miner (*)';
+    var iron_minerLabelString = '| iron miner (*)';
     var iron_minerIncreaseButton;
     var iron_minerDecreaseButton;
 
     var coal_minerLabel;
-    var coal_minerLabelString = '+ coal miner (*)';
+    var coal_minerLabelString = '| coal miner (*)';
     var coal_minerIncreaseButton;
     var coal_minerDecreaseButton;
 
     var sulphur_minerLabel;
-    var sulphur_minerLabelString = '+ sulphur miner (*)';
+    var sulphur_minerLabelString = '| sulphur miner (*)';
     var sulphur_minerIncreaseButton;
     var sulphur_minerDecreaseButton;
 
     var steelworkerLabel;
-    var steelworkerLabelString = '+ steelworker (*)';
+    var steelworkerLabelString = '| steelworker (*)';
     var steelworkerIncreaseButton;
     var steelworkerDecreaseButton;
 
@@ -235,43 +235,43 @@
         }
         else {
             if (income['gatherer']) {
-                gathererLabelString = '+ gatherer (' + income['gatherer']['amount'] + ')';
-                gathererLabel.display = "inline";
-                gathererIncreaseButton.display = "inline";
-                gathererDecreaseButton.display = "inline";      
+                gathererLabelString = '| gatherer (' + income['gatherer']['amount'] + ')';
+                gathererLabel.style.display = "inline";
+                gathererIncreaseButton.style.display = "inline";
+                gathererDecreaseButton.style.display = "inline";      
             }
             else {
-                gathererLabel.display = "none";
-                gathererIncreaseButton.display = "none";
-                gathererDecreaseButton.display = "none";
+                gathererLabel.style.display = "none";
+                gathererIncreaseButton.style.display = "none";
+                gathererDecreaseButton.style.display = "none";
             }
             
             if (income['hunter']){
-                hunterLabelString = '+ hunter (' + income['hunter']['amount'] + ')';
-                hunterLabel.display = "inline";
-                hunterIncreaseButton.display = "inline";
-                hunterDecreaseButton.display = "inline";  
+                hunterLabelString = '| hunter (' + income['hunter']['amount'] + ')';
+                hunterLabel.style.display = "inline";
+                hunterIncreaseButton.style.display = "inline";
+                hunterDecreaseButton.style.display = "inline";  
             }
             else {
-                hunterLabel.display = "none";
-                hunterIncreaseButton.display = "none";
-                hunterDecreaseButton.display = "none";  
+                hunterLabel.style.display = "none";
+                hunterIncreaseButton.style.display = "none";
+                hunterDecreaseButton.style.display = "none";  
             }
 
             if (income['trapper']){
-                trapperLabelString = '+ trapper (' + income['trapper']['amount'] + ')';
-                trapperLabel.display = "inline";
-                trapperIncreaseButton.display = "inline";
-                trapperDecreaseButton.display = "inline";  
+                trapperLabelString = '| trapper (' + income['trapper']['amount'] + ')';
+                trapperLabel.style.display = "inline";
+                trapperIncreaseButton.style.display = "inline";
+                trapperDecreaseButton.style.display = "inline";  
             }
             else {
-                trapperLabel.display = "none";
-                trapperIncreaseButton.display = "none";
-                trapperDecreaseButton.display = "none";  
+                trapperLabel.style.display = "none";
+                trapperIncreaseButton.style.display = "none";
+                trapperDecreaseButton.style.display = "none";  
             }
             
             if (income['farmer']){
-                farmerLabelString = '+ farmer (' + income['farmer']['amount'] + ')';
+                farmerLabelString = '| farmer (' + income['farmer']['amount'] + ')';
                 farmerLabel.style.display = "inline";
                 farmerIncreaseButton.style.display = "inline";
                 farmerDecreaseButton.style.display = "inline";                 
@@ -283,7 +283,7 @@
             }
             
             if (income['tanner']){
-                tannerLabelString = '+ tanner (' + income['tanner']['amount'] + ')';
+                tannerLabelString = '| tanner (' + income['tanner']['amount'] + ')';
                 tannerLabel.style.display = "inline";
                 tannerIncreaseButton.style.display = "inline";
                 tannerDecreaseButton.style.display = "inline";                 
@@ -295,7 +295,7 @@
             }
             
             if (income['charcutier']){
-                charcutierLabelString = '+ charcutier (' + income['charcutier']['amount'] + ')';
+                charcutierLabelString = '| charcutier (' + income['charcutier']['amount'] + ')';
                 charcutierLabel.style.display = "inline";
                 charcutierIncreaseButton.style.display = "inline";
                 charcutierDecreaseButton.style.display = "inline";                 
@@ -307,7 +307,7 @@
             }
             
             if (income['iron_miner']){
-                iron_minerLabelString = '+ iron miner (' + income['iron_miner']['amount'] + ')';
+                iron_minerLabelString = '| iron miner (' + income['iron_miner']['amount'] + ')';
                 iron_minerLabel.style.display = "inline";
                 iron_minerIncreaseButton.style.display = "inline";
                 iron_minerDecreaseButton.style.display = "inline";                 
@@ -319,7 +319,7 @@
             }
             
             if (income['coal_miner']){
-                coal_minerLabelString = '+ coal miner (' + income['coal_miner']['amount'] + ')';
+                coal_minerLabelString = '| coal miner (' + income['coal_miner']['amount'] + ')';
                 coal_minerLabel.style.display = "inline";
                 coal_minerIncreaseButton.style.display = "inline";
                 coal_minerDecreaseButton.style.display = "inline";                 
@@ -331,7 +331,7 @@
             }
             
             if (income['sulphur_miner']){
-                sulphur_minerLabelString = '+ sulphur miner (' + income['sulphur_miner']['amount'] + ')';
+                sulphur_minerLabelString = '| sulphur miner (' + income['sulphur_miner']['amount'] + ')';
                 sulphur_minerLabel.style.display = "inline";
                 sulphur_minerIncreaseButton.style.display = "inline";
                 sulphur_minerDecreaseButton.style.display = "inline";                 
@@ -343,7 +343,7 @@
             }
             
             if (income['steelworker']){
-                steelworkerLabelString = '+ steelworker (' + income['steelworker']['amount'] + ')';
+                steelworkerLabelString = '| steelworker (' + income['steelworker']['amount'] + ')';
                 steelworkerLabel.style.display = "inline";
                 steelworkerIncreaseButton.style.display = "inline";
                 steelworkerDecreaseButton.style.display = "inline";                 
@@ -355,7 +355,7 @@
             }
             
             if (income['armourer']){
-                armourerLabelString = '+ armourer (' + income['armourer']['amount'] + ')';
+                armourerLabelString = '| armourer (' + income['armourer']['amount'] + ')';
                 armourerLabel.style.display = "inline";
                 armourerIncreaseButton.style.display = "inline";
                 armourerDecreaseButton.style.display = "inline";                 
@@ -383,51 +383,6 @@
         featuresPanel.innerHTML = buildFeatures();
         populationPanel.innerHTML = buildPopulation();
 
-/*
-'alien alloy'
-'bait'
-'bayonet'
-'bolas'
-'bone spear'
-'bullets'
-'cask'
-'charm'
-'cloth'
-'coal'
-'coins'
-'compass'
-'convoy'
-'crops'
-'cured meat'
-'energy cell'
-'fur'
-'gems'
-'grenade'
-'iron'
-'iron armour'
-'iron sword'
-'laser rifle'
-'leather'
-'leather armour'
-'meat'
-'meatpie'
-'medicine'
-'rifle'
-'rucksack'
-'scales'
-'seed'
-'steel'
-'steel armour'
-'steel sword'
-'stone'
-'sulphur'
-'teeth'
-'torch'
-'wagon'
-'water tank'
-'waterskin'
-    'wood'
-*/
         if(merchants){
             if (arrayContains('wood', merchants)) {
                 woodMerchantTransformButton.style.display = 'inline';

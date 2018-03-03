@@ -134,7 +134,7 @@
     var bayonetMerchantTransformButton;
     var grenadeMerchantTransformButton;
 
-
+    var merchants;
 
 
     function UpdateAllTheThings() {
@@ -218,6 +218,12 @@
 
         }
         return populationString;
+    }
+
+    // https://stackoverflow.com/questions/6116474/how-to-find-if-an-array-contains-a-specific-string-in-javascript-jquery
+    function arrayContains(needle, arrhaystack)
+    {
+        return (arrhaystack.indexOf(needle) > -1);
     }
 
     function updateUI() {
@@ -376,6 +382,359 @@
         activeFeaturePanel.innerHTML = buildActiveFeature();
         featuresPanel.innerHTML = buildFeatures();
         populationPanel.innerHTML = buildPopulation();
+
+/*
+'alien alloy'
+'bait'
+'bayonet'
+'bolas'
+'bone spear'
+'bullets'
+'cask'
+'charm'
+'cloth'
+'coal'
+'coins'
+'compass'
+'convoy'
+'crops'
+'cured meat'
+'energy cell'
+'fur'
+'gems'
+'grenade'
+'iron'
+'iron armour'
+'iron sword'
+'laser rifle'
+'leather'
+'leather armour'
+'meat'
+'meatpie'
+'medicine'
+'rifle'
+'rucksack'
+'scales'
+'seed'
+'steel'
+'steel armour'
+'steel sword'
+'stone'
+'sulphur'
+'teeth'
+'torch'
+'wagon'
+'water tank'
+'waterskin'
+    'wood'
+*/
+        if(merchants){
+            if (arrayContains('wood', merchants)) {
+                woodMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                woodMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('stone', merchants)) {
+                stoneMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                stoneMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('fur', merchants)) {
+                furMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                furMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('bait', merchants)) {
+                baitMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                baitMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('teeth', merchants)) {
+                teethMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                teethMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('meat', merchants)) {
+                meatMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                meatMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('scales', merchants)) {
+                scalesMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                scalesMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('cloth', merchants)) {
+                clothMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                clothMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('charm', merchants)) {
+                charmMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                charmMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('gems', merchants)) {
+                gemsMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                gemsMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('coins', merchants)) {
+                coinsMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                coinsMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('seed', merchants)) {
+                seedMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                seedMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('crops', merchants)) {
+                cropsMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                cropsMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('leather', merchants)) {
+                leatherMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                leatherMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('cured meat', merchants)) {
+                cured_meatMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                cured_meatMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('compass', merchants)) {
+                compassMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                compassMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('medicine', merchants)) {
+                medicineMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                medicineMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('torch', merchants)) {
+                torchMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                torchMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('meatpie', merchants)) {
+                meatpieMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                meatpieMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('bone spear', merchants)) {
+                bone_spearMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                bone_spearMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('waterskin', merchants)) {
+                waterskinMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                waterskinMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('rucksack', merchants)) {
+                rucksackMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                rucksackMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('leather armour', merchants)) {
+                leather_armourMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                leather_armourMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('iron', merchants)) {
+                ironMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                ironMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('cask', merchants)) {
+                caskMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                caskMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('iron sword', merchants)) {
+                iron_swordMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                iron_swordMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('wagon', merchants)) {
+                wagonMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                wagonMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('iron armour', merchants)) {
+                iron_armourMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                iron_armourMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('steel', merchants)) {
+                steelMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                steelMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('coal', merchants)) {
+                coalMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                coalMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('water tank', merchants)) {
+                water_tankMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                water_tankMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('convoy', merchants)) {
+                convoyMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                convoyMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('steel armour', merchants)) {
+                steel_armourMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                steel_armourMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('steel sword', merchants)) {
+                steel_swordMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                steel_swordMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('rifle', merchants)) {
+                rifleMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                rifleMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('bullets', merchants)) {
+                bulletsMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                bulletsMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('alien alloy', merchants)) {
+                alien_alloyMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                alien_alloyMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('bolas', merchants)) {
+                bolasMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                bolasMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('energy cell', merchants)) {
+                energy_cellMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                energy_cellMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('laser rifle', merchants)) {
+                laser_rifleMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                laser_rifleMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('sulphur', merchants)) {
+                sulphurMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                sulphurMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('bayonet', merchants)) {
+                bayonetMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                bayonetMerchantTransformButton.style.display = 'none';
+            }  
+
+            if (arrayContains('grenade', merchants)) {
+                grenadeMerchantTransformButton.style.display = 'inline';
+            }
+            else {
+                grenadeMerchantTransformButton.style.display = 'none';
+            }  
+
+        }
+
+
+
+
     }
 
     function updateGameState() {
@@ -387,6 +746,7 @@
         updateUserActiveFeatureState(json_out);
         updateUserFeaturesState(json_out);
         updateUserPopulationState(json_out);
+        updateMerchantTransforms(json_out);
     }
 
     function updateUserStoresGameState(guid) {
@@ -538,6 +898,23 @@
                     'API-VERSION': apiVersion
                 },
             data: json_out,
+        });
+    }
+
+    function updateMerchantTransforms(guid) {
+        $.ajax({
+            url: api_url + '/api/user/merchants',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: guid,
+            success: function(data) {
+                merchants = data.merchants;
+            }
         });
     }
 

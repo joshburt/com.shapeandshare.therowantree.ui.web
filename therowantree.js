@@ -524,6 +524,23 @@
         });
     }
 
+    function peformMerchantTransform(raw_guid, store_name) {
+        var json_packet = { 'guid': raw_guid, 'store_name': store_name };
+        var json_out = JSON.stringify(json_packet);
+        console.log(json_out);
+        $.ajax({
+            url: api_url + '/api/merchant/transform',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: json_out,
+        });
+    }
+
     function createUser() {
         $.ajax({
             url: api_url + '/api/user/create',
@@ -683,7 +700,8 @@
 
 
 
-        // Merchant Transform ButtonswoodMerchantTransformButton = doc.getElementById("woodmerchantTransformButton");
+        // Merchant Transform Buttons
+        woodMerchantTransformButton = doc.getElementById("woodMerchantTransformButton");
         stoneMerchantTransformButton = doc.getElementById("stoneMerchantTransformButton");
         furMerchantTransformButton = doc.getElementById("furMerchantTransformButton");
         baitMerchantTransformButton = doc.getElementById("baitMerchantTransformButton");
@@ -727,10 +745,50 @@
         bayonetMerchantTransformButton = doc.getElementById("bayonetMerchantTransformButton");
         grenadeMerchantTransformButton = doc.getElementById("grenadeMerchantTransformButton");
 
+        woodMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'wood'); })
+        stoneMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'stone'); })
+        furMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'fur'); })
+        baitMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'bait'); })
+        teethMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'teeth'); })
+        meatMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'meat'); })
+        scalesMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'scales'); })
+        clothMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'cloth'); })
+        charmMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'charm'); })
+        gemsMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'gems'); })
+        coinsMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'coins'); })
+        seedMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'seed'); })
+        cropsMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'crops'); })
+        leatherMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'leather'); })
+        cured_meatMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'cured meat'); })
+        compassMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'compass'); })
+        medicineMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'medicine'); })
+        torchMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'torch'); })
+        meatpieMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'meatpie'); })
+        bone_spearMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'bone spear'); })
+        waterskinMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'waterskin'); })
+        rucksackMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'rucksack'); })
+        leather_armourMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'leather armour'); })
+        ironMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'iron'); })
+        caskMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'cask'); })
+        iron_swordMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'iron sword'); })
+        wagonMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'wagon'); })
+        iron_armourMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'iron armour'); })
+        steelMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'steel'); })
+        coalMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'coal'); })
+        water_tankMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'water tank'); })
+        convoyMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'convoy'); })
+        steel_armourMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'steel armour'); })
+        steel_swordMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'steel sword'); })
+        rifleMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'rifle'); })
+        bulletsMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'bullets'); })
+        alien_alloyMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'alien alloy'); })
+        bolasMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'bolas'); })
+        energy_cellMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'energy cell'); })
+        laser_rifleMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'laser rifle'); })
+        sulphurMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'sulphur'); })
+        bayonetMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'bayonet'); })
+        grenadeMerchantTransformButton.addEventListener("click", function(){ peformMerchantTransform(userGUID, 'grenade'); })
 
-
-
-        
         if (userGUID == '') {
             if (localStorage.getItem("guid") == null){
                 createUser();

@@ -8,6 +8,61 @@
     var api_url = 'http://localhost:5000';
 
     // var pollButton;
+    
+    var gathererLabel;
+    var gathererLabelString = '+ gatherer (*)';
+    var gathererIncreaseButton;
+    var gathererDecreaseButton;
+
+    var hunterLabel;
+    var hunterLabelString = '+ hunter (*)';
+    var hunterIncreaseButton;
+    var hunterDecreaseButton;
+
+    var trapperLabel;
+    var trapperLabelString = '+ trapper (*)';
+    var trapperIncreaseButton;
+    var trapperDecreaseButton;
+
+    var farmerLabel;
+    var farmerLabelString = '+ farmer (*)';
+    var farmerIncreaseButton;
+    var farmerDecreaseButton;
+
+    var tannerLabel;
+    var tannerLabelString = '+ tanner (*)';
+    var tannerIncreaseButton;
+    var tannerDecreaseButton;
+
+    var charcutierLabel;
+    var charcutierLabelString = '+ charcutier (*)';
+    var charcutierIncreaseButton;
+    var charcutierDecreaseButton;
+
+    var iron_minerLabel;
+    var iron_minerLabelString = '+ iron miner (*)';
+    var iron_minerIncreaseButton;
+    var iron_minerDecreaseButton;
+
+    var coal_minerLabel;
+    var coal_minerLabelString = '+ coal miner (*)';
+    var coal_minerIncreaseButton;
+    var coal_minerDecreaseButton;
+
+    var sulphur_minerLabel;
+    var sulphur_minerLabelString = '+ sulphur miner (*)';
+    var sulphur_minerIncreaseButton;
+    var sulphur_minerDecreaseButton;
+
+    var steelworkerLabel;
+    var steelworkerLabelString = '+ steelworker (*)';
+    var steelworkerIncreaseButton;
+    var steelworkerDecreaseButton;
+
+    var armourerLabel;
+    var armourerLabelString = '+ armourer (*)';
+    var armourerIncreaseButton;
+    var armourerDecreaseButton;
 
     var stores;
     var storesString = '';
@@ -32,6 +87,55 @@
     var population;
     var populationString = '';
     var populationPanel;
+
+
+    // merchant transform buttons
+    var woodMerchantTransformButton;
+    var stoneMerchantTransformButton;
+    var furMerchantTransformButton;
+    var baitMerchantTransformButton;
+    var teethMerchantTransformButton;
+    var meatMerchantTransformButton;
+    var scalesMerchantTransformButton;
+    var clothMerchantTransformButton;
+    var charmMerchantTransformButton;
+    var gemsMerchantTransformButton;
+    var coinsMerchantTransformButton;
+    var seedMerchantTransformButton;
+    var cropsMerchantTransformButton;
+    var leatherMerchantTransformButton;
+    var cured_meatMerchantTransformButton;
+    var compassMerchantTransformButton;
+    var medicineMerchantTransformButton;
+    var torchMerchantTransformButton;
+    var meatpieMerchantTransformButton;
+    var bone_spearMerchantTransformButton;
+    var waterskinMerchantTransformButton;
+    var rucksackMerchantTransformButton;
+    var leather_armourMerchantTransformButton;
+    var ironMerchantTransformButton;
+    var caskMerchantTransformButton;
+    var iron_swordMerchantTransformButton;
+    var wagonMerchantTransformButton;
+    var iron_armourMerchantTransformButton;
+    var steelMerchantTransformButton;
+    var coalMerchantTransformButton;
+    var water_tankMerchantTransformButton;
+    var convoyMerchantTransformButton;
+    var steel_armourMerchantTransformButton;
+    var steel_swordMerchantTransformButton;
+    var rifleMerchantTransformButton;
+    var bulletsMerchantTransformButton;
+    var alien_alloyMerchantTransformButton;
+    var bolasMerchantTransformButton;
+    var energy_cellMerchantTransformButton;
+    var laser_rifleMerchantTransformButton;
+    var sulphurMerchantTransformButton;
+    var bayonetMerchantTransformButton;
+    var grenadeMerchantTransformButton;
+
+
+
 
     function UpdateAllTheThings() {
         // set the initial game state
@@ -116,68 +220,158 @@
         return populationString;
     }
 
-    function business_logic() { 
-        alert("hello"); 
-    }
-
-    function createButton(btnName, text, context, func){
-        var button = document.createElement("input");
-        button.type = "button";
-        button.value = text;
-        button.id = btnName;
-        // button.addEventListener ("click", func);
-        button.onclick = func;
-        //button.bind("click", func);
-        // $(document).on('click', btnName, func)
-        context.appendChild(button);
-
-    }
-
     function updateUI() {
         statusPanel.innerHTML = buildStatus();
         storesPanel.innerHTML = buildStores();
 
         if (income == null) {
-            incomePanel.innerHTML = 'You have no income while you slumber..';
-        } 
-        else {
-            incomePanel.innerHTML = '+-- income ---------------<br>';
-            for (var key in income){
-                var income_obj = income[key]
-                var amount = income_obj['amount']
-                var description = income_obj['description']
-
-                // var increaseButton = document.createElement('button');
-                // increaseButton.innerHTML = '+';
-                // increaseButton.id = key + 'increaseButton';
-                // increaseButton.addEventListener("click", function(){
-                //     business_logic
-                //  });
-
-                // var decreaseButton = document.createElement('button');
-                // decreaseButton.innerHTML = '-';
-                // decreaseButton.id = key + 'decreaseButton';
-
-                incomePanel.innerHTML += "| " + key + " (" + amount + ")"
-                if (description != null) {
-                    incomePanel.innerHTML += " (" + description + ")";
-                }
-                // incomeButtons.push(increaseButton);
-                // incomePanel.appendChild(increaseButton);
-                 //document.getElementById(key + 'increaseButton').onclick=business_logic;
-                 
-                 // createButton('+', document.body, function(){ business_logic(); });
-                 // createButton('-', document.body, function(){ business_logic(); });
-                 createButton(key + 'increaseButton', '+', incomePanel, function(){ business_logic(); });
-                 createButton(key + 'decreaseButton', '-', incomePanel, function(){ business_logic(); });
-                 
-
-                 //incomePanel.appendChild(decreaseButton);
-
-                incomePanel.innerHTML += "<br>";
-            }
-            incomePanel.innerHTML += '+--------------------------';
+            //gathererLabelString = 'You have no income while you slumber..';
         }
+        else {
+            if (income['gatherer']) {
+                gathererLabelString = '+ gatherer (' + income['gatherer']['amount'] + ')';
+                gathererLabel.display = "inline";
+                gathererIncreaseButton.display = "inline";
+                gathererDecreaseButton.display = "inline";      
+            }
+            else {
+                gathererLabel.display = "none";
+                gathererIncreaseButton.display = "none";
+                gathererDecreaseButton.display = "none";
+            }
+            
+            if (income['hunter']){
+                hunterLabelString = '+ hunter (' + income['hunter']['amount'] + ')';
+                hunterLabel.display = "inline";
+                hunterIncreaseButton.display = "inline";
+                hunterDecreaseButton.display = "inline";  
+            }
+            else {
+                hunterLabel.display = "none";
+                hunterIncreaseButton.display = "none";
+                hunterDecreaseButton.display = "none";  
+            }
+
+            if (income['trapper']){
+                trapperLabelString = '+ trapper (' + income['trapper']['amount'] + ')';
+                trapperLabel.display = "inline";
+                trapperIncreaseButton.display = "inline";
+                trapperDecreaseButton.display = "inline";  
+            }
+            else {
+                trapperLabel.display = "none";
+                trapperIncreaseButton.display = "none";
+                trapperDecreaseButton.display = "none";  
+            }
+            
+            if (income['farmer']){
+                farmerLabelString = '+ farmer (' + income['farmer']['amount'] + ')';
+                farmerLabel.style.display = "inline";
+                farmerIncreaseButton.style.display = "inline";
+                farmerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                farmerLabel.style.display = "none";
+                farmerIncreaseButton.style.display = "none";
+                farmerDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['tanner']){
+                tannerLabelString = '+ tanner (' + income['tanner']['amount'] + ')';
+                tannerLabel.style.display = "inline";
+                tannerIncreaseButton.style.display = "inline";
+                tannerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                tannerLabel.style.display = "none";
+                tannerIncreaseButton.style.display = "none";
+                tannerDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['charcutier']){
+                charcutierLabelString = '+ charcutier (' + income['charcutier']['amount'] + ')';
+                charcutierLabel.style.display = "inline";
+                charcutierIncreaseButton.style.display = "inline";
+                charcutierDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                charcutierLabel.style.display = "none";
+                charcutierIncreaseButton.style.display = "none";
+                charcutierDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['iron_miner']){
+                iron_minerLabelString = '+ iron miner (' + income['iron_miner']['amount'] + ')';
+                iron_minerLabel.style.display = "inline";
+                iron_minerIncreaseButton.style.display = "inline";
+                iron_minerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                iron_minerLabel.style.display = "none";
+                iron_minerIncreaseButton.style.display = "none";
+                iron_minerDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['coal_miner']){
+                coal_minerLabelString = '+ coal miner (' + income['coal_miner']['amount'] + ')';
+                coal_minerLabel.style.display = "inline";
+                coal_minerIncreaseButton.style.display = "inline";
+                coal_minerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                coal_minerLabel.style.display = "none";
+                coal_minerIncreaseButton.style.display = "none";
+                coal_minerDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['sulphur_miner']){
+                sulphur_minerLabelString = '+ sulphur miner (' + income['sulphur_miner']['amount'] + ')';
+                sulphur_minerLabel.style.display = "inline";
+                sulphur_minerIncreaseButton.style.display = "inline";
+                sulphur_minerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                sulphur_minerLabel.style.display = "none";
+                sulphur_minerIncreaseButton.style.display = "none";
+                sulphur_minerDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['steelworker']){
+                steelworkerLabelString = '+ steelworker (' + income['steelworker']['amount'] + ')';
+                steelworkerLabel.style.display = "inline";
+                steelworkerIncreaseButton.style.display = "inline";
+                steelworkerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                steelworkerLabel.style.display = "none";
+                steelworkerIncreaseButton.style.display = "none";
+                steelworkerDecreaseButton.style.display = "none"; 
+            }
+            
+            if (income['armourer']){
+                armourerLabelString = '+ armourer (' + income['armourer']['amount'] + ')';
+                armourerLabel.style.display = "inline";
+                armourerIncreaseButton.style.display = "inline";
+                armourerDecreaseButton.style.display = "inline";                 
+            }
+            else {
+                armourerLabel.style.display = "none";
+                armourerIncreaseButton.style.display = "none";
+                armourerDecreaseButton.style.display = "none"; 
+            }
+        }      
+        gathererLabel.innerHTML = gathererLabelString;
+        hunterLabel.innerHTML = hunterLabelString;
+        trapperLabel.innerHTML = trapperLabelString;
+        farmerLabel.innerHTML = farmerLabelString;
+        tannerLabel.innerHTML = tannerLabelString;
+        charcutierLabel.innerHTML = charcutierLabelString;
+        iron_minerLabel.innerHTML = iron_minerLabelString;
+        coal_minerLabel.innerHTML = coal_minerLabelString;
+        sulphur_minerLabel.innerHTML = sulphur_minerLabelString;
+        steelworkerLabel.innerHTML = steelworkerLabelString;
+        armourerLabel.innerHTML = armourerLabelString;
+
 
         activeFeaturePanel.innerHTML = buildActiveFeature();
         featuresPanel.innerHTML = buildFeatures();
@@ -330,8 +524,6 @@
         });
     }
 
-
-
     function createUser() {
         $.ajax({
             url: api_url + '/api/user/create',
@@ -353,15 +545,190 @@
     function initialize() {
         statusPanel = doc.getElementById("statusPanel");
         storesPanel = doc.getElementById("storesPanel");
-        incomePanel = doc.getElementById("incomePanel");
         activeFeaturePanel = doc.getElementById("activeFeaturePanel");
         featuresPanel = doc.getElementById("featuresPanel");
         populationPanel = doc.getElementById("populationPanel");
 
-        // pollButton = doc.getElementById("pollButton");
-        // pollButton.addEventListener("click", function(){
-        //     UpdateAllTheThings();
-        // });
+        
+
+        gathererIncreaseButton = doc.getElementById("gathererIncreaseButton");
+        gathererIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'gatherer', 1);
+        })
+        gathererDecreaseButton = doc.getElementById("gathererDecreaseButton");
+        gathererDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'gatherer', -1);
+        })
+        gathererLabel = doc.getElementById("gathererLabel");
+
+
+
+        hunterIncreaseButton = doc.getElementById("hunterIncreaseButton");
+        hunterIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'hunter', 1);
+        })
+        hunterDecreaseButton = doc.getElementById("hunterDecreaseButton");
+        hunterDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'hunter', -1);
+        })
+        hunterLabel = doc.getElementById("hunterLabel");
+
+
+
+        trapperIncreaseButton = doc.getElementById("trapperIncreaseButton");
+        trapperIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'trapper', 1);
+        })
+        trapperDecreaseButton = doc.getElementById("trapperDecreaseButton");
+        trapperDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'trapper', -1);
+        })
+        trapperLabel = doc.getElementById("trapperLabel");
+
+
+
+        farmerIncreaseButton = doc.getElementById("farmerIncreaseButton");
+        farmerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'farmer', 1);
+        })
+        farmerDecreaseButton = doc.getElementById("farmerDecreaseButton");
+        farmerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'farmer', -1);
+        })
+        farmerLabel = doc.getElementById("farmerLabel");
+
+
+
+        tannerIncreaseButton = doc.getElementById("tannerIncreaseButton");
+        tannerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'tanner', 1);
+        })
+        tannerDecreaseButton = doc.getElementById("tannerDecreaseButton");
+        tannerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'tanner', -1);
+        })
+        tannerLabel = doc.getElementById("tannerLabel");
+
+
+
+        charcutierIncreaseButton = doc.getElementById("charcutierIncreaseButton");
+        charcutierIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'charcutier', 1);
+        })
+        charcutierDecreaseButton = doc.getElementById("charcutierDecreaseButton");
+        charcutierDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'charcutier', -1);
+        })
+        charcutierLabel = doc.getElementById("charcutierLabel");
+
+
+
+        iron_minerIncreaseButton = doc.getElementById("iron_minerIncreaseButton");
+        iron_minerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'iron miner', 1);
+        })
+        iron_minerDecreaseButton = doc.getElementById("iron_minerDecreaseButton");
+        iron_minerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'iron miner', -1);
+        })
+        iron_minerLabel = doc.getElementById("iron_minerLabel");
+
+
+
+        coal_minerIncreaseButton = doc.getElementById("coal_minerIncreaseButton");
+        coal_minerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'coal miner', 1);
+        })
+        coal_minerDecreaseButton = doc.getElementById("coal_minerDecreaseButton");
+        coal_minerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'coal miner', -1);
+        })
+        coal_minerLabel = doc.getElementById("coal_minerLabel");
+
+
+
+        sulphur_minerIncreaseButton = doc.getElementById("sulphur_minerIncreaseButton");
+        sulphur_minerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'sulphur miner', 1);
+        })
+        sulphur_minerDecreaseButton = doc.getElementById("sulphur_minerDecreaseButton");
+        sulphur_minerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'sulpher miner', -1);
+        })
+        sulphur_minerLabel = doc.getElementById("sulphur_minerLabel");
+
+
+
+        steelworkerIncreaseButton = doc.getElementById("steelworkerIncreaseButton");
+        steelworkerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'steelworker', 1);
+        })
+        steelworkerDecreaseButton = doc.getElementById("steelworkerDecreaseButton");
+        steelworkerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'steelworker', -1);
+        })
+        steelworkerLabel = doc.getElementById("steelworkerLabel");
+
+
+
+        armourerIncreaseButton = doc.getElementById("armourerIncreaseButton");
+        armourerIncreaseButton.addEventListener("click", function(){
+            updateUserIncomeSourceAllotment(userGUID, 'armourer', 1);
+        })
+        armourerDecreaseButton = doc.getElementById("armourerDecreaseButton");
+        armourerDecreaseButton.addEventListener("click", function(){
+           updateUserIncomeSourceAllotment(userGUID, 'armourer', -1);
+        })
+        armourerLabel = doc.getElementById("armourerLabel");
+
+
+
+        // Merchant Transform ButtonswoodMerchantTransformButton = doc.getElementById("woodmerchantTransformButton");
+        stoneMerchantTransformButton = doc.getElementById("stoneMerchantTransformButton");
+        furMerchantTransformButton = doc.getElementById("furMerchantTransformButton");
+        baitMerchantTransformButton = doc.getElementById("baitMerchantTransformButton");
+        teethMerchantTransformButton = doc.getElementById("teethMerchantTransformButton");
+        meatMerchantTransformButton = doc.getElementById("meatMerchantTransformButton");
+        scalesMerchantTransformButton = doc.getElementById("scalesMerchantTransformButton");
+        clothMerchantTransformButton = doc.getElementById("clothMerchantTransformButton");
+        charmMerchantTransformButton = doc.getElementById("charmMerchantTransformButton");
+        gemsMerchantTransformButton = doc.getElementById("gemsMerchantTransformButton");
+        coinsMerchantTransformButton = doc.getElementById("coinsMerchantTransformButton");
+        seedMerchantTransformButton = doc.getElementById("seedMerchantTransformButton");
+        cropsMerchantTransformButton = doc.getElementById("cropsMerchantTransformButton");
+        leatherMerchantTransformButton = doc.getElementById("leatherMerchantTransformButton");
+        cured_meatMerchantTransformButton = doc.getElementById("cured_meatMerchantTransformButton");
+        compassMerchantTransformButton = doc.getElementById("compassMerchantTransformButton");
+        medicineMerchantTransformButton = doc.getElementById("medicineMerchantTransformButton");
+        torchMerchantTransformButton = doc.getElementById("torchMerchantTransformButton");
+        meatpieMerchantTransformButton = doc.getElementById("meatpieMerchantTransformButton");
+        bone_spearMerchantTransformButton = doc.getElementById("bone_spearMerchantTransformButton");
+        waterskinMerchantTransformButton = doc.getElementById("waterskinMerchantTransformButton");
+        rucksackMerchantTransformButton = doc.getElementById("rucksackMerchantTransformButton");
+        leather_armourMerchantTransformButton = doc.getElementById("leather_armourMerchantTransformButton");
+        ironMerchantTransformButton = doc.getElementById("ironMerchantTransformButton");
+        caskMerchantTransformButton = doc.getElementById("caskMerchantTransformButton");
+        iron_swordMerchantTransformButton = doc.getElementById("iron_swordMerchantTransformButton");
+        wagonMerchantTransformButton = doc.getElementById("wagonMerchantTransformButton");
+        iron_armourMerchantTransformButton = doc.getElementById("iron_armourMerchantTransformButton");
+        steelMerchantTransformButton = doc.getElementById("steelMerchantTransformButton");
+        coalMerchantTransformButton = doc.getElementById("coalMerchantTransformButton");
+        water_tankMerchantTransformButton = doc.getElementById("water_tankMerchantTransformButton");
+        convoyMerchantTransformButton = doc.getElementById("convoyMerchantTransformButton");
+        steel_armourMerchantTransformButton = doc.getElementById("steel_armourMerchantTransformButton");
+        steel_swordMerchantTransformButton = doc.getElementById("steel_swordMerchantTransformButton");
+        rifleMerchantTransformButton = doc.getElementById("rifleMerchantTransformButton");
+        bulletsMerchantTransformButton = doc.getElementById("bulletsMerchantTransformButton");
+        alien_alloyMerchantTransformButton = doc.getElementById("alien_alloyMerchantTransformButton");
+        bolasMerchantTransformButton = doc.getElementById("bolasMerchantTransformButton");
+        energy_cellMerchantTransformButton = doc.getElementById("energy_cellMerchantTransformButton");
+        laser_rifleMerchantTransformButton = doc.getElementById("laser_rifleMerchantTransformButton");
+        sulphurMerchantTransformButton = doc.getElementById("sulphurMerchantTransformButton");
+        bayonetMerchantTransformButton = doc.getElementById("bayonetMerchantTransformButton");
+        grenadeMerchantTransformButton = doc.getElementById("grenadeMerchantTransformButton");
+
+
+
 
         
         if (userGUID == '') {

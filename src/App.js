@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import StatusPanel from './StatusPanel.js';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            userGUID: '870a7d28-1cef-11e8-b445-60f29d3d5700'
+        };
+    }
+
+    render() {
+        return (
+            <StatusPanel userGUID={this.state.userGUID} />
+        );
+    }
 }
 
 export default App;

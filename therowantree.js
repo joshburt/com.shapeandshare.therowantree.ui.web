@@ -965,16 +965,27 @@
     function initialize() {
         roomTravelButton = doc.getElementById("roomTravelButton");
         roomActiveLabel = doc.getElementById("roomActiveLabel");
+        roomTravelButton.addEventListener("click", function(){
+
+        });       
 
         outsideTravelButton = doc.getElementById("outsideTravelButton");
         outsideActiveLabel = doc.getElementById("outsideActiveLabel");
+        outsideTravelButton.addEventListener("click", function(){
+            
+        });       
 
         worldTravelButton = doc.getElementById("worldTravelButton");
         worldActiveLabel = doc.getElementById("worldActiveLabel");
+        worldTravelButton.addEventListener("click", function(){
+            
+        });
 
         spaceshipTravelButton = doc.getElementById("spaceshipTravelButton");
         spaceshipActiveLabel = doc.getElementById("spaceshipActiveLabel");
-
+        spaceshipTravelButton.addEventListener("click", function(){
+            
+        });
 
         actionPanel = doc.getElementById("actionPanel");
         statusPanel = doc.getElementById("statusPanel");
@@ -986,11 +997,11 @@
         gathererIncreaseButton = doc.getElementById("gathererIncreaseButton");
         gathererIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'gatherer', 1);
-        })
+        });
         gathererDecreaseButton = doc.getElementById("gathererDecreaseButton");
         gathererDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'gatherer', -1);
-        })
+        });
         gathererLabel = doc.getElementById("gathererLabel");
 
 
@@ -998,11 +1009,11 @@
         hunterIncreaseButton = doc.getElementById("hunterIncreaseButton");
         hunterIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'hunter', 1);
-        })
+        });
         hunterDecreaseButton = doc.getElementById("hunterDecreaseButton");
         hunterDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'hunter', -1);
-        })
+        });
         hunterLabel = doc.getElementById("hunterLabel");
 
 
@@ -1010,11 +1021,11 @@
         trapperIncreaseButton = doc.getElementById("trapperIncreaseButton");
         trapperIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'trapper', 1);
-        })
+        });
         trapperDecreaseButton = doc.getElementById("trapperDecreaseButton");
         trapperDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'trapper', -1);
-        })
+        });
         trapperLabel = doc.getElementById("trapperLabel");
 
 
@@ -1022,11 +1033,11 @@
         farmerIncreaseButton = doc.getElementById("farmerIncreaseButton");
         farmerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'farmer', 1);
-        })
+        });
         farmerDecreaseButton = doc.getElementById("farmerDecreaseButton");
         farmerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'farmer', -1);
-        })
+        });
         farmerLabel = doc.getElementById("farmerLabel");
 
 
@@ -1034,11 +1045,11 @@
         tannerIncreaseButton = doc.getElementById("tannerIncreaseButton");
         tannerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'tanner', 1);
-        })
+        });
         tannerDecreaseButton = doc.getElementById("tannerDecreaseButton");
         tannerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'tanner', -1);
-        })
+        });
         tannerLabel = doc.getElementById("tannerLabel");
 
 
@@ -1046,11 +1057,11 @@
         charcutierIncreaseButton = doc.getElementById("charcutierIncreaseButton");
         charcutierIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'charcutier', 1);
-        })
+        });
         charcutierDecreaseButton = doc.getElementById("charcutierDecreaseButton");
         charcutierDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'charcutier', -1);
-        })
+        });
         charcutierLabel = doc.getElementById("charcutierLabel");
 
 
@@ -1058,11 +1069,11 @@
         iron_minerIncreaseButton = doc.getElementById("iron_minerIncreaseButton");
         iron_minerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'iron miner', 1);
-        })
+        });
         iron_minerDecreaseButton = doc.getElementById("iron_minerDecreaseButton");
         iron_minerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'iron miner', -1);
-        })
+        });
         iron_minerLabel = doc.getElementById("iron_minerLabel");
 
 
@@ -1070,11 +1081,11 @@
         coal_minerIncreaseButton = doc.getElementById("coal_minerIncreaseButton");
         coal_minerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'coal miner', 1);
-        })
+        });
         coal_minerDecreaseButton = doc.getElementById("coal_minerDecreaseButton");
         coal_minerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'coal miner', -1);
-        })
+        });
         coal_minerLabel = doc.getElementById("coal_minerLabel");
 
 
@@ -1082,11 +1093,11 @@
         sulphur_minerIncreaseButton = doc.getElementById("sulphur_minerIncreaseButton");
         sulphur_minerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'sulphur miner', 1);
-        })
+        });
         sulphur_minerDecreaseButton = doc.getElementById("sulphur_minerDecreaseButton");
         sulphur_minerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'sulpher miner', -1);
-        })
+        });
         sulphur_minerLabel = doc.getElementById("sulphur_minerLabel");
 
 
@@ -1094,11 +1105,11 @@
         steelworkerIncreaseButton = doc.getElementById("steelworkerIncreaseButton");
         steelworkerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'steelworker', 1);
-        })
+        });
         steelworkerDecreaseButton = doc.getElementById("steelworkerDecreaseButton");
         steelworkerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'steelworker', -1);
-        })
+        });
         steelworkerLabel = doc.getElementById("steelworkerLabel");
 
 
@@ -1106,11 +1117,11 @@
         armourerIncreaseButton = doc.getElementById("armourerIncreaseButton");
         armourerIncreaseButton.addEventListener("click", function(){
             updateUserIncomeSourceAllotment(userGUID, 'armourer', 1);
-        })
+        });
         armourerDecreaseButton = doc.getElementById("armourerDecreaseButton");
         armourerDecreaseButton.addEventListener("click", function(){
            updateUserIncomeSourceAllotment(userGUID, 'armourer', -1);
-        })
+        });
         armourerLabel = doc.getElementById("armourerLabel");
 
 

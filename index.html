@@ -8,75 +8,78 @@
     <script src="therowantree.js"></script>
 </head>
 	<table style="width:100%">
-		<td><div id="summaryPanel" width="200" height="100%"></div></td>
-
     	<tr>
 	    	<td>
     			<div id="actionPanel" width="200" height="100%"></div>
+                <div id="statusPanel" width="100%" height="200"></div>
     		</td>
 	    	<td>
-    			<div id="activeFeaturePanel" width="200" height="100%"></div>
-    			<div id="featuresPanel" width="200" height="100%"></div>
+                +-- travel ----------------<br>
+                | <button type="button" id="roomTravelButton">room</button><label id="roomActiveLabel" for="activeNotifier"> (active)</label><br>
+                | <button type="button" id="outsideTravelButton">outside</button><label id="outsideActiveLabel" for="activeNotifier"> (active)</label><br>
+                | <button type="button" id="worldTravelButton">world</button><label id="worldActiveLabel" for="activeNotifier"> (active)</label><br>
+                | <button type="button" id="spaceshipTravelButton">spaceship</button><label id="spaceshipActiveLabel" for="activeNotifier"> (active)</label><br>
+                +--------------------------<br>
+    			<!-- <div id="activeFeaturePanel" width="200" height="100%"></div> -->
+    			<!-- <div id="featuresPanel" width="200" height="100%"></div> -->
     		</td>
     		<td>
     			<div id="populationPanel" width="100" height="100%"></div>
-    			<td>
-    				+-- income ----------------<br>
-    				<label id="gathererLabel" for="gatherer">+ gatherer (?)</label>
-    				<button type="button" id="gathererIncreaseButton">+</button>
-    				<button type="button" id="gathererDecreaseButton">-</button>
-    				<br>
+				+-- income ----------------<br>
+				<label id="gathererLabel" for="gatherer">+ gatherer (?)</label>
+				<button type="button" id="gathererIncreaseButton">+</button>
+				<button type="button" id="gathererDecreaseButton">-</button>
+				<br>
 
-    				<label id="hunterLabel" for="hunter">+ hunter (?)</label>
-    				<button type="button" id="hunterIncreaseButton">+</button>
-    				<button type="button" id="hunterDecreaseButton">-</button>
-    				<br>
+				<label id="hunterLabel" for="hunter">+ hunter (?)</label>
+				<button type="button" id="hunterIncreaseButton">+</button>
+				<button type="button" id="hunterDecreaseButton">-</button>
+				<br>
 
-    				<label id="trapperLabel" for="trapper">+ trapper (?)</label>
-    				<button type="button" id="trapperIncreaseButton">+</button>
-    				<button type="button" id="trapperDecreaseButton">-</button>
-    				<br>
-    				<label id="farmerLabel" for="farmer">+ farmer (?)</label>
-    				<button type="button" id="farmerIncreaseButton">+</button>
-    				<button type="button" id="farmerDecreaseButton">-</button>
-    				<br>
+				<label id="trapperLabel" for="trapper">+ trapper (?)</label>
+				<button type="button" id="trapperIncreaseButton">+</button>
+				<button type="button" id="trapperDecreaseButton">-</button>
+				<br>
+				<label id="farmerLabel" for="farmer">+ farmer (?)</label>
+				<button type="button" id="farmerIncreaseButton">+</button>
+				<button type="button" id="farmerDecreaseButton">-</button>
+				<br>
 
-    				<label id="tannerLabel" for="tanner">+ tanner (?)</label>
-    				<button type="button" id="tannerIncreaseButton">+</button>
-    				<button type="button" id="tannerDecreaseButton">-</button>
-    				<br>
+				<label id="tannerLabel" for="tanner">+ tanner (?)</label>
+				<button type="button" id="tannerIncreaseButton">+</button>
+				<button type="button" id="tannerDecreaseButton">-</button>
+				<br>
 
-    				<label id="charcutierLabel" for="charcutier">+ charcutier (?)</label>
-    				<button type="button" id="charcutierIncreaseButton">+</button>
-    				<button type="button" id="charcutierDecreaseButton">-</button>
-    				<br>
+				<label id="charcutierLabel" for="charcutier">+ charcutier (?)</label>
+				<button type="button" id="charcutierIncreaseButton">+</button>
+				<button type="button" id="charcutierDecreaseButton">-</button>
+				<br>
 
-    				<label id="iron_minerLabel" for="iron miner">+ iron miner (?)</label>
-    				<button type="button" id="iron_minerIncreaseButton">+</button>
-    				<button type="button" id="iron_minerDecreaseButton">-</button>
-    				<br>
+				<label id="iron_minerLabel" for="iron miner">+ iron miner (?)</label>
+				<button type="button" id="iron_minerIncreaseButton">+</button>
+				<button type="button" id="iron_minerDecreaseButton">-</button>
+				<br>
 
-    				<label id="coal_minerLabel" for="coal miner">+ coal miner (?)</label>
-    				<button type="button" id="coal_minerIncreaseButton">+</button>
-    				<button type="button" id="coal_minerDecreaseButton">-</button>
-    				<br>
+				<label id="coal_minerLabel" for="coal miner">+ coal miner (?)</label>
+				<button type="button" id="coal_minerIncreaseButton">+</button>
+				<button type="button" id="coal_minerDecreaseButton">-</button>
+				<br>
 
-    				<label id="sulphur_minerLabel" for="sulphur miner">+ sulphur miner (?)</label>
-    				<button type="button" id="sulphur_minerIncreaseButton">+</button>
-    				<button type="button" id="sulphur_minerDecreaseButton">-</button>
-    				<br>
+				<label id="sulphur_minerLabel" for="sulphur miner">+ sulphur miner (?)</label>
+				<button type="button" id="sulphur_minerIncreaseButton">+</button>
+				<button type="button" id="sulphur_minerDecreaseButton">-</button>
+				<br>
 
-    				<label id="steelworkerLabel" for="steelworker">+ steelworker (?)</label>
-    				<button type="button" id="steelworkerIncreaseButton">+</button>
-    				<button type="button" id="steelworkerDecreaseButton">-</button>
-    				<br>
+				<label id="steelworkerLabel" for="steelworker">+ steelworker (?)</label>
+				<button type="button" id="steelworkerIncreaseButton">+</button>
+				<button type="button" id="steelworkerDecreaseButton">-</button>
+				<br>
 
-    				<label id="armourerLabel" for="armourer">+ armourer (?)</label>
-    				<button type="button" id="armourerIncreaseButton">+</button>
-    				<button type="button" id="armourerDecreaseButton">-</button>
-    				<br>
-    				+--------------------------<br>
-    			</td>
+				<label id="armourerLabel" for="armourer">+ armourer (?)</label>
+				<button type="button" id="armourerIncreaseButton">+</button>
+				<button type="button" id="armourerDecreaseButton">-</button>
+				<br>
+				+--------------------------<br>
 			</td>
 			<td>
 				+-- merchants ----------------<br>
@@ -129,10 +132,7 @@
 	    		<div id="storesPanel" width="100" height="100%"></div>
 	    	</td>
 	  	</tr>
-	  	<td><div id="statusPanel" width="100%" height="200"></div></td>
-	  
 	</table>
-<!--    <button type="button" id="pollButton">Poll</button> -->
 </body>
 <footer id="footer">
 </footer>

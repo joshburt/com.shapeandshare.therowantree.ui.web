@@ -7,7 +7,21 @@
     var apiVersion = '0.1.0';
     var api_url = 'http://localhost:5000';
 
-    // var pollButton;
+    var actionPanel;
+    var actionPanelString = '';
+    var events = {};
+
+    var roomTravelButton;
+    var roomActiveLabel;
+
+    var outsideTravelButton;
+    var outsideActiveLabel;
+
+    var worldTravelButton;
+    var worldActiveLabel;
+
+    var spaceshipTravelButton;
+    var spaceshipActiveLabel;
     
     var gathererLabel;
     var gathererLabelString = '| gatherer (*)';
@@ -77,12 +91,12 @@
     var incomePanel;
 
     var activeFeature;
-    var activeFeatureString = '';
-    var activeFeaturePanel;
+    // var activeFeatureString = '';
+    // var activeFeaturePanel;
 
     var features;
-    var featuresString = '';
-    var featuresPanel;
+    // var featuresString = '';
+    // var featuresPanel;
 
     var population;
     var populationString = '';
@@ -180,7 +194,7 @@
         }
         return storesString;
     }
-
+/*
     function buildActiveFeature() {
         if (activeFeature == null) {
             activeFeatureString = 'you are in the void.';
@@ -206,7 +220,7 @@
         }
         return featuresString;
     }
-
+*/
     function buildPopulation() {
         if (populationString == null) {
             populationString = 'you are not even one';
@@ -220,13 +234,23 @@
         return populationString;
     }
 
-    // https://stackoverflow.com/questions/6116474/how-to-find-if-an-array-contains-a-specific-string-in-javascript-jquery
-    function arrayContains(needle, arrhaystack)
-    {
-        return (arrhaystack.indexOf(needle) > -1);
+    function buildActionPanel() {
+        actionPanelString =  '+-- event log -----------------<br>';
+        for (event in events) {
+            actionPanelString += '| ' + event[1] + '<br>'
+            actionPanelString += '| ' + event[2] + '<br>'
+        }
+        actionPanelString += '+------------------------------<br>';
+        return actionPanelString;
     }
 
+
+    // https://stackoverflow.com/questions/6116474/how-to-find-if-an-array-contains-a-specific-string-in-javascript-jquery
+    function arrayContains(needle, arrhaystack) { return (arrhaystack.indexOf(needle) > -1); }
+
     function updateUI() {
+
+        actionPanel.innerHTML = buildActionPanel();
         statusPanel.innerHTML = buildStatus();
         storesPanel.innerHTML = buildStores();
 
@@ -365,7 +389,8 @@
                 armourerIncreaseButton.style.display = "none";
                 armourerDecreaseButton.style.display = "none"; 
             }
-        }      
+        }
+
         gathererLabel.innerHTML = gathererLabelString;
         hunterLabel.innerHTML = hunterLabelString;
         trapperLabel.innerHTML = trapperLabelString;
@@ -378,9 +403,8 @@
         steelworkerLabel.innerHTML = steelworkerLabelString;
         armourerLabel.innerHTML = armourerLabelString;
 
-
-        activeFeaturePanel.innerHTML = buildActiveFeature();
-        featuresPanel.innerHTML = buildFeatures();
+        // activeFeaturePanel.innerHTML = buildActiveFeature();
+        // featuresPanel.innerHTML = buildFeatures();
         populationPanel.innerHTML = buildPopulation();
 
         if(merchants){
@@ -684,12 +708,44 @@
             else {
                 grenadeMerchantTransformButton.style.display = 'none';
             }  
-
         }
 
-
-
-
+        // build the travel buttons
+        if (features){
+            if (arrayContains('room', features)) {
+                roomTravelButton.style.display = 'inline';
+                roomActiveLabel.style.display = 'inline';
+            }
+            else {
+                roomTravelButton.style.display = 'none';
+                roomActiveLabel.style.display = 'none';
+            }
+            if (arrayContains('outside', features)) {
+                outsideTravelButton.style.display = 'inline';
+                outsideActiveLabel.style.display = 'inline';
+            }
+            else {
+                outsideTravelButton.style.display = 'none';
+                outsideActiveLabel.style.display = 'none';
+            }
+            if (arrayContains('world', features)) {
+                worldTravelButton.style.display = 'inline';
+                worldActiveLabel.style.display = 'inline';
+            }
+            else {
+                worldTravelButton.style.display = 'none';
+                worldActiveLabel.style.display = 'none';
+            }
+            if (arrayContains('spaceship', features)) {
+                spaceshipTravelButton.style.display = 'inline';
+                spaceshipActiveLabel.style.display = 'inline';
+            }
+            else {
+                spaceshipTravelButton.style.display = 'none';
+                spaceshipActiveLabel.style.display = 'none';
+            }  
+        }
+                              
     }
 
     function updateGameState() {
@@ -892,13 +948,25 @@
     }
 
     function initialize() {
+        roomTravelButton = doc.getElementById("roomTravelButton");
+        roomActiveLabel = doc.getElementById("roomActiveLabel");
+
+        outsideTravelButton = doc.getElementById("outsideTravelButton");
+        outsideActiveLabel = doc.getElementById("outsideActiveLabel");
+
+        worldTravelButton = doc.getElementById("worldTravelButton");
+        worldActiveLabel = doc.getElementById("worldActiveLabel");
+
+        spaceshipTravelButton = doc.getElementById("spaceshipTravelButton");
+        spaceshipActiveLabel = doc.getElementById("spaceshipActiveLabel");
+
+
+        actionPanel = doc.getElementById("actionPanel");
         statusPanel = doc.getElementById("statusPanel");
         storesPanel = doc.getElementById("storesPanel");
-        activeFeaturePanel = doc.getElementById("activeFeaturePanel");
-        featuresPanel = doc.getElementById("featuresPanel");
+        // activeFeaturePanel = doc.getElementById("activeFeaturePanel");
+        // featuresPanel = doc.getElementById("featuresPanel");
         populationPanel = doc.getElementById("populationPanel");
-
-        
 
         gathererIncreaseButton = doc.getElementById("gathererIncreaseButton");
         gathererIncreaseButton.addEventListener("click", function(){

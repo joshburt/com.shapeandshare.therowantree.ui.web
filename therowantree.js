@@ -714,38 +714,53 @@
         if (features){
             if (arrayContains('room', features)) {
                 roomTravelButton.style.display = 'inline';
-                roomActiveLabel.style.display = 'inline';
             }
             else {
                 roomTravelButton.style.display = 'none';
-                roomActiveLabel.style.display = 'none';
             }
             if (arrayContains('outside', features)) {
                 outsideTravelButton.style.display = 'inline';
-                outsideActiveLabel.style.display = 'inline';
             }
             else {
                 outsideTravelButton.style.display = 'none';
-                outsideActiveLabel.style.display = 'none';
             }
             if (arrayContains('world', features)) {
                 worldTravelButton.style.display = 'inline';
-                worldActiveLabel.style.display = 'inline';
             }
             else {
                 worldTravelButton.style.display = 'none';
-                worldActiveLabel.style.display = 'none';
             }
             if (arrayContains('spaceship', features)) {
                 spaceshipTravelButton.style.display = 'inline';
-                spaceshipActiveLabel.style.display = 'inline';
             }
             else {
                 spaceshipTravelButton.style.display = 'none';
-                spaceshipActiveLabel.style.display = 'none';
             }  
         }
-                              
+        if (activeFeature == 'room'){
+            roomActiveLabel.style.display = 'inline';
+        }
+        else {
+            roomActiveLabel.style.display = 'none';
+        }
+        if (activeFeature == 'outside'){
+            outsideActiveLabel.style.display = 'inline';
+        }
+        else {
+            outsideActiveLabel.style.display = 'none';
+        }
+        if (activeFeature == 'world'){
+            worldActiveLabel.style.display = 'inline';
+        }
+        else {
+            worldActiveLabel.style.display = 'none';
+        }
+        if (activeFeature == 'spaceship'){
+            spaceshipActiveLabel.style.display = 'inline';
+        }
+        else {
+            spaceshipActiveLabel.style.display = 'none';
+        }       
     }
 
     function updateGameState() {

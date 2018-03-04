@@ -944,6 +944,23 @@
         });
     }
 
+    function transportUser(raw_guid, feature_name) {
+        var json_packet = { 'guid': raw_guid, 'location': feature_name };
+        var json_out = JSON.stringify(json_packet);
+        console.log(json_out);        
+        $.ajax({
+            url: api_url + '/api/user/transport',
+            type: 'POST',
+            headers:
+                {
+                    'Content-type': 'application/json',
+                    'API-ACCESS-KEY': accessKeyGuid,
+                    'API-VERSION': apiVersion
+                },
+            data: json_out
+        });
+    }
+
     function createUser() {
         $.ajax({
             url: api_url + '/api/user/create',
@@ -966,25 +983,25 @@
         roomTravelButton = doc.getElementById("roomTravelButton");
         roomActiveLabel = doc.getElementById("roomActiveLabel");
         roomTravelButton.addEventListener("click", function(){
-
+            transportUser(userGUID, 'room')
         });       
 
         outsideTravelButton = doc.getElementById("outsideTravelButton");
         outsideActiveLabel = doc.getElementById("outsideActiveLabel");
         outsideTravelButton.addEventListener("click", function(){
-            
+            transportUser(userGUID, 'outside')
         });       
 
         worldTravelButton = doc.getElementById("worldTravelButton");
         worldActiveLabel = doc.getElementById("worldActiveLabel");
         worldTravelButton.addEventListener("click", function(){
-            
+            transportUser(userGUID, 'world')
         });
 
         spaceshipTravelButton = doc.getElementById("spaceshipTravelButton");
         spaceshipActiveLabel = doc.getElementById("spaceshipActiveLabel");
         spaceshipTravelButton.addEventListener("click", function(){
-            
+            transportUser(userGUID, 'spaceship')
         });
 
         actionPanel = doc.getElementById("actionPanel");

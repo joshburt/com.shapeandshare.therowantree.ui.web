@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import StatusPanel from './StatusPanel.js';
+import Model from './Model.js';
+import { createStore } from 'redux';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            userGUID: '870a7d28-1cef-11e8-b445-60f29d3d5700'
-        };
+        this.model = new Model();
     }
 
     render() {
         return (
-            <StatusPanel userGUID={this.state.userGUID} />
+            <StatusPanel userGUID={this.model.userGUID} playerActivityStatus={this.model.playerActivityStatus} />
         );
     }
 }

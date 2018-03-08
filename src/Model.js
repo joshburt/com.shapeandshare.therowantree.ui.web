@@ -7,6 +7,7 @@ class Model extends React.Component {
         super(props);
         this.userGUID = '870a7d28-1cef-11e8-b445-60f29d3d5700';
         this.playerActivityStatus = -1;
+        this.stores;
 
         let currentdate = new Date();
         this.birthday = currentdate.getDate() + "/"
@@ -21,7 +22,7 @@ class Model extends React.Component {
 
     }
 
-    updateModel() {
+    updateUserActivityStatus() {
         // User activity status
         fetch(Secrets.SERVER_BASE + '/api/user/active/state', {
             method: 'POST',
@@ -42,6 +43,33 @@ class Model extends React.Component {
             .catch((error) =>{
                 console.error(error);
             });
+    }
+
+    updateUserStoresGameState() {
+        fetch(Secrets.SERVER_BASE + '/api/user/stores', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+                'API-VERSION': Secrets.API_VERSION
+            },
+            body: JSON.stringify({
+                guid: this.userGUID
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.stores = responseJson.stores;
+            })
+            .catch((error) =>{
+                console.error(error);
+            });
+    }
+
+    updateModel() {
+        this.updateUserActivityStatus();
+        this.updateUserStoresGameState();
     }
 
 }

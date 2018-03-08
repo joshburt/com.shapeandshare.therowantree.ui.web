@@ -36,7 +36,7 @@ class App extends Component {
                 playerActivityStatus: {this.state.model.playerActivityStatus} |
                 guid: {this.state.model.userGUID} |
                 birthday: {this.state.model.birthday} [/DEBUG]
-                <StatusPanel playerActivityStatus={this.state.model.playerActivityStatus} model={this.state.model} />
+                <StatusPanel model={this.state.model} />
             </div>
         );
     }

@@ -21,6 +21,9 @@ class Model extends React.Component {
 
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // READ
+    ///////////////////////////////////////////////////////////////////////////
     updateUserStoresGameState() {
         fetch(Secrets.SERVER_BASE + '/api/user/stores', {
             method: 'POST',
@@ -85,6 +88,31 @@ class Model extends React.Component {
             .catch((error) =>{
                 console.error(error);
             });
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //  UPDATE
+    ///////////////////////////////////////////////////////////////////////////
+    setUserStatusActive() {
+        // heartbeart.
+        // He pounds his fists against the posts, and still insists he sees the ghost.
+        fetch(Secrets.SERVER_BASE + '/api/user/active/set', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+                'API-VERSION': Secrets.API_VERSION
+            },
+            body: JSON.stringify({
+                guid: this.userGUID
+            })
+        })
+            .catch((error) =>{
+                console.error(error);
+            });
+
     }
 
     updateModel() {

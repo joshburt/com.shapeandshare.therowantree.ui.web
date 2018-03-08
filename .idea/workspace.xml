@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcf7c84d-1bfc-4d82-a380-c3f716e5e357" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
       <change beforePath="$PROJECT_DIR$/src/Model.js" afterPath="$PROJECT_DIR$/src/Model.js" />
-      <change beforePath="$PROJECT_DIR$/src/StatusPanel.js" afterPath="$PROJECT_DIR$/src/StatusPanel.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,66 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
+            <state relative-caret-position="525">
               <caret line="35" column="75" lean-forward="false" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="therowantree.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/legacy/therowantree.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="823" column="36" lean-forward="false" selection-start-line="823" selection-start-column="30" selection-end-line="823" selection-end-column="36" />
-              <folding>
-                <element signature="e#4292#4417#0" expanded="false" />
-                <element signature="e#4446#4806#0" expanded="false" />
-                <element signature="e#4835#5542#0" expanded="false" />
-                <element signature="e#5543#6414#0" expanded="false" />
-                <element signature="e#6446#6804#0" expanded="false" />
-                <element signature="e#7419#27242#0" expanded="false" />
-                <element signature="e#29189#29655#0" expanded="false" />
-                <element signature="e#29705#30164#0" expanded="false" />
-                <element signature="e#30209#30650#0" expanded="false" />
-                <element signature="e#30697#31145#0" expanded="false" />
-                <element signature="e#31231#31777#0" expanded="false" />
-                <element signature="e#31838#32352#0" expanded="false" />
-                <element signature="e#32398#32843#0" expanded="false" />
-                <element signature="e#32896#33413#0" expanded="false" />
-                <element signature="e#33441#33935#0" expanded="false" />
-                <element signature="e#33963#51339#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="n#!!block;n#updateUserStoresGameState#0;n#Model#0" expanded="false" />
-                <element signature="n#!!block;n#updateUserIncomeGameState#0;n#Model#0" expanded="false" />
-                <element signature="n#!!block;n#updateUserStatusGameState#0;n#Model#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -107,10 +51,10 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/Secrets.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/Model.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/StatusPanel.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/Model.js" />
       </list>
     </option>
   </component>
@@ -223,12 +167,12 @@
       <workItem from="1520364143265" duration="38000" />
       <workItem from="1520380464781" duration="720000" />
       <workItem from="1520381347688" duration="6127000" />
-      <workItem from="1520468197067" duration="7913000" />
+      <workItem from="1520468197067" duration="8754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29929000" />
+    <option name="totallyTimeSpent" value="30770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="297" y="24" width="1635" height="971" extended-state="0" />
@@ -262,7 +206,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Model.js</url>
+          <line>111</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -477,10 +429,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/StatusPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/legacy/therowantree.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="823" column="36" lean-forward="false" selection-start-line="823" selection-start-column="30" selection-end-line="823" selection-end-column="36" />
+        <state relative-caret-position="275">
+          <caret line="832" column="48" lean-forward="false" selection-start-line="832" selection-start-column="28" selection-end-line="832" selection-end-column="48" />
           <folding>
             <element signature="e#4292#4417#0" expanded="false" />
             <element signature="e#4446#4806#0" expanded="false" />
@@ -488,7 +458,6 @@
             <element signature="e#5543#6414#0" expanded="false" />
             <element signature="e#6446#6804#0" expanded="false" />
             <element signature="e#7419#27242#0" expanded="false" />
-            <element signature="e#29189#29655#0" expanded="false" />
             <element signature="e#29705#30164#0" expanded="false" />
             <element signature="e#30209#30650#0" expanded="false" />
             <element signature="e#30697#31145#0" expanded="false" />
@@ -502,30 +471,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StatusPanel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="35" column="75" lean-forward="false" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        <state relative-caret-position="570">
+          <caret line="98" column="85" lean-forward="true" selection-start-line="98" selection-start-column="85" selection-end-line="98" selection-end-column="85" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="n#!!block;n#updateUserStoresGameState#0;n#Model#0" expanded="false" />
@@ -535,11 +484,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="6" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="525">
+          <caret line="35" column="75" lean-forward="false" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

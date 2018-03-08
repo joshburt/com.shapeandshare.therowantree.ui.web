@@ -13,9 +13,11 @@ class App extends Component {
     }
 
     tick() {
-        this.state.model.updateModel();
+        let ephemeralModel = this.state.model;
+        ephemeralModel.updateModel();
         this.setState(prevState => ({
-            seconds: prevState.seconds + 1
+            seconds: prevState.seconds + 1,
+            model: ephemeralModel
         }));
     }
 
@@ -30,8 +32,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                [DEBUG] Seconds: {this.state.seconds} | playerActivityStatus: {this.state.model.playerActivityStatus} | guid: {this.state.model.userGUID} [/DEBUG]
-                <StatusPanel playerActivityStatus={this.state.model.playerActivityStatus} />
+                [DEBUG] Seconds: {this.state.seconds} |
+                playerActivityStatus: {this.state.model.playerActivityStatus} |
+                guid: {this.state.model.userGUID} |
+                birthday: {this.state.model.birthday} [/DEBUG]
+                <StatusPanel playerActivityStatus={this.state.model.playerActivityStatus} model={this.state.model} />
             </div>
         );
     }

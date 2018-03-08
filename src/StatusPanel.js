@@ -2,19 +2,6 @@ import React, { Component } from 'react';
 import './StatusPanel.css';
 
 class StatusPanel extends Component {
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     userGUID: -1,
-        //     playerActivityStatus: -1
-        // };
-    }
-
-
-    componentDidMount() {
-
-    }
-
     buildStatus() {
         let statusString = '';
         switch(this.props.playerActivityStatus) {
@@ -35,7 +22,6 @@ class StatusPanel extends Component {
         return (
             <div>
                 <div>+-- status ----------------</div>
-                <div>| guid: ({this.props.userGUID})</div>
                 <div>| {this.buildStatus()}</div>
                 <div>+--------------------------</div>
             </div>

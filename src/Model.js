@@ -8,16 +8,20 @@ class Model extends React.Component {
         this.userGUID = '870a7d28-1cef-11e8-b445-60f29d3d5700';
         this.playerActivityStatus = -1;
 
+        let currentdate = new Date();
+        this.birthday = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds();
+
         // set the initial state
-        // this.updateModel();
+        this.updateModel();
 
     }
 
     updateModel() {
-        //console.log(Secrets.SERVER_BASE + '/api/user/active/state');
-        //console.log(Secrets.API_ACCESS_KEY);
-        //console.log(Secrets.API_VERSION);
-        //console.log(this.state.userGUID);
         // User activity status
         fetch(Secrets.SERVER_BASE + '/api/user/active/state', {
             method: 'POST',
@@ -33,9 +37,6 @@ class Model extends React.Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                //this.setState({
-                //    playerActivityStatus: responseJson.active
-                //});
                 this.playerActivityStatus = responseJson.active
             })
             .catch((error) =>{

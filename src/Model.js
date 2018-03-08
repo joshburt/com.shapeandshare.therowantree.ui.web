@@ -6,8 +6,7 @@ class Model extends React.Component {
     constructor(props) {
         super(props);
         this.userGUID = '870a7d28-1cef-11e8-b445-60f29d3d5700';
-        this.playerActivityStatus = -1;
-        this.stores;
+        this.UserStatusGameState = -1;
 
         let currentdate = new Date();
         this.birthday = currentdate.getDate() + "/"
@@ -20,29 +19,6 @@ class Model extends React.Component {
         // set the initial state
         this.updateModel();
 
-    }
-
-    updateUserActivityStatus() {
-        // User activity status
-        fetch(Secrets.SERVER_BASE + '/api/user/active/state', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.userGUID
-            })
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.playerActivityStatus = responseJson.active
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
     }
 
     updateUserStoresGameState() {
@@ -67,9 +43,54 @@ class Model extends React.Component {
             });
     }
 
+    updateUserIncomeGameState() {
+        fetch(Secrets.SERVER_BASE + '/api/user/income', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+                'API-VERSION': Secrets.API_VERSION
+            },
+            body: JSON.stringify({
+                guid: this.userGUID
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.income = responseJson.income;
+            })
+            .catch((error) =>{
+                console.error(error);
+            });
+    }
+
+    updateUserStatusGameState() {
+        fetch(Secrets.SERVER_BASE + '/api/user/active/state', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+                'API-VERSION': Secrets.API_VERSION
+            },
+            body: JSON.stringify({
+                guid: this.userGUID
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.UserStatusGameState = responseJson.active;
+            })
+            .catch((error) =>{
+                console.error(error);
+            });
+    }
+
     updateModel() {
-        this.updateUserActivityStatus();
         this.updateUserStoresGameState();
+        this.updateUserIncomeGameState();
+        this.updateUserStatusGameState();
     }
 
 }

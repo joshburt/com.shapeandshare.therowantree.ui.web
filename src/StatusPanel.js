@@ -4,7 +4,7 @@ import './StatusPanel.css';
 class StatusPanel extends Component {
     buildStatus() {
         let statusString = '';
-        switch(this.props.model.playerActivityStatus) {
+        switch(this.props.model.UserStatusGameState) {
             case 0:
                 statusString += 'You are NOT active.';
                 break;

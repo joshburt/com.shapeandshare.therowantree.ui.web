@@ -3,6 +3,7 @@ import './App.css';
 import Model from './Model.js';
 import StatusPanel from './StatusPanel.js';
 import StoresPanel from './StoresPanel.js';
+import PopulationPanel from './PopulationPanel';
 
 class App extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
                 </div>
                 <StatusPanel model={this.state.model} />
                 <StoresPanel model={this.state.model} />
+                <PopulationPanel model={this.state.model} />
             </div>
         );
     }

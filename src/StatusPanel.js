@@ -20,7 +20,7 @@ class StatusPanel extends Component {
 
     render() {
         return (
-            <div>
+            <div className="StatusPanel">
                 <div>+-- status ----------------</div>
                 <div>| {this.buildStatus()}</div>
                 <div>+--------------------------</div>

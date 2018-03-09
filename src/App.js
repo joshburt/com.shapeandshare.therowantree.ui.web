@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import StatusPanel from './StatusPanel.js';
 import Model from './Model.js';
+import StatusPanel from './StatusPanel.js';
+import StoresPanel from './StoresPanel.js';
 
 class App extends Component {
     constructor(props) {
@@ -32,11 +33,14 @@ class App extends Component {
     render() {
         return (
             <div>
-                [DEBUG] Seconds: {this.state.seconds} |
-                playerActivityStatus: {this.state.model.UserStatusGameState} |
-                guid: {this.state.model.guid} |
-                birthday: {this.state.model.birthday} [/DEBUG]
+                <div className="App">
+                    [DEBUG] Seconds: {this.state.seconds} |
+                    playerActivityStatus: {this.state.model.UserStatusGameState} |
+                    guid: {this.state.model.guid} |
+                    birthday: {this.state.model.birthday} [/DEBUG]
+                </div>
                 <StatusPanel model={this.state.model} />
+                <StoresPanel model={this.state.model} />
             </div>
         );
     }

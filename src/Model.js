@@ -13,7 +13,6 @@ class Model extends React.Component {
             this.guid = localStorage.getItem("therowantree_guid");
         }
 
-
         let currentdate = new Date();
         this.birthday = currentdate.getDate() + "/"
             + (currentdate.getMonth()+1)  + "/"

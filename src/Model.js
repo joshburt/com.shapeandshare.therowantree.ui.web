@@ -5,8 +5,14 @@ class Model extends React.Component {
 
     constructor(props) {
         super(props);
-        this.guid = '870a7d28-1cef-11e8-b445-60f29d3d5700';
-        //this.UserStatusGameState = -1;
+
+        if (localStorage.getItem("therowantree_guid") == null){
+            this.createUser();
+        }
+        else {
+            this.guid = localStorage.getItem("therowantree_guid");
+        }
+
 
         let currentdate = new Date();
         this.birthday = currentdate.getDate() + "/"
@@ -36,6 +42,7 @@ class Model extends React.Component {
             .then((response) => response.json())
             .then((responseJson) => {
                 this.guid = responseJson.guid;
+                localStorage.setItem("therowantree_guid", responseJson.guid);
             })
             .catch((error) =>{
                 console.error(error);

@@ -36,20 +36,33 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <div className="App">
-                    [DEBUG] Seconds: {this.state.seconds} |
-                    playerActivityStatus: {this.state.model.UserStatusGameState} |
-                    guid: {this.state.model.guid} |
-                    birthday: {this.state.model.birthday} [/DEBUG]
-                </div>
-                <StatusPanel model={this.state.model} />
-                <StoresPanel model={this.state.model} />
-                <PopulationPanel model={this.state.model} />
-                <TravelPanel model={this.state.model}/>
-                <IncomePanel model={this.state.model} />
-                <MerchantsPanel model={this.state.model} />
-            </div>
+            <table>
+                <tbody>
+                <tr>
+                    <td colSpan="4">
+                        <div>
+                            [DEBUG] Seconds: {this.state.seconds} [/DEBUG]
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <StatusPanel model={this.state.model} />
+                        <TravelPanel model={this.state.model}/>
+                    </td>
+                    <td>
+                        <PopulationPanel model={this.state.model} />
+                        <IncomePanel model={this.state.model} />
+                    </td>
+                    <td>
+                        <MerchantsPanel model={this.state.model} />
+                    </td>
+                    <td>
+                        <StoresPanel model={this.state.model} />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         );
     }
 }

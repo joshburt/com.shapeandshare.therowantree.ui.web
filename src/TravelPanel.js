@@ -12,7 +12,7 @@ class TravelPanel extends Component {
     buildTravel() {
         let panelElements = [];
         if (this.props.model.features == null) {
-            return ('<div>| You are nowhere..\n</div>');
+            return (<div>| You are nowhere..\n</div>);
         }
         else{
             for (var key in this.props.model.features){
@@ -35,7 +35,7 @@ class TravelPanel extends Component {
         return (
             <div className="TravelPanel">
                 <div>+-- travel ----------------</div>
-{this.buildTravel()}
+                {this.buildTravel()}
                 <div>+--------------------------</div>
             </div>
         );

@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 import './MerchantsPanel.css';
 
 class MerchantsPanel extends Component {
+    buildButton(transform_name, label) {
+        return (<button key={label} onClick={(e) => this.props.model.peformMerchantTransform(transform_name)}>{label}</button>);
+    }
+
     buildMerchantsPanel() {
-        let merchantsString = '';
+        let panelElements = [];
+
         if (this.props.model.merchants == null) {
-            merchantsString = '| You are lone figure at the trading grounds. The wind your only company.\n';
+            return(<div>| You are lone figure at the trading grounds. The wind your only company.\n</div>);
         }
         else{
             for (var key in this.props.model.merchants){
                 var merchant_name = this.props.model.merchants[key]
-                merchantsString += "| " + key + " (" + merchant_name + ")\n"
+                panelElements.push(this.buildButton(merchant_name, merchant_name));
             }
         }
-        return merchantsString;
+        return panelElements;
     }
 
     render() {
         return (
             <div className="MerchantsPanel">
                 <div>+-- merchants ----------------</div>
-                <div>{this.buildMerchantsPanel()}</div>
+                {this.buildMerchantsPanel()}
                 <div>+--------------------------</div>
             </div>
         );

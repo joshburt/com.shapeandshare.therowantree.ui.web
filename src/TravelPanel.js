@@ -3,12 +3,22 @@ import './TravelPanel.css';
 
 class TravelPanel extends Component {
 
-    sendTraveler(location){
-        this.props.model.transportUser(location);
+    buildButton(location, label, key_suffix) {
+        let element_key = '';
+        element_key += key_suffix + '_' + label;
+        return (<button key={element_key} onClick={(e) => this.props.model.transportUser(location)}>{label}</button>);
     }
-    buildButton(location, label) {
-        return (<button key={label} onClick={(e) => this.sendTraveler(location)}>{label}</button>);
+
+    buildLabel(text, key_suffix){
+        let element_key = '';
+        element_key += key_suffix + '_' + text;
+        return(<label key={element_key}>{text}</label>);
     }
+
+    buildBreak(key_suffix){
+        return(<br key={key_suffix}></br>);
+    }
+
     buildTravel() {
         let panelElements = [];
         if (this.props.model.features == null) {
@@ -17,15 +27,15 @@ class TravelPanel extends Component {
         else{
             for (var key in this.props.model.features){
                 var feature_name = this.props.model.features[key]
-                let travelString = '';
-                travelString += feature_name;
 
+                panelElements.push(this.buildLabel('| ', feature_name));
                 if (this.props.model.activeFeature === feature_name) {
-                    panelElements.push(<div key={travelString} className="activeLocation">{travelString}</div>);
+                    panelElements.push(this.buildLabel(feature_name, feature_name));
                 }
                 else {
-                    panelElements.push(this.buildButton(feature_name, travelString));
+                    panelElements.push(this.buildButton(feature_name, feature_name, feature_name));
                 }
+                panelElements.push(this.buildBreak(feature_name));
             }
         }
         return panelElements;

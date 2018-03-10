@@ -10,7 +10,7 @@ class TravelPanel extends Component {
         return (<button key={label} onClick={(e) => this.sendTraveler(location)}>{label}</button>);
     }
     buildTravel() {
-        let buttons = [];
+        let panelElements = [];
         if (this.props.model.features == null) {
             return ('<div>| You are nowhere..\n</div>');
         }
@@ -18,15 +18,17 @@ class TravelPanel extends Component {
             for (var key in this.props.model.features){
                 var feature_name = this.props.model.features[key]
                 let travelString = '';
-                travelString += key + " (" + feature_name + ")"
+                travelString += feature_name;
 
                 if (this.props.model.activeFeature === feature_name) {
-                    travelString += '(*)'
+                    panelElements.push(<div key={travelString} className="activeLocation">{travelString}</div>);
                 }
-                buttons.push(this.buildButton(feature_name, travelString));
+                else {
+                    panelElements.push(this.buildButton(feature_name, travelString));
+                }
             }
         }
-        return buttons;
+        return panelElements;
     }
 
     render() {

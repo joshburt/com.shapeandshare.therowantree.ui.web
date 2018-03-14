@@ -22,7 +22,7 @@ class MerchantsPanel extends Component {
         let panelElements = [];
 
         if (this.props.model.merchants == null) {
-            return(<div>| You are lone figure at the trading grounds. The wind your only company.\n</div>);
+            return(<div>| You are a lone figure at the trading grounds.<div></div>| The wind your only company.</div>);
         }
         else{
             for (var key in this.props.model.merchants){

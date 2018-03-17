@@ -197,6 +197,35 @@ class Model extends React.Component {
             });
     }
 
+    updateUserModel() {
+        fetch(Secrets.SERVER_BASE + '/api/user/state', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+                'API-VERSION': Secrets.API_VERSION
+            },
+            body: JSON.stringify({
+                guid: this.guid
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                // this.user = responseJson.user;
+                this.stores = responseJson.user.stores;
+                this.income = responseJson.user.income;
+                this.UserStatusGameState = responseJson.user.user_activity_state;
+                this.activeFeature = responseJson.user.active_feature;
+                this.features = responseJson.user.features;
+                this.population = responseJson.user.population;
+                this.merchants = responseJson.user.merchants;
+            })
+            .catch((error) =>{
+                console.error(error);
+            });
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////
     //  UPDATE
@@ -283,16 +312,18 @@ class Model extends React.Component {
 
 
     updateModel() {
-        this.updateUserStoresGameState();
-        this.updateUserIncomeGameState();
-        this.updateUserStatusGameState();
-        this.updateUserActiveFeatureState();
-        this.updateUserFeaturesState();
-        this.updateUserPopulationState();
-        this.updateMerchantTransforms();
+        // this.updateUserStoresGameState();
+        // this.updateUserIncomeGameState();
+        // this.updateUserStatusGameState();
+        // this.updateUserActiveFeatureState();
+        // this.updateUserFeaturesState();
+        // this.updateUserPopulationState();
+        // this.updateMerchantTransforms();
 
         // not exactly state here, but we do maintain a heartbeat server side.
-        this.setUserStatusActive()
+        // this.setUserStatusActive()
+
+        this.updateUserModel()
     }
 
 }

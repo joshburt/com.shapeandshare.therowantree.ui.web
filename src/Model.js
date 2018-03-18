@@ -217,6 +217,7 @@ class Model extends React.Component {
                 this.income = responseJson.user.income;
                 this.UserStatusGameState = responseJson.user.user_activity_state;
                 this.activeFeature = responseJson.user.active_feature;
+                this.active_feature_state_details = responseJson.user.active_feature_state_details
                 this.features = responseJson.user.features;
                 this.population = responseJson.user.population;
                 this.merchants = responseJson.user.merchants;
@@ -324,6 +325,7 @@ class Model extends React.Component {
         // this.setUserStatusActive()
 
         this.updateUserModel()
+        this.setUserStatusActive()
     }
 
 }

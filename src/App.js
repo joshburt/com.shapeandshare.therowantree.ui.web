@@ -7,6 +7,7 @@ import PopulationPanel from './PopulationPanel.js';
 import TravelPanel from './TravelPanel.js';
 import IncomePanel from './IncomePanel.js';
 import MerchantsPanel from './MerchantsPanel.js';
+import EventPanel from './EventPanel.js';
 
 class App extends Component {
     constructor(props) {
@@ -59,6 +60,11 @@ class App extends Component {
                     </td>
                     <td>
                         <StoresPanel model={this.state.model} />
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan="4">
+                        <EventPanel model={this.state.model} />
                     </td>
                 </tr>
                 </tbody>

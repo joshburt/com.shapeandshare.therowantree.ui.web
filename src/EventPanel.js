@@ -2,27 +2,55 @@ import React, { Component } from 'react';
 import './EventPanel.css';
 
 class EventPanel extends Component {
+
+    buildLabel(text, key_suffix){
+        let element_key = '';
+        element_key += key_suffix + '_' + text;
+        return(<label key={element_key}>{text}</label>);
+    }
+
+    buildBreak(key_suffix){
+        return(<br key={key_suffix}></br>);
+    }
+
     buildEventPanel() {
-        let eventString = '';
+        let panelElements = [];
+
         switch(this.props.model.UserStatusGameState) {
             case 0:
-                eventString += 'You are NOT active.';
+                panelElements.push(this.buildLabel('| You are NOT active.', 0));
                 break;
             case 1:
-                eventString += 'You are active.';
+                panelElements.push(this.buildLabel('| You are active.', 1));
                 break;
             default:
-                eventString += 'You are dreaming..';
+                panelElements.push(this.buildLabel('| You are dreaming..', 2));
                 break;
         }
-        return eventString;
+
+        panelElements.push(this.buildBreak(1));
+
+        for (var index in this.props.model.notifications){
+            let note_obj = this.props.model.notifications[index];
+            if ('undefined' !== typeof note_obj) {
+                for (var note_item in note_obj) {
+                    let note_item_id = note_obj[note_item][0] + '_' + note_obj[note_item][1] + '_' + note_obj[note_item][2];
+                    panelElements.push(this.buildLabel('| ' + note_obj[note_item][2], 'div_' + note_item_id));
+                    panelElements.push(this.buildBreak('break_' + note_item_id));
+                }
+            }
+
+        }
+
+
+        return panelElements;
     }
 
     render() {
         return (
-            <div className="EventPanel">
+            <div className="EventPanel" key="EventPanel">
                 <div>+-- events --------------------------------------------------------------------</div>
-                <div>| {this.buildEventPanel()}</div>
+                {this.buildEventPanel()}
                 <div>+------------------------------------------------------------------------------</div>
             </div>
         );

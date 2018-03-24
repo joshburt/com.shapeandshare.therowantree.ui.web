@@ -13,6 +13,8 @@ class Model extends React.Component {
             this.guid = localStorage.getItem("therowantree_guid");
         }
 
+        this.notifications = [];
+
         // set the initial state
         this.updateModel();
 
@@ -221,6 +223,7 @@ class Model extends React.Component {
                 this.features = responseJson.user.features;
                 this.population = responseJson.user.population;
                 this.merchants = responseJson.user.merchants;
+                this.notifications.push(responseJson.user.notifications)
             })
             .catch((error) =>{
                 console.error(error);

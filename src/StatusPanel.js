@@ -21,17 +21,25 @@ class StatusPanel extends Component {
         }
         else {
             panelElements.push(this.buildLabel('| ' + this.props.model.active_feature_state_details.name, this.props.model.active_feature_state_details.name));
+            panelElements.push(this.buildBreak('break_' + this.props.model.active_feature_state_details.name));
         }
 
         switch(this.props.model.UserStatusGameState) {
             case 0:
-                panelElements.push(<div>| You are NOT active.</div>);
+                // panelElements.push(<div>| You are NOT active.</div>);
+                panelElements.push(this.buildLabel('| You are NOT active.', 'div_' + this.props.model.UserStatusGameState));
+                panelElements.push(this.buildBreak('break_' + this.props.model.UserStatusGameState));
+
                 break;
             case 1:
-                panelElements.push(<div>| You are active.</div>);
+                // panelElements.push(<div>| You are active.</div>);
+                panelElements.push(this.buildLabel('| You are active.', 'div_' + this.props.model.UserStatusGameState));
+                panelElements.push(this.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;
             default:
-                panelElements.push(<div>| You are dreaming..</div>);
+                // panelElements.push(<div>| You are dreaming..</div>);
+                panelElements.push(this.buildLabel('| You are dreaming..', 'div_' + this.props.model.UserStatusGameState));
+                panelElements.push(this.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;
         }
         return panelElements;
@@ -39,7 +47,7 @@ class StatusPanel extends Component {
 
     render() {
         return (
-            <div className="StatusPanel">
+            <div className="StatusPanel" key="StatusPanel">
                 <div>+-- status ----------------</div>
                 {this.buildStatusPanel()}
                 <div>+--------------------------</div>

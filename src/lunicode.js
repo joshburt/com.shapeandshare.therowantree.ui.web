@@ -30,16 +30,16 @@ class Lunicode extends React.Component {
                         ch = text.charAt(i);
 
                         // combining diacritical marks: combine with previous character for ä,ö,ü,...
-                        if (i > 0 && (ch == '\u0324' ||
-                                ch == '\u0317' ||
-                                ch == '\u0316' ||
-                                ch == '\u032e')) {
+                        if (i > 0 && (ch === '\u0324' ||
+                                ch === '\u0317' ||
+                                ch === '\u0316' ||
+                                ch === '\u032e')) {
                             ch = this.map[text.charAt(i-1) + ch];
                             ret.pop();
 
                         } else {
                             ch = this.map[ch];
-                            if (typeof(ch) == "undefined") {
+                            if (typeof(ch) === "undefined") {
                                 ch = text.charAt(i);
                             }
                         }
@@ -62,16 +62,16 @@ class Lunicode extends React.Component {
                         ch = text.charAt(i);
 
                         // combining diacritical marks: combine with previous character for ä,ö,ü,...
-                        if (i > 0 && (ch == '\u0324' ||
-                                ch == '\u0317' ||
-                                ch == '\u0316' ||
-                                ch == '\u032e')) {
+                        if (i > 0 && (ch === '\u0324' ||
+                                ch === '\u0317' ||
+                                ch === '\u0316' ||
+                                ch === '\u032e')) {
                             ch = this.map[text.charAt(i-1) + ch];
                             ret.pop();
 
                         } else {
                             ch = this.map[ch];
-                            if (typeof(ch) == "undefined") {
+                            if (typeof(ch) === "undefined") {
                                 ch = text.charAt(i);
                             }
                         }
@@ -213,21 +213,21 @@ class Lunicode extends React.Component {
                         ch = text.charAt(i);
 
                         // combining diacritical marks: combine with previous character for ä,ö,ü,...
-                        if (i > 0 && (ch == '\u0308' ||
-                                ch == '\u0300' ||
-                                ch == '\u0301' ||
-                                ch == '\u0302')) {
+                        if (i > 0 && (ch === '\u0308' ||
+                                ch === '\u0300' ||
+                                ch === '\u0301' ||
+                                ch === '\u0302')) {
                             ch = this.map[text.charAt(i-1) + ch];
                             ret.pop();
                         } else {
                             ch = this.map[ch];
-                            if (typeof(ch) == "undefined") {
+                            if (typeof(ch) === "undefined") {
                                 ch = text.charAt(i);
                             }
                         }
 
 
-                        if (ch == '\n') {
+                        if (ch === '\n') {
                             newLines.push(ret.reverse().join(""));
                             ret = [];
                         } else {
@@ -249,20 +249,20 @@ class Lunicode extends React.Component {
                         ch = text.charAt(i);
 
                         // combining diacritical marks: combine with previous character for ä,ö,ü,...
-                        if (i > 0 && (ch == '\u0308' ||
-                                ch == '\u0300' ||
-                                ch == '\u0301' ||
-                                ch == '\u0302')) {
+                        if (i > 0 && (ch === '\u0308' ||
+                                ch === '\u0300' ||
+                                ch === '\u0301' ||
+                                ch === '\u0302')) {
                             ch = this.map[text.charAt(i-1) + ch];
                             ret.pop();
                         } else {
                             ch = this.map[ch];
-                            if (typeof(ch) == "undefined") {
+                            if (typeof(ch) === "undefined") {
                                 ch = text.charAt(i);
                             }
                         }
 
-                        if (ch == '\n') {
+                        if (ch === '\n') {
                             newLines.push(ret.reverse().join(""));
                             ret = [];
                         } else {
@@ -362,23 +362,23 @@ class Lunicode extends React.Component {
                         this.diacriticsTop.push(String.fromCharCode(i));
                     }
 
-                    for (var i = 790; i <= 819; i++) {
-                        if (i != 794 && i != 795) {
+                    for (i = 790; i <= 819; i++) {
+                        if (i !== 794 && i !== 795) {
                             this.diacriticsBottom.push(String.fromCharCode(i));
                         }
                     }
                     this.diacriticsTop.push(String.fromCharCode(794));
                     this.diacriticsTop.push(String.fromCharCode(795));
 
-                    for (var i = 820; i <= 824; i++) {
+                    for (i = 820; i <= 824; i++) {
                         this.diacriticsMiddle.push(String.fromCharCode(i));
                     }
 
-                    for (var i = 825; i <= 828; i++) {
+                    for (i = 825; i <= 828; i++) {
                         this.diacriticsBottom.push(String.fromCharCode(i));
                     }
 
-                    for (var i = 829; i <= 836; i++) {
+                    for (i = 829; i <= 836; i++) {
                         this.diacriticsTop.push(String.fromCharCode(i));
                     }
                     this.diacriticsTop.push(String.fromCharCode(836));
@@ -450,7 +450,7 @@ class Lunicode extends React.Component {
                         if (this.options.bottom) {
 
                             var diacriticsBottomLength = this.diacriticsBottom.length - 1;
-                            for (var  count = 0,
+                            for (count = 0,
                                      len = this.options.maxHeight - Math.random()*((this.options.randomization/100)*this.options.maxHeight); count < len; count++) {
 
                                 newChar += this.diacriticsBottom[Math.floor(Math.random()*diacriticsBottomLength)]
@@ -507,12 +507,12 @@ class Lunicode extends React.Component {
                     this.map['0'] = '\u24ea';
 
                     // Capital letters
-                    for (var i = 65; i <= 90; i++) {
+                    for (i = 65; i <= 90; i++) {
                         this.map[String.fromCharCode(i)] = String.fromCharCode(i+9333);
                     }
 
                     // Lower letters
-                    for (var i = 97; i <= 122; i++) {
+                    for (i = 97; i <= 122; i++) {
                         this.map[String.fromCharCode(i)] = String.fromCharCode(i+9327);
                     }
 
@@ -533,7 +533,7 @@ class Lunicode extends React.Component {
 
                         // No dedicated circled character available? Use a Combining Diacritical Mark surrounded
                         // with non-breaking spaces, so it doesn't overlap
-                        if ((typeof(ch) == "undefined")) {
+                        if ((typeof(ch) === "undefined")) {
                             if (text[i].charCodeAt(0) >= 33) {
                                 ch = text[i] + String.fromCharCode(8413);
                                 if (!first) {
@@ -544,7 +544,7 @@ class Lunicode extends React.Component {
                             }
                         }
                         ret += ch;
-                        first = (ch == '\n');
+                        first = (ch === '\n');
                     }
                     return ret;
                 },
@@ -556,12 +556,12 @@ class Lunicode extends React.Component {
 
                     for (let i in text) {
                         ch = this.mapInverse[text[i]];
-                        ret += ((typeof(ch) == "undefined") ? text[i] : ch);
+                        ret += ((typeof(ch) === "undefined") ? text[i] : ch);
                     }
 
                     for (let i in ret) {
                         ch = ret[i].charCodeAt(0);
-                        if (ch != 160 && ch != 8239 && ch != 8413) {
+                        if (ch !== 160 && ch !== 8239 && ch !== 8413) {
                             newRet += ret[i];
                         }
                     }
@@ -595,7 +595,7 @@ class Lunicode extends React.Component {
                         }
 
                         ret += ch;
-                        first = (ch == '\n');
+                        first = (ch === '\n');
                     }
                     return ret;
                 },
@@ -606,7 +606,7 @@ class Lunicode extends React.Component {
 
                     for (let i in text) {
                         ch = text[i].charCodeAt(0);
-                        if (ch != 160 && ch != 8239 && ch != 8414) {
+                        if (ch !== 160 && ch !== 8239 && ch !== 8414) {
                             ret += text[i];
                         }
                     }
@@ -636,7 +636,7 @@ class Lunicode extends React.Component {
                         }
 
                         ret += ch;
-                        first = (ch == '\n');
+                        first = (ch === '\n');
                     }
                     return ret;
                 },
@@ -647,7 +647,7 @@ class Lunicode extends React.Component {
 
                     for (let i in text) {
                         ch = text[i].charCodeAt(0);
-                        if (ch != 160 && ch != 8239 && ch != 8419) {
+                        if (ch !== 160 && ch !== 8239 && ch !== 8419) {
                             ret += text[i];
                         }
                     }
@@ -674,7 +674,7 @@ class Lunicode extends React.Component {
 
                     for (var i = 0, len = text.length; i < len; i++) {
                         ch = this.map[text.charAt(i)];
-                        if (typeof(ch) == "undefined") {
+                        if (typeof(ch) === "undefined") {
                             ch = text.charAt(i);
                         }
                         ret +=  ch;
@@ -690,7 +690,7 @@ class Lunicode extends React.Component {
 
                     for (var i = 0, len = text.length; i < len; i++) {
                         ch = this.map[text.charAt(i)];
-                        if (typeof(ch) == "undefined") {
+                        if (typeof(ch) === "undefined") {
                             ch = text.charAt(i);
                         }
                         ret += ch;
@@ -822,7 +822,7 @@ class Lunicode extends React.Component {
                     text = text.toUpperCase();
                     for (var i = 0, len = text.length; i < len; i++) {
                         ch = this.map[text.charAt(i)];
-                        if (typeof(ch) == "undefined") {
+                        if (typeof(ch) === "undefined") {
                             ch = text.charAt(i);
                         }
                         ret +=  ch;
@@ -838,7 +838,7 @@ class Lunicode extends React.Component {
 
                     for (var i = 0, len = text.length; i < len; i++) {
                         ch = this.map[text.charAt(i)];
-                        if (typeof(ch) == "undefined") {
+                        if (typeof(ch) === "undefined") {
                             ch = text.charAt(i);
                         }
                         ret += ch;
@@ -899,13 +899,13 @@ class Lunicode extends React.Component {
       ch = text.charCodeAt(i);
       
       // line break: add <br>\n
-      if (ch == 10 || ch == 13) {
+      if (ch === 10 || ch === 13) {
         html += '<br>\n';
         lastSpaceWasNonBreaking = true;
         
       // space: add alternating space and non-breaking space (U+00A0). Otherwise
       // a series of normal spaces       would collapse to one in the browser  
-      } else if (ch == 32) {
+      } else if (ch === 32) {
         if (lastSpaceWasNonBreaking) {
           html += ' ';
           lastSpaceWasNonBreaking = false;
@@ -938,7 +938,7 @@ class Lunicode extends React.Component {
           codepoint = ch;
         }
 
-        if (codepoint != 0) {
+        if (codepoint !== 0) {
           html += '&#x' + codepoint.toString(16) + ';';
           lastSpaceWasNonBreaking = true;
         }

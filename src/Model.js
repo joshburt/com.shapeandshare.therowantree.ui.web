@@ -226,8 +226,7 @@ class Model extends React.Component {
                 if (responseJson.user.notifications.length > 0){
                     this.notifications.unshift(responseJson.user.notifications);
                 }
-
-                console.log(this.notifications);
+                
                 while (this.notifications.length > this.MAX_NOTIFICATIONS){
                     this.notifications.pop();
                 }

@@ -20,8 +20,8 @@ class Menu extends Component {
         return row;
     }
 
-    buildMenuBorderTopWithLabel(title, max_row_length = 40) {
-        let row = '┌ ' + title + ' ';
+    buildMenuBorderTopWithLabel(title, glitchFlag=false, max_row_length = 40) {
+        let row = '┌ ' + this.processText(title, glitchFlag) + ' ';
         while (row.length < (max_row_length - 1)){
             //let new_char = this.state.lunicode.tools.creepify.encode("-");
             //row = row + new_char;
@@ -30,7 +30,6 @@ class Menu extends Component {
         row = row + '┐';
         return row;
     }
-
 
     buildMenuBorderBottom(max_row_length = 40) {
         let row = '└';
@@ -43,8 +42,8 @@ class Menu extends Component {
         return row;
     }
 
-    buildMenuItem(entry, max_row_length = 40){
-        let row = '│ ' + entry;
+    buildMenuItem(entry, glitchFlag=false, max_row_length = 40){
+        let row = '│ ' + this.processText(entry, glitchFlag);
         while (row.length < (max_row_length - 1)){
             //let new_char = this.state.lunicode.tools.creepify.encode("-");
             //row = row + new_char;
@@ -64,6 +63,13 @@ class Menu extends Component {
         return(<br key={key_suffix}></br>);
     }
 
+    processText(message, glitch=false){
+        let new_message = message;
+        if (glitch == true){
+            new_message = this.state.lunicode.tools.creepify.encode(message);
+        }
+        return new_message;
+    }
 }
 
 export default Menu;

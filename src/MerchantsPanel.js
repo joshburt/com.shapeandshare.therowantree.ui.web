@@ -11,7 +11,7 @@ class MerchantsPanel extends Component {
     buildMerchantsPanel() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('Merchants', 15), 'div_event_MerchantsPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('Merchants', false, 15), 'div_event_MerchantsPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_buildMenuBorderTop'));
 
         if (this.props.model.merchants == null) {

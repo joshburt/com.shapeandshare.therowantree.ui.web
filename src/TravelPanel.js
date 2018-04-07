@@ -12,7 +12,7 @@ class TravelPanel extends Component {
     buildTravel() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('travel', 15), 'div_event_TravelPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('travel', false, 15), 'div_event_TravelPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_TravelPanel_buildMenuBorderTop'));
 
         if (this.props.model.features == null) {

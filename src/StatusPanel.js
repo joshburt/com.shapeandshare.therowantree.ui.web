@@ -6,7 +6,7 @@ class StatusPanel extends Component {
     buildStatusPanel() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('status', 15), 'div_event_StatusPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('status', false, 15), 'div_event_StatusPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderTop'));
 
 

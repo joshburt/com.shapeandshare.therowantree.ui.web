@@ -5,7 +5,7 @@ class StoresPanel extends Component {
     buildStoresPanel() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('Inventory', 15), 'div_event_StoresPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('Inventory', false, 15), 'div_event_StoresPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_StoresPanel_buildMenuBorderTop'));
 
         if (this.props.model.stores == null) {

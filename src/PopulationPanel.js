@@ -6,7 +6,7 @@ class PopulationPanel extends Component {
     buildPanel(){
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('population', 15), 'div_event_PopulationPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('population', false, 15), 'div_event_PopulationPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_PopulationPanel_buildMenuBorderTop'));
 
         let popString = ''

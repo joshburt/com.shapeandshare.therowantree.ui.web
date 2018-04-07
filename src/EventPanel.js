@@ -13,7 +13,7 @@ class EventPanel extends Component {
     buildEventPanel() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('events', 45), 'div_event_EventPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('events', false, 45), 'div_event_EventPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_EventPanel_buildMenuBorderTop'));
 
         for (var index in this.props.model.notifications){
@@ -30,12 +30,12 @@ class EventPanel extends Component {
 
                     // build the event title
                     if (event_title !== undefined) {
-                        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, 80), 'div_event_title_' + note_item_id));
+                        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, false, 80), 'div_event_title_' + note_item_id));
                         panelElements.push(this.props.menu.buildBreak('break_' + note_item_id));
                     }
                     if (event_text !== undefined) {
                         for (var line_index in event_text) {
-                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_text[line_index], 80), 'div_event_text_' + note_item_id + '_' + line_index.toString()));
+                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_text[line_index], false, 80), 'div_event_text_' + note_item_id + '_' + line_index.toString()));
                             panelElements.push(this.props.menu.buildBreak('break_event_text_' + note_item_id + '_' + line_index.toString()));
                         }
                     }

@@ -26,7 +26,7 @@ class IncomePanel extends Component {
     buildIncome() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('workers', 15), 'div_event_IncomePanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('workers', false, 15), 'div_event_IncomePanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_IncomePanel_buildMenuBorderTop'));
 
         if (this.props.model.income != null) {
@@ -40,7 +40,7 @@ class IncomePanel extends Component {
                     incomeString += " (" + description + ")";
                 }
 
-                panelElements.push(this.props.menu.buildMenuItem(incomeString, 10));
+                panelElements.push(this.props.menu.buildMenuItem(incomeString, false, 10));
                 panelElements.push(this.buildAddButton(key, '+', key));
                 panelElements.push(this.buildRemoveButton(key, '-', key));
                 panelElements.push(this.props.menu.buildBreak('break_IncomePanel_incomeString_' + incomeString));

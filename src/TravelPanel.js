@@ -9,44 +9,41 @@ class TravelPanel extends Component {
         return (<button key={element_key} onClick={(e) => this.props.model.transportUser(location)}>{label}</button>);
     }
 
-    buildLabel(text, key_suffix){
-        let element_key = '';
-        element_key += key_suffix + '_' + text;
-        return(<label key={element_key}>{text}</label>);
-    }
-
-    buildBreak(key_suffix){
-        return(<br key={key_suffix}></br>);
-    }
-
     buildTravel() {
         let panelElements = [];
+
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('travel', 15), 'div_event_TravelPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_TravelPanel_buildMenuBorderTop'));
+
         if (this.props.model.features == null) {
-            return (<div>| You are nowhere..</div>);
+            panelElements.push(this.props.menu.buildMenuItem('You are nowhere..', 'div_event_TravelPanel_active_feature'));
+            panelElements.push(this.props.menu.buildBreak('break_event_TravelPanel_active_feature'));
         }
         else{
             for (var key in this.props.model.features){
                 var feature_name = this.props.model.features[key]
 
-                panelElements.push(this.buildLabel('| ', feature_name));
+                // panelElements.push(this.props.menu.buildLabel('| ', feature_name));
                 if (this.props.model.activeFeature === feature_name) {
-                    panelElements.push(this.buildLabel(feature_name, feature_name));
+                    panelElements.push(this.props.menu.buildMenuItem(feature_name, 'div_event_TravelPanel_feature_' + feature_name));
                 }
                 else {
                     panelElements.push(this.buildButton(feature_name, feature_name, feature_name));
                 }
-                panelElements.push(this.buildBreak(feature_name));
+                panelElements.push(this.props.menu.buildBreak('break_event_TravelPanel_feature' + feature_name));
             }
         }
+
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_TravelPanel_buildMenuBorderBottom'));
+        panelElements.push(this.props.menu.buildBreak('break_TravelPanel_buildMenuBorderTop'));
+
         return panelElements;
     }
 
     render() {
         return (
             <div className="TravelPanel">
-                <div>+-- travel ----------------</div>
                 {this.buildTravel()}
-                <div>+--------------------------</div>
             </div>
         );
     }

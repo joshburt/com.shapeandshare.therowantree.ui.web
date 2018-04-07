@@ -12,8 +12,6 @@ class Menu extends Component {
     buildMenuBorderTop(max_row_length = 40) {
         let row = '┌';
         while (row.length < (max_row_length - 1)){
-            //let new_char = this.state.lunicode.tools.creepify.encode("-");
-            //row = row + new_char;
             row = row + '─';
         }
         row = row + '┐';
@@ -23,8 +21,6 @@ class Menu extends Component {
     buildMenuBorderTopWithLabel(title, glitchFlag=false, max_row_length = 40) {
         let row = '┌ ' + this.processText(title, glitchFlag) + ' ';
         while (row.length < (max_row_length - 1)){
-            //let new_char = this.state.lunicode.tools.creepify.encode("-");
-            //row = row + new_char;
             row = row + '─';
         }
         row = row + '┐';
@@ -34,8 +30,6 @@ class Menu extends Component {
     buildMenuBorderBottom(max_row_length = 40) {
         let row = '└';
         while (row.length < (max_row_length - 1)){
-            //let new_char = this.state.lunicode.tools.creepify.encode("-");
-            //row = row + new_char;
             row = row + '─';
         }
         row = row + '┘';
@@ -45,8 +39,6 @@ class Menu extends Component {
     buildMenuItem(entry, glitchFlag=false, max_row_length = 40){
         let row = '│ ' + this.processText(entry, glitchFlag);
         while (row.length < (max_row_length - 1)){
-            //let new_char = this.state.lunicode.tools.creepify.encode("-");
-            //row = row + new_char;
             row = row + ' ';
         }
         row = row + '│';
@@ -65,7 +57,21 @@ class Menu extends Component {
 
     processText(message, glitch=false){
         let new_message = message;
+        
         if (glitch == true){
+            let ephemeralLunicode = this.state.lunicode;
+
+            // Creepify has a few options. Set them before encoding:
+            ephemeralLunicode.tools.creepify.options.top = true; 	// add diacritics on top. Default: true
+            ephemeralLunicode.tools.creepify.options.middle = true;	// add diacritics in the middle. Default: true
+            ephemeralLunicode.tools.creepify.options.bottom = true;	// add diacritics on the bottom. Default: true
+            ephemeralLunicode.tools.creepify.options.maxHeight = 15; // How many diacritic marks shall we put on top/bottom? Default: 15
+            ephemeralLunicode.tools.creepify.options.randomization = 100; // 0-100%. maxHeight 100 and randomization 20%: the height goes from 80 to 100. randomization 70%: height goes from 30 to 100. Default: 100
+
+            this.setState(prevState => ({
+                lunicode: ephemeralLunicode
+            }));
+
             new_message = this.state.lunicode.tools.creepify.encode(message);
         }
         return new_message;

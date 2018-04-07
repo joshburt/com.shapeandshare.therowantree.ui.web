@@ -29,7 +29,7 @@ class MerchantsPanel extends Component {
         }
 
         panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_MerchantsPanel_buildMenuBorderBottom'));
-        panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_buildMenuBorderBottom'));
 
         return panelElements;
     }

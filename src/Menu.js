@@ -56,7 +56,7 @@ class Menu extends Component {
     }
 
     processText(message, glitch=false){
-        if (glitch == true){
+        if (glitch === true){
 
             let ephemeralLunicode = this.state.lunicode;
 

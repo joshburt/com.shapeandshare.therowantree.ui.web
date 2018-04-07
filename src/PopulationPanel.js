@@ -10,7 +10,7 @@ class PopulationPanel extends Component {
         panelElements.push(this.props.menu.buildBreak('break_PopulationPanel_buildMenuBorderTop'));
 
         let popString = ''
-        if (this.props.model.population == undefined){
+        if (this.props.model.population === undefined){
             popString = '0'
         }
         else {
@@ -20,7 +20,7 @@ class PopulationPanel extends Component {
         panelElements.push(this.props.menu.buildBreak('break_PopulationPanel_population'));
 
         panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_PopulationPanel_buildMenuBorderBottom'));
-        panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderBottom'));
 
         return panelElements;
     }

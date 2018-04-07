@@ -54,7 +54,7 @@ class EventPanel extends Component {
         }
 
         panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(), 'div_event_EventPanel_buildMenuBorderBottom'));
-        panelElements.push(this.props.menu.buildBreak('break_EventPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_EventPanel_buildMenuBorderBottom'));
 
         return panelElements;
     }

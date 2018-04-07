@@ -35,7 +35,7 @@ class StatusPanel extends Component {
         }
 
         panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_StatusPanel_buildMenuBorderBottom'));
-        panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderBottom'));
 
         return panelElements;
     }

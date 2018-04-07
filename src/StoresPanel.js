@@ -27,7 +27,7 @@ class StoresPanel extends Component {
             }
         }
         panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_StoresPanel_buildMenuBorderBottom'));
-        panelElements.push(this.props.menu.buildBreak('break_StoresPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_StoresPanel_buildMenuBorderBottom'));
 
         return panelElements;
     }

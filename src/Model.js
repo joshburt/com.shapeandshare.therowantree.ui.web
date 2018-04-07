@@ -12,7 +12,7 @@ class Model extends React.Component {
         else {
             this.guid = localStorage.getItem("therowantree_guid");
         }
-
+        this.MAX_NOTIFICATIONS = 10;
         this.notifications = [];
 
         // set the initial state
@@ -214,16 +214,24 @@ class Model extends React.Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                // this.user = responseJson.user;
                 this.stores = responseJson.user.stores;
                 this.income = responseJson.user.income;
                 this.UserStatusGameState = responseJson.user.user_activity_state;
                 this.activeFeature = responseJson.user.active_feature;
-                this.active_feature_state_details = responseJson.user.active_feature_state_details
+                this.active_feature_state_details = responseJson.user.active_feature_state_details;
                 this.features = responseJson.user.features;
                 this.population = responseJson.user.population;
                 this.merchants = responseJson.user.merchants;
-                this.notifications.push(responseJson.user.notifications)
+
+                if (responseJson.user.notifications.length > 0){
+                    this.notifications.unshift(responseJson.user.notifications);
+                }
+
+                console.log(this.notifications);
+                while (this.notifications.length > this.MAX_NOTIFICATIONS){
+                    this.notifications.pop();
+                }
+
             })
             .catch((error) =>{
                 console.error(error);

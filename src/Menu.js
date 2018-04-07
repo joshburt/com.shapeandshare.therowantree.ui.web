@@ -38,10 +38,10 @@ class Menu extends Component {
 
     buildMenuItem(entry, glitchFlag=false, max_row_length = 40){
         let row = '│ ' + this.processText(entry, glitchFlag);
-        while (row.length < (max_row_length - 1)){
-            row = row + ' ';
-        }
-        row = row + '│';
+        //while (row.length < (max_row_length - 1)){
+        //    row = row + ' ';
+        //}
+        //row = row + '│';
         return row;
     }
 

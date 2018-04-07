@@ -22,7 +22,7 @@ class MerchantsPanel extends Component {
         else{
             for (var key in this.props.model.merchants){
                 var merchant_name = this.props.model.merchants[key]
-                panelElements.push(this.props.menu.buildMenuItem(merchant_name, 'div_MerchantsPanel_merchant_name_' + merchant_name));
+                panelElements.push(this.props.menu.buildMenuItem('', 'div_MerchantsPanel_merchant_name_' + merchant_name));
                 panelElements.push(this.buildButton(merchant_name, merchant_name, merchant_name));
                 panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_' + merchant_name));
             }

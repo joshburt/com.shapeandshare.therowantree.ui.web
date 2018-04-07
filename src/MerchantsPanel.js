@@ -11,26 +11,33 @@ class MerchantsPanel extends Component {
     buildMerchantsPanel() {
         let panelElements = [];
 
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('Merchants', 15), 'div_event_MerchantsPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_buildMenuBorderTop'));
+
         if (this.props.model.merchants == null) {
-            return(<div>| You are a lone figure at the trading grounds.<div></div>| The wind your only company.</div>);
+            panelElements.push(this.props.menu.buildMenuItem('You are a lone figure at the trading grounds.', 'div_MerchantsPanel_nothing_todo_1'));
+            panelElements.push(this.props.menu.buildMenuItem('The wind your only company.', 'div_MerchantsPanel_nothing_todo_2'));
+            panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_nothing_todo'));
         }
         else{
             for (var key in this.props.model.merchants){
                 var merchant_name = this.props.model.merchants[key]
-                panelElements.push(this.props.menu.buildLabel('| ', merchant_name));
+                panelElements.push(this.props.menu.buildMenuItem(merchant_name, 'div_MerchantsPanel_merchant_name_' + merchant_name));
                 panelElements.push(this.buildButton(merchant_name, merchant_name, merchant_name));
-                panelElements.push(this.props.menu.buildBreak(merchant_name));
+                panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_' + merchant_name));
             }
         }
+
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_MerchantsPanel_buildMenuBorderBottom'));
+        panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_buildMenuBorderTop'));
+
         return panelElements;
     }
 
     render() {
         return (
             <div key="MerchantsPanel" className="MerchantsPanel">
-                <div>+-- merchants ----------------</div>
                 {this.buildMerchantsPanel()}
-                <div>+--------------------------</div>
             </div>
         );
     }

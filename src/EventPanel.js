@@ -35,7 +35,7 @@ class EventPanel extends Component {
                     let event_title = my_event['title'];
                     let event_text = my_event['text'];
                     let event_reward = my_event['reward'];
-                    let event_boon = my_event['boon'];
+                    let event_curse = my_event['curse'];
 
                     // build the event title
                     if (event_title !== undefined) {
@@ -48,14 +48,14 @@ class EventPanel extends Component {
                             panelElements.push(this.buildBreak('break_event_text_' + note_item_id + '_' + line_index.toString()));
                         }
                     }
-                    if (event_reward !== undefined){
-                        panelElements.push(this.buildLabel('| ' + JSON.stringify(event_reward), 'div_event_reward_' + note_item_id));
-                        panelElements.push(this.buildBreak('break_event_reward_' + note_item_id))
-                    }
-                    if (event_boon !== undefined) {
-                        panelElements.push(this.buildLabel('| ' + JSON.stringify(event_boon), 'div_event_boon_' + note_item_id));
-                        panelElements.push(this.buildBreak('break_event_boon_' + note_item_id))
-                    }
+//                    if (event_reward !== undefined){
+//                        panelElements.push(this.buildLabel('| ' + JSON.stringify(event_reward), 'div_event_reward_' + note_item_id));
+//                        panelElements.push(this.buildBreak('break_event_reward_' + note_item_id))
+//                    }
+//                    if (event_curse !== undefined) {
+//                        panelElements.push(this.buildLabel('| ' + JSON.stringify(event_curse), 'div_event_curse_' + note_item_id));
+//                        panelElements.push(this.buildBreak('break_event_curse_' + note_item_id))
+//                    }
 
                 }
             }

@@ -5,7 +5,7 @@ class MerchantsPanel extends Component {
     buildButton(transform_name, label, key_suffix) {
         let element_key = '';
         element_key += key_suffix + '_' + label;
-        return (<button key={element_key} onClick={(e) => this.props.model.peformMerchantTransform(transform_name)}>{label}</button>);
+        return (<button key={element_key} onClick={(e) => this.props.model.performMerchantTransform(transform_name)}>{label}</button>);
     }
 
     buildLabel(text, key_suffix){

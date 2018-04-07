@@ -295,7 +295,7 @@ class Model extends React.Component {
             });
     }
 
-    peformMerchantTransform(store_name) {
+    performMerchantTransform(store_name) {
         fetch(Secrets.SERVER_BASE + '/api/merchant/transform', {
             method: 'POST',
             headers: {

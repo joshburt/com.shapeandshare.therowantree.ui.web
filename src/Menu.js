@@ -20,6 +20,18 @@ class Menu extends Component {
         return row;
     }
 
+    buildMenuBorderTopWithLabel(title, max_row_length = 40) {
+        let row = '┌ ' + title + ' ';
+        while (row.length < (max_row_length - 1)){
+            //let new_char = this.state.lunicode.tools.creepify.encode("-");
+            //row = row + new_char;
+            row = row + '─';
+        }
+        row = row + '┐';
+        return row;
+    }
+
+
     buildMenuBorderBottom(max_row_length = 40) {
         let row = '└';
         while (row.length < (max_row_length - 1)){

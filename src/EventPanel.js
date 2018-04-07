@@ -13,7 +13,7 @@ class EventPanel extends Component {
     buildEventPanel() {
         let panelElements = [];
 
-        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTop(), 'div_event_EventPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('events', 45), 'div_event_EventPanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_EventPanel_buildMenuBorderTop'));
 
         for (var index in this.props.model.notifications){

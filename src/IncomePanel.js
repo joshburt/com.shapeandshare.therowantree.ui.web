@@ -22,20 +22,13 @@ class IncomePanel extends Component {
         return (<button key={element_key} onClick={(e) => this.removeWorker(textual_source_name)}>{label}</button>);
     }
 
-    buildLabel(text, key_suffix){
-        let element_key = '';
-        element_key += key_suffix + '_' + text;
-        return(<label key={element_key}>{text}</label>);
-    }
-
-    buildBreak(key_suffix){
-        return(<br key={key_suffix}></br>);
-    }
-
-
 
     buildIncome() {
         let panelElements = [];
+
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('workers', 15), 'div_event_IncomePanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_IncomePanel_buildMenuBorderTop'));
+
         if (this.props.model.income != null) {
             for (var key in this.props.model.income){
                 let incomeString = '';
@@ -46,22 +39,25 @@ class IncomePanel extends Component {
                 if (description != null) {
                     incomeString += " (" + description + ")";
                 }
-                panelElements.push(this.buildLabel('| ', key));
+
+                panelElements.push(this.props.menu.buildMenuItem(incomeString, 10));
                 panelElements.push(this.buildAddButton(key, '+', key));
-                panelElements.push(this.buildLabel(incomeString, key));
                 panelElements.push(this.buildRemoveButton(key, '-', key));
-                panelElements.push(this.buildBreak(key));
+                panelElements.push(this.props.menu.buildBreak('break_IncomePanel_incomeString_' + incomeString));
+
             }
         }
+
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_IncomePanel_buildMenuBorderBottom'));
+        panelElements.push(this.props.menu.buildBreak('break_IncomePanel_buildMenuBorderTop'));
+
         return panelElements;
     }
 
     render() {
         return (
             <div key="IncomePanel" className="IncomePanel">
-                <div>+-- workers --------------</div>
                 {this.buildIncome()}
-                <div>+--------------------------</div>
             </div>
         );
     }

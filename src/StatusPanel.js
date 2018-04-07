@@ -3,54 +3,47 @@ import './StatusPanel.css';
 
 class StatusPanel extends Component {
 
-    buildLabel(text, key_suffix){
-        let element_key = '';
-        element_key += key_suffix + '_' + text;
-        return(<label key={element_key}>{text}</label>);
-    }
-
-    buildBreak(key_suffix){
-        return(<br key={key_suffix}></br>);
-    }
-
     buildStatusPanel() {
         let panelElements = [];
 
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('status', 15), 'div_event_StatusPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderTop'));
+
+
         if (this.props.model.active_feature_state_details == null) {
-            return(<div>| Its dark.</div>);
+            panelElements.push(this.props.menu.buildMenuItem('Its dark.', 'div_event_StatusPanel_nothing_todo'));
+            panelElements.push(this.props.menu.buildBreak('break_StatusPanel_nothing_todo'));
         }
         else {
-            panelElements.push(this.buildLabel('| ' + this.props.model.active_feature_state_details.name, this.props.model.active_feature_state_details.name));
-            panelElements.push(this.buildBreak('break_' + this.props.model.active_feature_state_details.name));
+            panelElements.push(this.props.menu.buildMenuItem(this.props.model.active_feature_state_details.name, 'div_event_StatusPanel_active_feature_state_details'));
+            panelElements.push(this.props.menu.buildBreak('break_StatusPanel_active_feature_state_details'));
         }
 
         switch(this.props.model.UserStatusGameState) {
             case 0:
-                // panelElements.push(<div>| You are NOT active.</div>);
-                panelElements.push(this.buildLabel('| You are NOT active.', 'div_' + this.props.model.UserStatusGameState));
-                panelElements.push(this.buildBreak('break_' + this.props.model.UserStatusGameState));
-
+                panelElements.push(this.props.menu.buildMenuItem('You are NOT active.', 'div_event_StatusPanel_UserStatusGameState)'));
+                panelElements.push(this.props.menu.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;
             case 1:
-                // panelElements.push(<div>| You are active.</div>);
-                panelElements.push(this.buildLabel('| You are active.', 'div_' + this.props.model.UserStatusGameState));
-                panelElements.push(this.buildBreak('break_' + this.props.model.UserStatusGameState));
+                panelElements.push(this.props.menu.buildMenuItem('You are active', 'div_event_StatusPanel_UserStatusGameState)'));
+                panelElements.push(this.props.menu.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;
             default:
-                // panelElements.push(<div>| You are dreaming..</div>);
-                panelElements.push(this.buildLabel('| You are dreaming..', 'div_' + this.props.model.UserStatusGameState));
-                panelElements.push(this.buildBreak('break_' + this.props.model.UserStatusGameState));
+                panelElements.push(this.props.menu.buildMenuItem('You are dreaming..', 'div_event_StatusPanel_UserStatusGameState)'));
+                panelElements.push(this.props.menu.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;
         }
+
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(10), 'div_event_StatusPanel_buildMenuBorderBottom'));
+        panelElements.push(this.props.menu.buildBreak('break_StatusPanel_buildMenuBorderTop'));
+
         return panelElements;
     }
 
     render() {
         return (
             <div className="StatusPanel" key="StatusPanel">
-                <div>+-- status ----------------</div>
                 {this.buildStatusPanel()}
-                <div>+--------------------------</div>
             </div>
         );
     }

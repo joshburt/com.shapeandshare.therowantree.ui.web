@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import './EventPanel.css';
+import Lunicode from './lunicode.js'
 
 class EventPanel extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            lunicode: new Lunicode()
+        };
+    }
 
     buildLabel(text, key_suffix){
         let element_key = '';

@@ -23,20 +23,6 @@ class EventPanel extends Component {
     buildEventPanel() {
         let panelElements = [];
 
-        switch(this.props.model.UserStatusGameState) {
-            case 0:
-                panelElements.push(this.buildLabel('| You are NOT active.', 0));
-                break;
-            case 1:
-                panelElements.push(this.buildLabel('| You are active.', 1));
-                break;
-            default:
-                panelElements.push(this.buildLabel('| You are dreaming..', 2));
-                break;
-        }
-
-        panelElements.push(this.buildBreak(1));
-
         for (var index in this.props.model.notifications){
             let event_collection = this.props.model.notifications[index];
             if ('undefined' !== typeof event_collection) {

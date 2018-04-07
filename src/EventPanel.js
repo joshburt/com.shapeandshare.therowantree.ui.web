@@ -1,25 +1,7 @@
 import React, { Component } from 'react';
 import './EventPanel.css';
-import Lunicode from './lunicode.js'
 
 class EventPanel extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            lunicode: new Lunicode()
-        };
-    }
-
-    buildLabel(text, key_suffix){
-        let element_key = '';
-        element_key += key_suffix + '_' + text;
-        return(<label key={element_key}>{text}</label>);
-    }
-
-    buildBreak(key_suffix){
-        return(<br key={key_suffix}></br>);
-    }
 
     // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
     uuidv4() {
@@ -31,13 +13,14 @@ class EventPanel extends Component {
     buildEventPanel() {
         let panelElements = [];
 
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTop(), 'div_event_EventPanel_buildMenuBorderTop'));
+        panelElements.push(this.props.menu.buildBreak('break_EventPanel_buildMenuBorderTop'));
+
         for (var index in this.props.model.notifications){
             let event_collection = this.props.model.notifications[index];
             if ('undefined' !== typeof event_collection) {
                 for (var event_obj in event_collection) {
                     let note_item_id = this.uuidv4();
-                    // panelElements.push(this.buildLabel('| DEBUG:' + note_obj[note_item][2], 'div_' + note_item_id));
-                    // panelElements.push(this.buildBreak('break_' + note_item_id));
 
                     let my_event = JSON.parse(event_collection[event_obj][2]);
                     let event_title = my_event['title'];
@@ -47,13 +30,13 @@ class EventPanel extends Component {
 
                     // build the event title
                     if (event_title !== undefined) {
-                        panelElements.push(this.buildLabel('| ' + event_title, 'div_event_title_' + note_item_id));
-                        panelElements.push(this.buildBreak('break_' + note_item_id));
+                        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, 80), 'div_event_title_' + note_item_id));
+                        panelElements.push(this.props.menu.buildBreak('break_' + note_item_id));
                     }
                     if (event_text !== undefined) {
                         for (var line_index in event_text) {
-                            panelElements.push(this.buildLabel('| ' + event_text[line_index], 'div_event_text_' + note_item_id + '_' + line_index.toString()));
-                            panelElements.push(this.buildBreak('break_event_text_' + note_item_id + '_' + line_index.toString()));
+                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_text[line_index], 80), 'div_event_text_' + note_item_id + '_' + line_index.toString()));
+                            panelElements.push(this.props.menu.buildBreak('break_event_text_' + note_item_id + '_' + line_index.toString()));
                         }
                     }
 //                    if (event_reward !== undefined){
@@ -70,6 +53,8 @@ class EventPanel extends Component {
 
         }
 
+        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderBottom(), 'div_event_EventPanel_buildMenuBorderBottom'));
+        panelElements.push(this.props.menu.buildBreak('break_EventPanel_buildMenuBorderTop'));
 
         return panelElements;
     }
@@ -77,9 +62,7 @@ class EventPanel extends Component {
     render() {
         return (
             <div className="EventPanel" key="EventPanel">
-                <div>+-- events --------------------------------------------------------------------</div>
                 {this.buildEventPanel()}
-                <div>+------------------------------------------------------------------------------</div>
             </div>
         );
     }

@@ -32,7 +32,10 @@ class EventPanel extends Component {
                     if (event_text !== undefined) {
                         let story = '';
                         for (var line_index in event_text) {
-                            story = story + event_text[line_index] + '\n';
+                            story = story + event_text[line_index];
+                            if (line_index < event_text.length - 1){
+                                story = story  + '\n';
+                            }
                         }
                         panelElements.push(this.props.menu.buildLabelWithTitle(this.props.menu.buildMenuItem(event_title, false, 80), story, 'div_event_title_' + note_item_id));
                         panelElements.push(this.props.menu.buildBreak('break_event_text_story' + note_item_id + '_' + line_index.toString()));

@@ -51,6 +51,12 @@ class Menu extends Component {
         return(<label key={element_key}>{text}</label>);
     }
 
+    buildLabelWithTitle(text, title_text, key_suffix){
+        let element_key = '';
+        element_key += key_suffix + '_' + text;
+        return(<label key={element_key} title={title_text}>{text}</label>);
+    }
+
     buildBreak(key_suffix){
         return(<br key={key_suffix}></br>);
     }

@@ -28,17 +28,24 @@ class EventPanel extends Component {
                     let event_reward = my_event['reward'];
                     let event_curse = my_event['curse'];
 
-                    // build the event title
-                    if (event_title !== undefined) {
-                        panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, false, 80), 'div_event_title_' + note_item_id));
-                        panelElements.push(this.props.menu.buildBreak('break_' + note_item_id));
-                    }
+
                     if (event_text !== undefined) {
+                        let story = '';
                         for (var line_index in event_text) {
-                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_text[line_index], false, 80), 'div_event_text_' + note_item_id + '_' + line_index.toString()));
-                            panelElements.push(this.props.menu.buildBreak('break_event_text_' + note_item_id + '_' + line_index.toString()));
+                            story = story + event_text[line_index] + '\n';
+                        }
+                        panelElements.push(this.props.menu.buildLabelWithTitle(this.props.menu.buildMenuItem(event_title, false, 80), story, 'div_event_title_' + note_item_id));
+                        panelElements.push(this.props.menu.buildBreak('break_event_text_story' + note_item_id + '_' + line_index.toString()));
+                    }
+                    else {
+                        // build the event title
+                        if (event_title !== undefined) {
+                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, false, 80), 'div_event_title_' + note_item_id));
+                            panelElements.push(this.props.menu.buildBreak('break_' + note_item_id));
                         }
                     }
+
+
 //                    if (event_reward !== undefined){
 //                        panelElements.push(this.buildLabel('| ' + JSON.stringify(event_reward), 'div_event_reward_' + note_item_id));
 //                        panelElements.push(this.buildBreak('break_event_reward_' + note_item_id))

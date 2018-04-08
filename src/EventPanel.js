@@ -48,7 +48,7 @@ class EventPanel extends Component {
                         }
                     }
 
-
+                    // TODO: add more reward/boon info to the hover text
 //                    if (event_reward !== undefined){
 //                        panelElements.push(this.buildLabel('| ' + JSON.stringify(event_reward), 'div_event_reward_' + note_item_id));
 //                        panelElements.push(this.buildBreak('break_event_reward_' + note_item_id))

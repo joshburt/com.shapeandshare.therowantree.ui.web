@@ -420,45 +420,48 @@ class Lunicode extends React.Component {
                         newChar;
                     for (let i in text) {
                         newChar = text[i];
-
-                        // Middle
-                        // Put just one of the middle characters there, or it gets crowded
-                        if (this.options.middle) {
-                            newChar += this.diacriticsMiddle[Math.floor(Math.random()*this.diacriticsMiddle.length)]
+                        if (text[i] == ' ') {
+                            newText += ' ';
                         }
+                        else{
+                            // Middle
+                            // Put just one of the middle characters there, or it gets crowded
+                            if (this.options.middle) {
+                                newChar += this.diacriticsMiddle[Math.floor(Math.random()*this.diacriticsMiddle.length)]
+                            }
 
-                        // Top
-                        if (this.options.top) {
+                            // Top
+                            if (this.options.top) {
 
-                            // Put up to this.options.maxHeight random diacritics on top.
-                            // optionally fluctuate the number via the randomization value (0-100%)
-                            // randomization 100%: 0 to maxHeight
-                            //                30%: 70% of maxHeight to maxHeight
-                            //                 x%: 100-x% of maxHeight to maxHeight
-                            var diacriticsTopLength = this.diacriticsTop.length - 1;
-                            for (var  count = 0,
-                                     len = this.options.maxHeight - Math.random()*((this.options.randomization/100)*this.options.maxHeight); count < len; count++) {
+                                // Put up to this.options.maxHeight random diacritics on top.
+                                // optionally fluctuate the number via the randomization value (0-100%)
+                                // randomization 100%: 0 to maxHeight
+                                //                30%: 70% of maxHeight to maxHeight
+                                //                 x%: 100-x% of maxHeight to maxHeight
+                                var diacriticsTopLength = this.diacriticsTop.length - 1;
+                                for (var  count = 0,
+                                         len = this.options.maxHeight - Math.random()*((this.options.randomization/100)*this.options.maxHeight); count < len; count++) {
 
-                                newChar += this.diacriticsTop[Math.floor(Math.random()*diacriticsTopLength)]
+                                    newChar += this.diacriticsTop[Math.floor(Math.random()*diacriticsTopLength)]
+
+                                }
 
                             }
 
-                        }
 
+                            // Bottom
+                            if (this.options.bottom) {
 
-                        // Bottom
-                        if (this.options.bottom) {
+                                var diacriticsBottomLength = this.diacriticsBottom.length - 1;
+                                for (count = 0,
+                                         len = this.options.maxHeight - Math.random()*((this.options.randomization/100)*this.options.maxHeight); count < len; count++) {
 
-                            var diacriticsBottomLength = this.diacriticsBottom.length - 1;
-                            for (count = 0,
-                                     len = this.options.maxHeight - Math.random()*((this.options.randomization/100)*this.options.maxHeight); count < len; count++) {
+                                    newChar += this.diacriticsBottom[Math.floor(Math.random()*diacriticsBottomLength)]
 
-                                newChar += this.diacriticsBottom[Math.floor(Math.random()*diacriticsBottomLength)]
+                                }
 
                             }
-
                         }
-
 
                         newText += newChar;
                     }

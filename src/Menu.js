@@ -67,16 +67,17 @@ class Menu extends Component {
             let ephemeralLunicode = this.state.lunicode;
 
             // Creepify has a few options. Set them before encoding:
-            ephemeralLunicode.tools.creepify.options.top = false; 	// add diacritics on top. Default: true
+            ephemeralLunicode.tools.creepify.options.top = true; 	// add diacritics on top. Default: true
             ephemeralLunicode.tools.creepify.options.middle = false;	// add diacritics in the middle. Default: true
             ephemeralLunicode.tools.creepify.options.bottom = true;	// add diacritics on the bottom. Default: true
-            ephemeralLunicode.tools.creepify.options.maxHeight = 5; // How many diacritic marks shall we put on top/bottom? Default: 15
-            ephemeralLunicode.tools.creepify.options.randomization = 50; // 0-100%. maxHeight 100 and randomization 20%: the height goes from 80 to 100. randomization 70%: height goes from 30 to 100. Default: 100
+            ephemeralLunicode.tools.creepify.options.maxHeight = 1; // How many diacritic marks shall we put on top/bottom? Default: 15
+            ephemeralLunicode.tools.creepify.options.randomization = 0; // 0-100%. maxHeight 100 and randomization 20%: the height goes from 80 to 100. randomization 70%: height goes from 30 to 100. Default: 100
 
             this.setState(prevState => ({
                 lunicode: ephemeralLunicode
             }));
 
+            // tokenize the message on white space, otherwise it gets treated too.
             return this.state.lunicode.tools.creepify.encode(message);
         }
         return message;

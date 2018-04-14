@@ -37,13 +37,13 @@ class EventPanel extends Component {
                                 story = story  + '\n';
                             }
                         }
-                        panelElements.push(this.props.menu.buildLabelWithTitle(this.props.menu.buildMenuItem(event_title, false, 80), story, 'div_event_title_' + note_item_id));
+                        panelElements.push(this.props.menu.buildLabelWithTitle(this.props.menu.buildMenuItem(event_title, true, 40), story, 'div_event_title_' + note_item_id));
                         panelElements.push(this.props.menu.buildBreak('break_event_text_story' + note_item_id + '_' + line_index.toString()));
                     }
                     else {
                         // build the event title
                         if (event_title !== undefined) {
-                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, false, 80), 'div_event_title_' + note_item_id));
+                            panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuItem(event_title, false, 40), 'div_event_title_' + note_item_id));
                             panelElements.push(this.props.menu.buildBreak('break_' + note_item_id));
                         }
                     }

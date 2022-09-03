@@ -23,13 +23,12 @@ class Model extends React.Component {
     // CREATE
     ///////////////////////////////////////////////////////////////////////////
     createUser() {
-        fetch(Secrets.SERVER_BASE + '/api/user/create', {
-            method: 'GET',
+        fetch(Secrets.SERVER_BASE + '/v1/user', {
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
             }
         })
             .then((response) => response.json())
@@ -46,17 +45,13 @@ class Model extends React.Component {
     // READ
     ///////////////////////////////////////////////////////////////////////////
     updateUserStoresGameState() {
-        fetch(Secrets.SERVER_BASE + '/api/user/stores', {
-            method: 'POST',
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/stores`, {
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+            }
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -200,31 +195,27 @@ class Model extends React.Component {
     }
 
     updateUserModel() {
-        fetch(Secrets.SERVER_BASE + '/api/user/state', {
-            method: 'POST',
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/state`, {
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+            }
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                this.stores = responseJson.user.stores;
-                this.income = responseJson.user.income;
-                this.UserStatusGameState = responseJson.user.user_activity_state;
-                this.activeFeature = responseJson.user.active_feature;
-                this.active_feature_state_details = responseJson.user.active_feature_state_details;
-                this.features = responseJson.user.features;
-                this.population = responseJson.user.population;
-                this.merchants = responseJson.user.merchants;
+                this.stores = responseJson.stores;
+                this.income = responseJson.incomes;
+                this.UserStatusGameState = responseJson.active;
+                this.activeFeature = responseJson.active_features;
+                this.active_feature_state_details = responseJson.active_features_details;
+                this.features = responseJson.features;
+                this.population = responseJson.population;
+                this.merchants = responseJson.merchants;
 
-                if (responseJson.user.notifications.length > 0){
-                    this.notifications.unshift(responseJson.user.notifications);
+                if (responseJson.notifications.length > 0){
+                    this.notifications.unshift(responseJson.notifications);
                 }
 
                 while (this.notifications.length > this.MAX_NOTIFICATIONS){
@@ -244,17 +235,15 @@ class Model extends React.Component {
     setUserStatusActive() {
         // heartbeart.
         // He pounds his fists against the posts, and still insists he sees the ghost.
-        fetch(Secrets.SERVER_BASE + '/api/user/active/set', {
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/active`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
             },
             body: JSON.stringify({
-                guid: this.guid,
-                active: 1
+                active: true
             })
         })
             .catch((error) =>{

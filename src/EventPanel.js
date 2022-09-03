@@ -22,7 +22,7 @@ class EventPanel extends Component {
                 for (var event_obj in event_collection) {
                     let note_item_id = this.uuidv4();
 
-                    let my_event = JSON.parse(event_collection[event_obj][2]);
+                    let my_event = event_collection[event_obj]["event"];
                     let event_title = my_event['title'];
                     let event_text = my_event['text'];
                     let event_reward = my_event['reward'];
@@ -37,6 +37,10 @@ class EventPanel extends Component {
                                 story = story  + '\n';
                             }
                         }
+                        if (line_index === undefined) {
+                            line_index = 0;
+                        }
+
                         panelElements.push(this.props.menu.buildLabelWithTitle(this.props.menu.buildMenuItem(event_title, true, 40), story, 'div_event_title_' + note_item_id));
                         panelElements.push(this.props.menu.buildBreak('break_event_text_story' + note_item_id + '_' + line_index.toString()));
                     }

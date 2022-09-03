@@ -19,12 +19,12 @@ class StatusPanel extends Component {
             panelElements.push(this.props.menu.buildBreak('break_StatusPanel_active_feature_state_details'));
         }
 
-        switch(this.props.model.UserStatusGameState) {
-            case 0:
+        switch(this.props.model.active) {
+            case false:
                 panelElements.push(this.props.menu.buildMenuItem('You are NOT active.', 'div_event_StatusPanel_UserStatusGameState)'));
                 panelElements.push(this.props.menu.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;
-            case 1:
+            case true:
                 panelElements.push(this.props.menu.buildMenuItem('You are active', 'div_event_StatusPanel_UserStatusGameState)'));
                 panelElements.push(this.props.menu.buildBreak('break_' + this.props.model.UserStatusGameState));
                 break;

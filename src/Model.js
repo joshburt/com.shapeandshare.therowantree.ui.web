@@ -44,7 +44,7 @@ class Model extends React.Component {
     ///////////////////////////////////////////////////////////////////////////
     // READ
     ///////////////////////////////////////////////////////////////////////////
-    updateUserStoresGameState() {
+    getUserStoresGameState() {
         fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/stores`, {
             method: 'GET',
             headers: {
@@ -62,18 +62,14 @@ class Model extends React.Component {
             });
     }
 
-    updateUserIncomeGameState() {
-        fetch(Secrets.SERVER_BASE + '/api/user/income', {
-            method: 'POST',
+    getUserIncomeGameState() {
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/income`, {
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+            }
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -84,62 +80,57 @@ class Model extends React.Component {
             });
     }
 
-    updateUserStatusGameState() {
-        fetch(Secrets.SERVER_BASE + '/api/user/active/state', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.UserStatusGameState = responseJson.active;
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-    }
+    // updateUserStatusGameState() {
+    //     fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/active`, {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+    //         },
+    //         body: JSON.stringify({
+    //             guid: this.guid
+    //         })
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.UserStatusGameState = responseJson.active;
+    //         })
+    //         .catch((error) =>{
+    //             console.error(error);
+    //         });
+    // }
 
-    updateUserActiveFeatureState() {
-        fetch(Secrets.SERVER_BASE + '/api/user/active/feature', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.activeFeature = responseJson.active_feature;
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-    }
+    // updateUserActiveFeatureState() {
+    //     fetch(Secrets.SERVER_BASE + '/api/user/active/feature', {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+    //             'API-VERSION': Secrets.API_VERSION
+    //         },
+    //         body: JSON.stringify({
+    //             guid: this.guid
+    //         })
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.activeFeature = responseJson.active_feature;
+    //         })
+    //         .catch((error) =>{
+    //             console.error(error);
+    //         });
+    // }
 
-    updateUserFeaturesState(){
-        fetch(Secrets.SERVER_BASE + '/api/user/feature', {
-            method: 'POST',
+    getUserFeaturesState(){
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/features`, {
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+            }
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -150,40 +141,36 @@ class Model extends React.Component {
             });
     }
 
-    updateUserPopulationState() {
-        fetch(Secrets.SERVER_BASE + '/api/user/population', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.population = responseJson.population;
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-    }
+    // updateUserPopulationState() {
+    //     fetch(Secrets.SERVER_BASE + '/api/user/population', {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
+    //             'API-VERSION': Secrets.API_VERSION
+    //         },
+    //         body: JSON.stringify({
+    //             guid: this.guid
+    //         })
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.population = responseJson.population;
+    //         })
+    //         .catch((error) =>{
+    //             console.error(error);
+    //         });
+    // }
 
-    updateMerchantTransforms() {
-        fetch(Secrets.SERVER_BASE + '/api/user/merchants', {
-            method: 'POST',
+    getMerchantTransforms() {
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/merchant`, {
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
-            },
-            body: JSON.stringify({
-                guid: this.guid
-            })
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+            }
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -205,9 +192,10 @@ class Model extends React.Component {
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                // console.log(responseJson)
                 this.stores = responseJson.stores;
-                this.income = responseJson.incomes;
-                this.UserStatusGameState = responseJson.active;
+                this.income = responseJson.income;
+                this.active = responseJson.active;
                 this.activeFeature = responseJson.active_features;
                 this.active_feature_state_details = responseJson.active_features_details;
                 this.features = responseJson.features;
@@ -253,16 +241,15 @@ class Model extends React.Component {
     }
 
     transportUser(feature) {
-        fetch(Secrets.SERVER_BASE + '/api/user/transport', {
+        console.log(`Transport user to ${feature}`)
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/transport`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
             },
             body: JSON.stringify({
-                guid: this.guid,
                 location: feature
             })
         })
@@ -272,16 +259,14 @@ class Model extends React.Component {
     }
 
     updateUserIncomeSourceAllotment(textual_source_name, amount) {
-        fetch(Secrets.SERVER_BASE + '/api/user/income/set', {
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/income`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
             },
             body: JSON.stringify({
-                guid: this.guid,
                 income_source_name: textual_source_name,
                 amount: amount
             })
@@ -292,16 +277,14 @@ class Model extends React.Component {
     }
 
     performMerchantTransform(store_name) {
-        fetch(Secrets.SERVER_BASE + '/api/merchant/transform', {
+        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/merchant`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY,
-                'API-VERSION': Secrets.API_VERSION
+                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
             },
             body: JSON.stringify({
-                guid: this.guid,
                 store_name: store_name
             })
         })
@@ -312,7 +295,7 @@ class Model extends React.Component {
 
 
     updateModel() {
-        // this.updateUserStoresGameState();
+        // this.getUserStoresGameState();
         // this.updateUserIncomeGameState();
         // this.updateUserStatusGameState();
         // this.updateUserActiveFeatureState();
@@ -320,11 +303,18 @@ class Model extends React.Component {
         // this.updateUserPopulationState();
         // this.updateMerchantTransforms();
 
+        // this.getUserFeaturesState();
+        // console.log(this.features);
+        // this.getUserIncomeGameState();
+        // console.log(this.income);
+        // this.getMerchantTransforms();
+        // console.log(this.merchants);
+
         // not exactly state here, but we do maintain a heartbeat server side.
         // this.setUserStatusActive()
 
-        this.updateUserModel()
-        this.setUserStatusActive()
+        this.updateUserModel();
+        this.setUserStatusActive();
     }
 
 }

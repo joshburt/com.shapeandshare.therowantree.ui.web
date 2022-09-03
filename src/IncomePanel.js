@@ -32,17 +32,18 @@ class IncomePanel extends Component {
         if (this.props.model.income != null) {
             for (var key in this.props.model.income){
                 let incomeString = '';
-                var income_obj = this.props.model.income[key]
-                var amount = income_obj['amount']
-                var description = income_obj['description']
-                incomeString += key + " (" + amount + ")"
+                var income_obj = this.props.model.income[key];
+                var name = income_obj['name'];
+                var amount = income_obj['amount'];
+                var description = income_obj['description'];
+                incomeString += name + " (" + amount + ")"
                 if (description != null) {
                     incomeString += " (" + description + ")";
                 }
 
                 panelElements.push(this.props.menu.buildMenuItem(incomeString, false, 10));
-                panelElements.push(this.buildAddButton(key, '+', key));
-                panelElements.push(this.buildRemoveButton(key, '-', key));
+                panelElements.push(this.buildAddButton(name, '+', name));
+                panelElements.push(this.buildRemoveButton(name, '-', name));
                 panelElements.push(this.props.menu.buildBreak('break_IncomePanel_incomeString_' + incomeString));
 
             }

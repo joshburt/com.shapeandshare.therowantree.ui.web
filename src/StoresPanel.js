@@ -16,9 +16,10 @@ class StoresPanel extends Component {
             for (let key in this.props.model.stores){
                 let storesString = '';
                 let store_obj = this.props.model.stores[key];
+                let name = store_obj['name'];
                 let amount = store_obj['amount'];
                 let description = store_obj['description'];
-                storesString = key + " (" + amount + ")";
+                storesString = name + " (" + amount + ")";
                 if (description != null) {
                     storesString += " (" + description + ")";
                 }

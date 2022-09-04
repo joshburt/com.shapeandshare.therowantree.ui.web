@@ -21,16 +21,17 @@ class TravelPanel extends Component {
         }
         else{
             for (var key in this.props.model.features){
-                var feature_name = this.props.model.features[key]
+                var feature_obj = this.props.model.features[key]
+                var name = feature_obj["name"]
 
-                // panelElements.push(this.props.menu.buildLabel('| ', feature_name));
-                if (this.props.model.activeFeature === feature_name) {
-                    panelElements.push(this.props.menu.buildMenuItem(feature_name, 'div_event_TravelPanel_feature_' + feature_name));
+                // panelElements.push(this.props.menu.buildLabel('| ', name));
+                if (this.props.model.activeFeature === name) {
+                    panelElements.push(this.props.menu.buildMenuItem(feature_name, 'div_event_TravelPanel_feature_' + name));
                 }
                 else {
-                    panelElements.push(this.buildButton(feature_name, feature_name, feature_name));
+                    panelElements.push(this.buildButton(name, name, name));
                 }
-                panelElements.push(this.props.menu.buildBreak('break_event_TravelPanel_feature' + feature_name));
+                panelElements.push(this.props.menu.buildBreak('break_event_TravelPanel_feature' + name));
             }
         }
 

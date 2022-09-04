@@ -62,23 +62,23 @@ class Model extends React.Component {
             });
     }
 
-    getUserIncomeGameState() {
-        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/income`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
-            }
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.income = responseJson.income;
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-    }
+    // getUserIncomeGameState() {
+    //     fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/income`, {
+    //         method: 'GET',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+    //         }
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.income = responseJson.income;
+    //         })
+    //         .catch((error) =>{
+    //             console.error(error);
+    //         });
+    // }
 
     // updateUserStatusGameState() {
     //     fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/active`, {
@@ -123,23 +123,23 @@ class Model extends React.Component {
     //         });
     // }
 
-    getUserFeaturesState(){
-        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/features`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
-            }
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.features = responseJson.features;
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-    }
+    // getUserFeaturesState(){
+    //     fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/features`, {
+    //         method: 'GET',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+    //         }
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.features = responseJson.features;
+    //         })
+    //         .catch((error) =>{
+    //             console.error(error);
+    //         });
+    // }
 
     // updateUserPopulationState() {
     //     fetch(Secrets.SERVER_BASE + '/api/user/population', {
@@ -163,23 +163,23 @@ class Model extends React.Component {
     //         });
     // }
 
-    getMerchantTransforms() {
-        fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/merchant`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
-            }
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.merchants = responseJson.merchants;
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-    }
+    // getMerchantTransforms() {
+    //     fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/merchant`, {
+    //         method: 'GET',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'API-ACCESS-KEY': Secrets.API_ACCESS_KEY
+    //         }
+    //     })
+    //         .then((response) => response.json())
+    //         .then((responseJson) => {
+    //             this.merchants = responseJson.merchants;
+    //         })
+    //         .catch((error) =>{
+    //             console.error(error);
+    //         });
+    // }
 
     updateUserModel() {
         fetch(Secrets.SERVER_BASE + `/v1/user/${this.guid}/state`, {
@@ -193,12 +193,11 @@ class Model extends React.Component {
             .then((response) => response.json())
             .then((responseJson) => {
                 // console.log(responseJson)
-                this.stores = responseJson.stores;
-                this.income = responseJson.income;
                 this.active = responseJson.active;
-                this.activeFeature = responseJson.active_features;
-                this.active_feature_state_details = responseJson.active_features_details;
+                this.stores = responseJson.stores;
+                this.incomes = responseJson.incomes;
                 this.features = responseJson.features;
+                this.active_feature = responseJson.active_feature;
                 this.population = responseJson.population;
                 this.merchants = responseJson.merchants;
 

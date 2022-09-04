@@ -21,10 +21,11 @@ class MerchantsPanel extends Component {
         }
         else{
             for (var key in this.props.model.merchants){
-                var merchant_name = this.props.model.merchants[key]
-                panelElements.push(this.props.menu.buildMenuItem('', 'div_MerchantsPanel_merchant_name_' + merchant_name));
-                panelElements.push(this.buildButton(merchant_name, merchant_name, merchant_name));
-                panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_' + merchant_name));
+                var merchant_obj = this.props.model.merchants[key]
+                var name = merchant_obj["name"]
+                panelElements.push(this.props.menu.buildMenuItem('', 'div_MerchantsPanel_merchant_name_' + name));
+                panelElements.push(this.buildButton(name, name, name));
+                panelElements.push(this.props.menu.buildBreak('break_MerchantsPanel_' + name));
             }
         }
 

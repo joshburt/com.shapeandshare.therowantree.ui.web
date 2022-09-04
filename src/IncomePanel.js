@@ -29,10 +29,10 @@ class IncomePanel extends Component {
         panelElements.push(this.props.menu.buildLabel(this.props.menu.buildMenuBorderTopWithLabel('workers', false, 15), 'div_event_IncomePanel_buildMenuBorderTop'));
         panelElements.push(this.props.menu.buildBreak('break_IncomePanel_buildMenuBorderTop'));
 
-        if (this.props.model.income != null) {
-            for (var key in this.props.model.income){
+        if (this.props.model.incomes != null) {
+            for (var key in this.props.model.incomes){
                 let incomeString = '';
-                var income_obj = this.props.model.income[key];
+                var income_obj = this.props.model.incomes[key];
                 var name = income_obj['name'];
                 var amount = income_obj['amount'];
                 var description = income_obj['description'];

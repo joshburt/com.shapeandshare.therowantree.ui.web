@@ -16,7 +16,7 @@
       "dom",
       "dom.iterable"
     ],
-    "module": "commonjs",
+    "module": "ES2022",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,

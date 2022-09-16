@@ -1,0 +1,73 @@
+{
+  "name": "rowantree.ui.web",
+  "version": "0.1.0",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "jwt-decode": "^3.1.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.59",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "@types/chai": "^4.3.3",
+    "@types/eslint": "^8.4.6",
+    "@types/mocha": "^9.1.1",
+    "typescript": "^4.8.3",
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.2",
+    "eslint": "^8.23.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "lint-staged": "^13.0.3",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^9.3.1",
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "audit": "npm audit --registry=https://registry.npmjs.org/",
+    "audit:fix": "npm audit fix --registry=https://registry.npmjs.org/",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --ignore-path .gitignore --ext .ts --ext js .",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:report": "npm run lint -- -f json -o ./lint/lint_report.json"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

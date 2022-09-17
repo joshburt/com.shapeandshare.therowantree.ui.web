@@ -1,8 +1,11 @@
 import { Component } from 'react'
 import {
   FeatureType,
-  StoreType, UserActiveStatus, UserFeatureState,
-  UserNotification, UserState,
+  StoreType,
+  UserActiveStatus,
+  UserFeatureState,
+  UserNotification,
+  UserState,
   UserStore
 } from 'rowantree.service.typescript.sdk'
 import RowanTreeServiceClient from '../services/game.service'
@@ -19,7 +22,8 @@ import TravelPanel from '../TravelPanel'
 // import UserService from "../services/user.service";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {}
+interface Props {
+}
 
 interface State {
   seconds: number
@@ -88,7 +92,8 @@ export default class Game extends Component<Props, State> {
     const localState = localStorage.getItem('state')
     if (localState !== null) {
       this.setState({ guid: JSON.parse(localState).guid })
-      RowanTreeServiceClient.userActiveSet(true).then((status: UserActiveStatus) => { }, error => {
+      RowanTreeServiceClient.userActiveSet(true).then((status: UserActiveStatus) => {
+      }, error => {
         console.log(`Failed to set active, error: (${(JSON.stringify(error))})`)
       })
       setRequestHeaders()
@@ -110,38 +115,38 @@ export default class Game extends Component<Props, State> {
     // )
 
     return (
-        <table>
-          <tbody>
-          <tr>
-            <td colSpan={4}>
-              <div>
-                [DEBUG] Seconds: {this.state.seconds} [/DEBUG]
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <StatusPanel model={this.state.userState} />
-               <TravelPanel model={this.state.userState} />
-            </td>
-          {/*  <td> */}
-          {/*    <PopulationPanel model={this.state.userState} /> */}
-          {/*    <IncomePanel model={this.state.userState}/> */}
-          {/*  </td> */}
-          {/*  <td> */}
-          {/*    <MerchantsPanel model={this.state.userState} /> */}
-          {/*  </td> */}
-          {/*  <td> */}
-          {/*    <StoresPanel model={this.state.userState} /> */}
-          {/*  </td> */}
-          </tr>
-          {/* <tr> */}
-          {/*  <td colSpan="4"> */}
-          {/*    <EventPanel model={this.state.userState} /> */}
-          {/*  </td> */}
-          {/* </tr> */}
-          </tbody>
-        </table>
+            <table>
+                <tbody>
+                <tr>
+                    <td colSpan={4}>
+                        <div>
+                            [DEBUG] Seconds: {this.state.seconds} [/DEBUG]
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <StatusPanel model={this.state.userState}/>
+                        <TravelPanel model={this.state.userState}/>
+                    </td>
+                    {/*  <td> */}
+                    {/*    <PopulationPanel model={this.state.userState} /> */}
+                    {/*    <IncomePanel model={this.state.userState}/> */}
+                    {/*  </td> */}
+                    {/*  <td> */}
+                    {/*    <MerchantsPanel model={this.state.userState} /> */}
+                    {/*  </td> */}
+                    {/*  <td> */}
+                    {/*    <StoresPanel model={this.state.userState} /> */}
+                    {/*  </td> */}
+                </tr>
+                {/* <tr> */}
+                {/*  <td colSpan="4"> */}
+                {/*    <EventPanel model={this.state.userState} /> */}
+                {/*  </td> */}
+                {/* </tr> */}
+                </tbody>
+            </table>
     )
   }
 }

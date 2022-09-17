@@ -2,12 +2,12 @@ import { Component } from 'react'
 import './StatusPanel.css'
 import Menu from './Menu'
 import {
+  FeatureDetailsType,
   FeatureType,
   StoreType,
   UserFeatureState,
   UserNotification,
-  UserStore,
-  FeatureDetailsType
+  UserStore
 } from 'rowantree.service.typescript.sdk'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

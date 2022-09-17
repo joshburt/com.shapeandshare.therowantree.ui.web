@@ -28,9 +28,9 @@ class Lunicode extends React.Component {
 
             // combining diacritical marks: combine with previous character for ä,ö,ü,...
             if (i > 0 && (ch === '\u0324' ||
-                                ch === '\u0317' ||
-                                ch === '\u0316' ||
-                                ch === '\u032e')) {
+                            ch === '\u0317' ||
+                            ch === '\u0316' ||
+                            ch === '\u032e')) {
               ch = this.map[text.charAt(i - 1) + ch]
               ret.pop()
             } else {
@@ -56,9 +56,9 @@ class Lunicode extends React.Component {
 
             // combining diacritical marks: combine with previous character for ä,ö,ü,...
             if (i > 0 && (ch === '\u0324' ||
-                                ch === '\u0317' ||
-                                ch === '\u0316' ||
-                                ch === '\u032e')) {
+                            ch === '\u0317' ||
+                            ch === '\u0316' ||
+                            ch === '\u032e')) {
               ch = this.map[text.charAt(i - 1) + ch]
               ret.pop()
             } else {
@@ -201,9 +201,9 @@ class Lunicode extends React.Component {
 
             // combining diacritical marks: combine with previous character for ä,ö,ü,...
             if (i > 0 && (ch === '\u0308' ||
-                                ch === '\u0300' ||
-                                ch === '\u0301' ||
-                                ch === '\u0302')) {
+                            ch === '\u0300' ||
+                            ch === '\u0301' ||
+                            ch === '\u0302')) {
               ch = this.map[text.charAt(i - 1) + ch]
               ret.pop()
             } else {
@@ -234,9 +234,9 @@ class Lunicode extends React.Component {
 
             // combining diacritical marks: combine with previous character for ä,ö,ü,...
             if (i > 0 && (ch === '\u0308' ||
-                                ch === '\u0300' ||
-                                ch === '\u0301' ||
-                                ch === '\u0302')) {
+                            ch === '\u0300' ||
+                            ch === '\u0301' ||
+                            ch === '\u0302')) {
               ch = this.map[text.charAt(i - 1) + ch]
               ret.pop()
             } else {
@@ -544,7 +544,8 @@ class Lunicode extends React.Component {
 
       // Puts a Square Combining Character after a letter, thus ensquaring it, squarily.
       squares: {
-        init: function () {},
+        init: function () {
+        },
 
         encode: function (text) {
           let ret = ''
@@ -584,7 +585,8 @@ class Lunicode extends React.Component {
 
       // Same as squares, just round.
       roundsquares: {
-        init: function () {},
+        init: function () {
+        },
 
         encode: function (text) {
           let ret = ''
@@ -858,8 +860,8 @@ class Lunicode extends React.Component {
         html += '<br>\n'
         lastSpaceWasNonBreaking = true
 
-      // space: add alternating space and non-breaking space (U+00A0). Otherwise
-      // a series of normal spaces       would collapse to one in the browser
+        // space: add alternating space and non-breaking space (U+00A0). Otherwise
+        // a series of normal spaces       would collapse to one in the browser
       } else if (ch === 32) {
         if (lastSpaceWasNonBreaking) {
           html += ' '
@@ -869,15 +871,15 @@ class Lunicode extends React.Component {
           lastSpaceWasNonBreaking = true
         }
 
-      // Normal character: Decode. Special cases for higher numbers:
-      // http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters#Surrogates
+        // Normal character: Decode. Special cases for higher numbers:
+        // http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters#Surrogates
       } else {
         // Character is high surrogate: Remember and continue
         if (ch >= 0xD800 && ch <= 0xDBFF) {
           highSurrogate = ch
           codepoint = 0
 
-        // last character was high surrogate: Combine with low surrogate
+          // last character was high surrogate: Combine with low surrogate
         } else if (highSurrogate > 0) {
           // If char is low surrogate:
           if (ch >= 0xDC00 && ch <= 0xDFFF) {
@@ -885,7 +887,7 @@ class Lunicode extends React.Component {
           }
           highSurrogate = 0
 
-        // no surrogates: Just take the character
+          // no surrogates: Just take the character
         } else {
           codepoint = ch
         }

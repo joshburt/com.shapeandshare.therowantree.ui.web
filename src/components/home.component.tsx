@@ -3,7 +3,8 @@ import { Component } from 'react'
 // import UserService from "../services/user.service";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {}
+interface Props {
+}
 
 interface State {
   content: string
@@ -38,11 +39,11 @@ export default class Home extends Component<Props, State> {
 
   render (): any {
     return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
-      </div>
+            <div className="container">
+                <header className="jumbotron">
+                    <h3>{this.state.content}</h3>
+                </header>
+            </div>
     )
   }
 }

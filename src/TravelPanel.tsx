@@ -1,12 +1,6 @@
 import { Component } from 'react'
 import './TravelPanel.css'
-import {
-  FeatureType,
-  StoreType,
-  UserFeatureState,
-  UserNotification,
-  UserStore
-} from 'rowantree.service.typescript.sdk'
+import { FeatureType, StoreType, UserFeatureState, UserNotification, UserStore } from 'rowantree.service.typescript.sdk'
 import Menu from './Menu'
 import RowanTreeServiceClient from './services/game.service'
 
@@ -28,8 +22,13 @@ class TravelPanel extends Component<Props> {
   public buildButton (location: FeatureType, label: string, keySuffix: string): any {
     let elementKey = ''
     elementKey += keySuffix + '_' + label
-    return (<button key={elementKey} onClick={async () => { RowanTreeServiceClient.userTransport(location).then(() => {}, error => { console.log(JSON.stringify(error)) }) }}
-    >{label}</button>)
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    return (<button key={elementKey} onClick={async () => {
+      RowanTreeServiceClient.userTransport(location).then(() => {
+      }, error => {
+        console.log(JSON.stringify(error))
+      })
+    }}>{label}</button>)
   }
 
   public buildTravel (): any[] {
@@ -44,15 +43,15 @@ class TravelPanel extends Component<Props> {
       panelElements.push(menuBuilder.buildMenuItem('You are nowhere..'))
       panelElements.push(menuBuilder.buildBreak('break_event_TravelPanel_active_feature'))
     } else {
-      for (const name in this.props.model.features) {
+      this.props.model.features.forEach((element) => {
         // panelElements.push(this.props.menu.buildLabel('| ', name));
-        if (this.props.model.activeFeatureState?.name === name) {
-          panelElements.push(menuBuilder.buildMenuItem(name))
+        if (this.props.model.activeFeatureState?.name === element) {
+          panelElements.push(menuBuilder.buildMenuItem(element))
         } else {
-          panelElements.push(this.buildButton(name as FeatureType, name, name))
+          panelElements.push(this.buildButton(element, element, element))
         }
-        panelElements.push(menuBuilder.buildBreak('break_event_TravelPanel_feature' + name))
-      }
+        panelElements.push(menuBuilder.buildBreak('break_event_TravelPanel_feature' + element))
+      })
     }
 
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderBottom(10), 'div_event_TravelPanel_buildMenuBorderBottom'))

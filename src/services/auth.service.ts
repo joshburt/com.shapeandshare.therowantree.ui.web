@@ -1,8 +1,8 @@
 import { CommandOptions, RowanTreeAuthServiceClient } from 'rowantree.auth.typescript.sdk'
 
 const commandOptions: CommandOptions = {
-  sleepTime: 1,
-  retryCount: 5,
+  sleepTime: 3,
+  retryCount: 10,
   endpoint: 'http://localhost:8001',
   timeout: 5
 }

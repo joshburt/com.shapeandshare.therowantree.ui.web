@@ -4,6 +4,7 @@ import RowanTreeAuthServiceClient from '../services/auth.service'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Token } from 'rowantree.auth.typescript.sdk'
+import { setRequestHeaders } from '../common/headers'
 // import { useNavigate } from 'react-router-dom'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -51,6 +52,9 @@ export default class Login extends Component<Props, State> {
     RowanTreeAuthServiceClient.authUser(username, password).then(
       (token: Token) => {
         localStorage.setItem('state', JSON.stringify({ jwt: token.accessToken, guid: RowanTreeAuthServiceClient.decodeJwt(token.accessToken).sub }))
+
+        // Set headers
+        setRequestHeaders()
       },
       error => {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-optional-chain

@@ -3,6 +3,9 @@ import RowanTreeAuthServiceClient from '../services/auth.service'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Token, User } from 'rowantree.auth.typescript.sdk'
+import { setRequestHeaders } from '../common/headers'
+import RowanTreeServiceClient from '../services/game.service'
+import { UserWorld } from 'rowantree.service.typescript.sdk'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {}
@@ -49,7 +52,15 @@ export default class Login extends Component<Props, State> {
       (user: User) => {
         RowanTreeAuthServiceClient.authUser(username, password).then(
           (token: Token) => {
-            localStorage.setItem('state', JSON.stringify({ jwt: token.accessToken, guid: RowanTreeAuthServiceClient.decodeJwt(token.accessToken).sub }))
+            // Store details in local storage
+            const localState = { jwt: token.accessToken, guid: RowanTreeAuthServiceClient.decodeJwt(token.accessToken).sub }
+            localStorage.setItem('state', JSON.stringify(localState))
+
+            // Set headers
+            setRequestHeaders()
+
+            // Create the player within the game
+            RowanTreeServiceClient.userCreate(localState.guid).then((userWorld: UserWorld) => { console.log(userWorld) }, error => { console.log(error) })
           },
           error => {
             // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-optional-chain

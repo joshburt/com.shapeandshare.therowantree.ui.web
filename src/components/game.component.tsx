@@ -9,7 +9,7 @@ import RowanTreeServiceClient from '../services/game.service'
 import { setRequestHeaders } from '../common/headers'
 import StatusPanel from '../StatusPanel'
 import EventBus from '../common/EventBus'
-// import TravelPanel from '../TravelPanel'
+import TravelPanel from '../TravelPanel'
 // import PopulationPanel from '../PopulationPanel'
 // import IncomePanel from '../IncomePanel'
 // import MerchantsPanel from '../MerchantsPanel'
@@ -122,7 +122,7 @@ export default class Game extends Component<Props, State> {
           <tr>
             <td>
               <StatusPanel model={this.state.userState} />
-              {/* <TravelPanel model={this.state.userState} /> */}
+               <TravelPanel model={this.state.userState} />
             </td>
           {/*  <td> */}
           {/*    <PopulationPanel model={this.state.userState} /> */}

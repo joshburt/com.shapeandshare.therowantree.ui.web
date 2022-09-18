@@ -24,16 +24,54 @@ interface Props {
   }
 }
 
-class EventPanel extends Component<Props> {
+interface State {
+  notifications: UserNotification[]
+}
+
+class EventPanel extends Component<Props, State> {
+  public menuBuilder: Menu
+
+  constructor (props: Props) {
+    super(props)
+
+    this.menuBuilder = new Menu()
+    this.state = {
+      notifications: []
+    }
+  }
+
   public buildEventPanel (): any[] {
-    const menuBuilder: Menu = new Menu()
+    // console.log(this.props.model.notifications)
 
     const panelElements: any[] = []
 
-    panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('events', false, 45), 'div_event_EventPanel_buildMenuBorderTop'))
-    panelElements.push(menuBuilder.buildBreak('break_EventPanel_buildMenuBorderTop'))
+    panelElements.push(this.menuBuilder.buildLabel(this.menuBuilder.buildMenuBorderTopWithLabel('events', false, 45), 'div_event_EventPanel_buildMenuBorderTop'))
+    panelElements.push(this.menuBuilder.buildBreak('break_EventPanel_buildMenuBorderTop'))
+    // console.log(JSON.stringify(this.props.model.notifications))
+    const priorNotifications: UserNotification[] = this.state.notifications
+    const newNotifications: UserNotification[] = (this.props.model.notifications != null) ? this.props.model.notifications : []
+    const completeNotifications = priorNotifications.concat(newNotifications)
+    let truncatedNotifications = completeNotifications
+    if (completeNotifications.length > 10) {
+      truncatedNotifications = completeNotifications.splice(completeNotifications.length - 10, completeNotifications.length)
+    }
 
-    this.props.model.notifications?.forEach((notification) => {
+    this.state = { notifications: truncatedNotifications }
+
+    // this.setState({ notifications: (this.props.model.notifications != null) ? this.props.model.notifications : [] })
+    // // merge notifications
+    // this.props.model.notifications?.forEach((notification) => {
+    //   const newNotifications = this.state.notifications
+    //   newNotifications.push(notification)
+    //   this.setState({ notifications: newNotifications })
+    // })
+
+    // truncate to some limit
+    // TODO
+
+    // render them
+    truncatedNotifications.forEach((notification) => {
+    // this.props.model.notifications?.forEach((notification) => {
       const noteId: string = crypto.randomUUID()
       const title: string = notification.event.title
       const text: Record<number, string> = notification.event.text
@@ -42,11 +80,10 @@ class EventPanel extends Component<Props> {
 
       let story: string = ''
       for (const key in text) {
-        story = story + key + '\n'
+        story = story + text[key] + '\n'
       }
-
-      panelElements.push(menuBuilder.buildLabelWithTitle(menuBuilder.buildMenuItem(title, true, 40), story, 'div_event_title_' + noteId))
-      panelElements.push(menuBuilder.buildBreak('break_event_text_story' + noteId))
+      panelElements.push(this.menuBuilder.buildLabelWithTitle(this.menuBuilder.buildMenuItem(title, false, 40), story, 'div_event_title_' + noteId))
+      panelElements.push(this.menuBuilder.buildBreak('break_event_text_story' + noteId))
 
       // TODO: add more reward/boon info to the hover text
       //                    if (reward !== undefined){
@@ -59,8 +96,8 @@ class EventPanel extends Component<Props> {
       //                    }
     })
 
-    panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderBottom(), 'div_event_EventPanel_buildMenuBorderBottom'))
-    panelElements.push(menuBuilder.buildBreak('break_EventPanel_buildMenuBorderBottom'))
+    panelElements.push(this.menuBuilder.buildLabel(this.menuBuilder.buildMenuBorderBottom(), 'div_event_EventPanel_buildMenuBorderBottom'))
+    panelElements.push(this.menuBuilder.buildBreak('break_EventPanel_buildMenuBorderBottom'))
 
     return panelElements
   }

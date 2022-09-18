@@ -3,9 +3,9 @@ import './StatusPanel.css'
 import Menu from './Menu'
 import {
   FeatureDetailsType,
-  FeatureType,
+  FeatureType, IncomeSourceType,
   StoreType,
-  UserFeatureState,
+  UserFeatureState, UserIncome,
   UserNotification,
   UserStore
 } from 'rowantree.service.typescript.sdk'
@@ -15,7 +15,7 @@ interface Props {
   model: {
     active: boolean
     stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<StoreType, UserStore> | undefined
+    incomes: Record<IncomeSourceType, UserIncome> | undefined
     features: Set<FeatureType> | undefined
     activeFeatureState: UserFeatureState | undefined
     population: number | undefined

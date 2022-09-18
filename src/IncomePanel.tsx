@@ -1,6 +1,13 @@
 import { Component } from 'react'
 import './IncomePanel.css'
-import { FeatureType, StoreType, UserFeatureState, UserNotification, UserStore } from 'rowantree.service.typescript.sdk'
+import {
+  FeatureType, IncomeSourceType,
+  StoreType,
+  UserFeatureState,
+  UserIncome,
+  UserNotification,
+  UserStore
+} from 'rowantree.service.typescript.sdk'
 
 import RowanTreeServiceClient from './services/game.service'
 import Menu from './Menu'
@@ -10,7 +17,7 @@ interface Props {
   model: {
     active: boolean
     stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<StoreType, UserStore> | undefined
+    incomes: Record<IncomeSourceType, UserIncome> | undefined
     features: Set<FeatureType> | undefined
     activeFeatureState: UserFeatureState | undefined
     population: number | undefined
@@ -20,30 +27,30 @@ interface Props {
 }
 
 class IncomePanel extends Component<Props> {
-  public addWorker (storeType: StoreType): void {
-    RowanTreeServiceClient.userIncomeSet(storeType, 1).then(() => {
+  public addWorker (type: IncomeSourceType): void {
+    RowanTreeServiceClient.userIncomeSet(type, 1).then(() => {
     }, error => {
       console.log(JSON.stringify(error))
     })
   }
 
-  public removeWorker (storeType: StoreType): void {
-    RowanTreeServiceClient.userIncomeSet(storeType, -1).then(() => {
+  public removeWorker (type: IncomeSourceType): void {
+    RowanTreeServiceClient.userIncomeSet(type, -1).then(() => {
     }, error => {
       console.log(JSON.stringify(error))
     })
   }
 
-  public buildAddButton (storeType: StoreType, label: string, keySuffix: string): any {
+  public buildAddButton (type: IncomeSourceType, label: string, keySuffix: string): any {
     let elementKey: string = ''
     elementKey += keySuffix + '_' + label
-    return (<button key={elementKey} onClick={(e) => this.addWorker(storeType)}>{label}</button>)
+    return (<button key={elementKey} onClick={(e) => this.addWorker(type)}>{label}</button>)
   }
 
-  public buildRemoveButton (storeType: StoreType, label: string, keySuffix: string): any {
+  public buildRemoveButton (type: IncomeSourceType, label: string, keySuffix: string): any {
     let elementKey: string = ''
     elementKey += keySuffix + '_' + label
-    return (<button key={elementKey} onClick={(e) => this.removeWorker(storeType)}>{label}</button>)
+    return (<button key={elementKey} onClick={(e) => this.removeWorker(type)}>{label}</button>)
   }
 
   public buildIncome (): any[] {
@@ -57,12 +64,12 @@ class IncomePanel extends Component<Props> {
     if (this.props.model.incomes != null) {
       for (const item in this.props.model.incomes) {
         let incomeString: string = ''
-        const userStore: UserStore = this.props.model.incomes[item as keyof typeof this.props.model.incomes]
-        const name: StoreType = userStore.name
-        const amount: number = userStore.amount
-        const description: string | undefined = userStore.description
+        const income: UserIncome = this.props.model.incomes[item as keyof typeof this.props.model.incomes]
+        const name: IncomeSourceType = income.name
+        const amount: number = income.amount
+        const description: string | undefined = income.description
         incomeString += name + ' (' + String(amount) + ')'
-        if (description !== undefined) {
+        if (description != null) {
           incomeString += ' (' + description + ')'
         }
 

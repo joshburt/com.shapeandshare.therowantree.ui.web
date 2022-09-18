@@ -1,6 +1,13 @@
 import { Component } from 'react'
 import './PopulationPanel.css'
-import { FeatureType, StoreType, UserFeatureState, UserNotification, UserStore } from 'rowantree.service.typescript.sdk'
+import {
+  FeatureType,
+  IncomeSourceType,
+  StoreType,
+  UserFeatureState, UserIncome,
+  UserNotification,
+  UserStore
+} from 'rowantree.service.typescript.sdk'
 import Menu from './Menu'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -8,7 +15,7 @@ interface Props {
   model: {
     active: boolean
     stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<StoreType, UserStore> | undefined
+    incomes: Record<IncomeSourceType, UserIncome> | undefined
     features: Set<FeatureType> | undefined
     activeFeatureState: UserFeatureState | undefined
     population: number | undefined

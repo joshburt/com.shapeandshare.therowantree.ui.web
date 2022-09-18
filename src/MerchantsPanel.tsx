@@ -1,6 +1,13 @@
 import { Component } from 'react'
 import './MerchantsPanel.css'
-import { FeatureType, StoreType, UserFeatureState, UserNotification, UserStore } from 'rowantree.service.typescript.sdk'
+import {
+  FeatureType,
+  IncomeSourceType,
+  StoreType,
+  UserFeatureState, UserIncome,
+  UserNotification,
+  UserStore
+} from 'rowantree.service.typescript.sdk'
 import Menu from './Menu'
 import RowanTreeServiceClient from './services/game.service'
 
@@ -9,7 +16,7 @@ interface Props {
   model: {
     active: boolean
     stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<StoreType, UserStore> | undefined
+    incomes: Record<IncomeSourceType, UserIncome> | undefined
     features: Set<FeatureType> | undefined
     activeFeatureState: UserFeatureState | undefined
     population: number | undefined

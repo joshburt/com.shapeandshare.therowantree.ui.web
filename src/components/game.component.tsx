@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import {
-  FeatureType,
+  FeatureType, IncomeSourceType,
   StoreType,
   UserActiveStatus,
-  UserFeatureState,
+  UserFeatureState, UserIncome,
   UserNotification,
   UserState,
   UserStore
@@ -29,7 +29,7 @@ interface State {
   userState: {
     active: boolean
     stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<StoreType, UserStore> | undefined
+    incomes: Record<IncomeSourceType, UserIncome> | undefined
     features: Set<FeatureType> | undefined
     activeFeatureState: UserFeatureState | undefined
     population: number | undefined

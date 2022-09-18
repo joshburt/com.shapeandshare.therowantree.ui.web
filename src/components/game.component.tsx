@@ -15,6 +15,7 @@ import EventBus from '../common/EventBus'
 import TravelPanel from '../TravelPanel'
 import PopulationPanel from '../PopulationPanel'
 import IncomePanel from '../IncomePanel'
+import MerchantsPanel from '../MerchantsPanel'
 // import PopulationPanel from '../PopulationPanel'
 // import IncomePanel from '../IncomePanel'
 // import MerchantsPanel from '../MerchantsPanel'
@@ -40,7 +41,6 @@ interface State {
     merchants: Set<StoreType> | undefined
     notifications: UserNotification[] | undefined
   }
-
 }
 
 export default class Game extends Component<Props, State> {
@@ -118,10 +118,10 @@ export default class Game extends Component<Props, State> {
                     </td>
                     <td>
                         <PopulationPanel model={this.state.userState}/>
-                            <IncomePanel model={this.state.userState}/>
+                        <IncomePanel model={this.state.userState}/>
                     </td>
                     <td>
-                        {/*    <MerchantsPanel model={this.state.userState} /> */}
+                        <MerchantsPanel model={this.state.userState} />
                     </td>
                     <td>
                         {/*    <StoresPanel model={this.state.userState} /> */}

@@ -16,9 +16,8 @@ import TravelPanel from '../TravelPanel'
 import PopulationPanel from '../PopulationPanel'
 import IncomePanel from '../IncomePanel'
 import MerchantsPanel from '../MerchantsPanel'
-// import PopulationPanel from '../PopulationPanel'
-// import IncomePanel from '../IncomePanel'
-// import MerchantsPanel from '../MerchantsPanel'
+import StoresPanel from '../StoresPanel'
+
 // import StoresPanel from '../StoresPanel'
 // import EventPanel from '../EventPanel'
 
@@ -124,7 +123,7 @@ export default class Game extends Component<Props, State> {
                         <MerchantsPanel model={this.state.userState} />
                     </td>
                     <td>
-                        {/*    <StoresPanel model={this.state.userState} /> */}
+                        <StoresPanel model={this.state.userState} />
                     </td>
                 </tr>
                 {/* <tr> */}

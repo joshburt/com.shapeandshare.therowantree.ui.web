@@ -33,7 +33,7 @@ class StoresPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('Inventory', false, 15), 'div_event_StoresPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_StoresPanel_buildMenuBorderTop'))
 
-    if (this.props.model.stores == null) {
+    if (this.props.model?.stores === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('Your pockets are empty..'))
       panelElements.push(menuBuilder.buildBreak('break_StoresPanel_nothing_todo'))
     } else {

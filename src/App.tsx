@@ -18,15 +18,6 @@ interface State {
 }
 
 class App extends Component<Props, State> {
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      jwt: undefined,
-      guid: undefined
-    }
-  }
-
   render (): any {
     const localState = this.state
 
@@ -44,7 +35,7 @@ class App extends Component<Props, State> {
                         </li>
                     </div>
 
-                    {localState.jwt !== undefined
+                    {localState?.jwt !== undefined
                       ? (
                             <div className="navbar-nav ml-auto">
                                 <li className="nav-item">
@@ -70,7 +61,7 @@ class App extends Component<Props, State> {
                             </div>
                         )}
 
-                    {(localState.guid !== undefined && localState.jwt !== undefined) && (
+                    {(localState?.guid !== undefined && localState?.jwt !== undefined) && (
                         <div className="navbar-nav ml-auto">
                             <li className="nav-item">
                                 <Link to={'/game'} className="nav-link">
@@ -98,6 +89,11 @@ class App extends Component<Props, State> {
     const state: string | null = localStorage.getItem('state')
     if (state !== null) {
       this.setState(JSON.parse(state))
+    } else {
+      this.setState({
+        jwt: undefined,
+        guid: undefined
+      })
     }
     EventBus.on('logout', this.logOut)
   }

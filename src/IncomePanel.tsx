@@ -61,7 +61,7 @@ class IncomePanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('workers', false, 15), 'div_event_IncomePanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_IncomePanel_buildMenuBorderTop'))
 
-    if (this.props.model.incomes != null) {
+    if (this.props.model?.incomes !== undefined) {
       for (const item in this.props.model.incomes) {
         let incomeString: string = ''
         const income: UserIncome = this.props.model.incomes[item as keyof typeof this.props.model.incomes]

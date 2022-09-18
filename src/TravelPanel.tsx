@@ -46,13 +46,13 @@ class TravelPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('travel', false, 15), 'div_event_TravelPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_TravelPanel_buildMenuBorderTop'))
 
-    if (this.props.model.features == null) {
+    if (this.props.model?.features === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('You are nowhere..'))
       panelElements.push(menuBuilder.buildBreak('break_event_TravelPanel_active_feature'))
     } else {
-      this.props.model.features.forEach((element) => {
+      this.props.model?.features.forEach((element) => {
         // panelElements.push(this.props.menu.buildLabel('| ', name));
-        if (this.props.model.activeFeatureState?.name === element) {
+        if (this.props.model?.activeFeatureState?.name === element) {
           panelElements.push(menuBuilder.buildMenuItem(element))
         } else {
           panelElements.push(this.buildButton(element, element, element))

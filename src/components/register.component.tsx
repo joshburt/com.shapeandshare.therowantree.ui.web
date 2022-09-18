@@ -23,14 +23,16 @@ export default class Login extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
     this.handleLogin = this.handleLogin.bind(this)
+  }
 
-    this.state = {
+  componentDidMount (): void {
+    this.setState({
       username: '',
       password: '',
       email: '',
       loading: false,
       message: ''
-    }
+    })
   }
 
   validationSchema (): any {
@@ -94,8 +96,8 @@ export default class Login extends Component<Props, State> {
   }
 
   render (): any {
-    const { loading, message } = this.state
-
+    const loading: boolean = (this.state?.loading !== undefined) ? this.state.loading : false
+    const message: string = (this.state?.message !== undefined) ? this.state.message : ''
     const initialValues = {
       username: '',
       password: '',

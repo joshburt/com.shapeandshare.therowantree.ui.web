@@ -33,7 +33,7 @@ class PopulationPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildBreak('break_PopulationPanel_buildMenuBorderTop'))
 
     let popString = 0
-    if (this.props.model.population !== undefined) {
+    if (this.props.model?.population !== undefined) {
       popString = this.props.model.population
     }
     panelElements.push(menuBuilder.buildMenuItem(String(popString)))

@@ -41,26 +41,10 @@ interface State {
 export default class Game extends Component<Props, State> {
   interval: NodeJS.Timer | undefined
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      seconds: 0,
-      guid: undefined,
-      userState: {
-        active: false,
-        stores: undefined,
-        incomes: undefined,
-        features: undefined,
-        activeFeatureState: undefined,
-        population: undefined,
-        merchants: undefined,
-        notifications: undefined
-      }
-    }
-  }
-
   tick (): void {
+    if (this.state.seconds == null) {
+      this.setState({ seconds: 0 })
+    }
     if (this.state.guid !== undefined) {
       RowanTreeServiceClient.userStateGet(this.state.guid).then((userState: UserState) => {
         this.setState({ seconds: (this.state.seconds + 1), userState })
@@ -87,6 +71,21 @@ export default class Game extends Component<Props, State> {
         console.log(`Failed to set active, error: (${(JSON.stringify(error))})`)
       })
       setRequestHeaders()
+    } else {
+      this.setState({
+        seconds: 0,
+        guid: undefined,
+        userState: {
+          active: false,
+          stores: undefined,
+          incomes: undefined,
+          features: undefined,
+          activeFeatureState: undefined,
+          population: undefined,
+          merchants: undefined,
+          notifications: undefined
+        }
+      })
     }
     this.interval = setInterval(() => this.tick(), 1000)
   }
@@ -102,29 +101,29 @@ export default class Game extends Component<Props, State> {
                 <tr>
                     <td colSpan={4}>
                         <div>
-                            [DEBUG] Seconds: {this.state.seconds} [/DEBUG]
+                            [DEBUG] Seconds: {this.state?.seconds} [/DEBUG]
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <StatusPanel model={this.state.userState}/>
-                        <TravelPanel model={this.state.userState}/>
+                        <StatusPanel model={this.state?.userState}/>
+                        <TravelPanel model={this.state?.userState}/>
                     </td>
                     <td>
-                        <PopulationPanel model={this.state.userState}/>
-                        <IncomePanel model={this.state.userState}/>
+                        <PopulationPanel model={this.state?.userState}/>
+                        <IncomePanel model={this.state?.userState}/>
                     </td>
                     <td>
-                        <MerchantsPanel model={this.state.userState}/>
+                        <MerchantsPanel model={this.state?.userState}/>
                     </td>
                     <td>
-                        <StoresPanel model={this.state.userState}/>
+                        <StoresPanel model={this.state?.userState}/>
                     </td>
                 </tr>
                 <tr>
                     <td colSpan={4}>
-                        <EventPanel model={this.state.userState}/>
+                        <EventPanel model={this.state?.userState}/>
                     </td>
                 </tr>
                 </tbody>

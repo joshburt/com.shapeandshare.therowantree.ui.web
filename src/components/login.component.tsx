@@ -22,13 +22,15 @@ export default class Login extends Component<Props, State> {
   constructor (props: Props) {
     super(props)
     this.handleLogin = this.handleLogin.bind(this)
+  }
 
-    this.state = {
+  componentDidMount (): void {
+    this.setState({
       username: '',
       password: '',
       loading: false,
       message: ''
-    }
+    })
   }
 
   validationSchema (): any {
@@ -78,13 +80,12 @@ export default class Login extends Component<Props, State> {
   }
 
   render (): any {
-    // const navigate = useNavigate()
-
-    const { loading, message } = this.state
-
-    // if (target !== undefined && target !== '') {
-    //   return navigate(target)
-    // }
+    let loading: boolean = false
+    let message: string = ''
+    if (this.state != null) {
+      loading = this.state.loading
+      message = this.state.message
+    }
 
     const initialValues = {
       username: '',
@@ -92,60 +93,60 @@ export default class Login extends Component<Props, State> {
     }
 
     return (
-            <div className="col-md-12">
-                <div className="card card-container">
-                    <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                        alt="profile-img"
-                        className="profile-img-card"
-                    />
+        <div className="col-md-12">
+            <div className="card card-container">
+                <img
+                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                    alt="profile-img"
+                    className="profile-img-card"
+                />
 
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={this.validationSchema}
-                        onSubmit={this.handleLogin}
-                    >
-                        <Form>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={this.validationSchema}
+                    onSubmit={this.handleLogin}
+                >
+                    <Form>
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <Field name="username" type="text" className="form-control"/>
+                            <ErrorMessage
+                                name="username"
+                                component="div"
+                                className="alert alert-danger"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <Field name="password" type="password" className="form-control"/>
+                            <ErrorMessage
+                                name="password"
+                                component="div"
+                                className="alert alert-danger"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                                {loading && (
+                                    <span className="spinner-border spinner-border-sm"></span>
+                                )}
+                                <span>Login</span>
+                            </button>
+                        </div>
+
+                        {message !== '' && (
                             <div className="form-group">
-                                <label htmlFor="username">Username</label>
-                                <Field name="username" type="text" className="form-control"/>
-                                <ErrorMessage
-                                    name="username"
-                                    component="div"
-                                    className="alert alert-danger"
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="password">Password</label>
-                                <Field name="password" type="password" className="form-control"/>
-                                <ErrorMessage
-                                    name="password"
-                                    component="div"
-                                    className="alert alert-danger"
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                                    {loading && (
-                                        <span className="spinner-border spinner-border-sm"></span>
-                                    )}
-                                    <span>Login</span>
-                                </button>
-                            </div>
-
-                            {message !== '' && (
-                                <div className="form-group">
-                                    <div className="alert alert-danger" role="alert">
-                                        {message}
-                                    </div>
+                                <div className="alert alert-danger" role="alert">
+                                    {message}
                                 </div>
-                            )}
-                        </Form>
-                    </Formik>
-                </div>
+                            </div>
+                        )}
+                    </Form>
+                </Formik>
             </div>
+        </div>
     )
   }
 }

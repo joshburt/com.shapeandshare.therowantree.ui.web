@@ -45,7 +45,7 @@ class MerchantsPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('Merchants', false, 15), 'div_event_MerchantsPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_MerchantsPanel_buildMenuBorderTop'))
 
-    if (this.props.model.merchants == null) {
+    if (this.props.model?.merchants === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('You are a lone figure at the trading grounds.'))
       panelElements.push(menuBuilder.buildMenuItem('The wind your only company.'))
       panelElements.push(menuBuilder.buildBreak('break_MerchantsPanel_nothing_todo'))

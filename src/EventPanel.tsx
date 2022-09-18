@@ -48,8 +48,8 @@ class EventPanel extends Component<Props, State> {
     panelElements.push(this.menuBuilder.buildLabel(this.menuBuilder.buildMenuBorderTopWithLabel('events', false, 45), 'div_event_EventPanel_buildMenuBorderTop'))
     panelElements.push(this.menuBuilder.buildBreak('break_EventPanel_buildMenuBorderTop'))
     // console.log(JSON.stringify(this.props.model.notifications))
-    const priorNotifications: UserNotification[] = this.state.notifications
-    const newNotifications: UserNotification[] = (this.props.model.notifications != null) ? this.props.model.notifications : []
+    const priorNotifications: UserNotification[] = this.state?.notifications
+    const newNotifications: UserNotification[] = (this.props.model?.notifications !== undefined) ? this.props.model.notifications : []
     const completeNotifications = priorNotifications.concat(newNotifications)
     let truncatedNotifications = completeNotifications
     if (completeNotifications.length > 10) {

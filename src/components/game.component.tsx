@@ -17,11 +17,7 @@ import PopulationPanel from '../PopulationPanel'
 import IncomePanel from '../IncomePanel'
 import MerchantsPanel from '../MerchantsPanel'
 import StoresPanel from '../StoresPanel'
-
-// import StoresPanel from '../StoresPanel'
-// import EventPanel from '../EventPanel'
-
-// import UserService from "../services/user.service";
+import EventPanel from '../EventPanel'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {
@@ -120,17 +116,17 @@ export default class Game extends Component<Props, State> {
                         <IncomePanel model={this.state.userState}/>
                     </td>
                     <td>
-                        <MerchantsPanel model={this.state.userState} />
+                        <MerchantsPanel model={this.state.userState}/>
                     </td>
                     <td>
-                        <StoresPanel model={this.state.userState} />
+                        <StoresPanel model={this.state.userState}/>
                     </td>
                 </tr>
-                {/* <tr> */}
-                {/*  <td colSpan="4"> */}
-                {/*    <EventPanel model={this.state.userState} /> */}
-                {/*  </td> */}
-                {/* </tr> */}
+                <tr>
+                    <td colSpan={4}>
+                        <EventPanel model={this.state.userState}/>
+                    </td>
+                </tr>
                 </tbody>
             </table>
     )

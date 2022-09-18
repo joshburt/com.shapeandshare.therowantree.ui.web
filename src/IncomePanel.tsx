@@ -21,11 +21,17 @@ interface Props {
 
 class IncomePanel extends Component<Props> {
   public addWorker (storeType: StoreType): void {
-    RowanTreeServiceClient.userIncomeSet(storeType, 1).then(() => {}, error => { console.log(JSON.stringify(error)) })
+    RowanTreeServiceClient.userIncomeSet(storeType, 1).then(() => {
+    }, error => {
+      console.log(JSON.stringify(error))
+    })
   }
 
   public removeWorker (storeType: StoreType): void {
-    RowanTreeServiceClient.userIncomeSet(storeType, -1).then(() => {}, error => { console.log(JSON.stringify(error)) })
+    RowanTreeServiceClient.userIncomeSet(storeType, -1).then(() => {
+    }, error => {
+      console.log(JSON.stringify(error))
+    })
   }
 
   public buildAddButton (storeType: StoreType, label: string, keySuffix: string): any {

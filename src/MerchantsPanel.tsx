@@ -24,7 +24,10 @@ class MerchantsPanel extends Component<Props> {
     elementKey += keySuffix + '_' + label
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     return (<button key={elementKey} onClick={async () => {
-      RowanTreeServiceClient.merchantTransform(storeType).then(() => {}, error => { console.log(JSON.stringify(error)) })
+      RowanTreeServiceClient.merchantTransform(storeType).then(() => {
+      }, error => {
+        console.log(JSON.stringify(error))
+      })
     }}>{label}</button>)
   }
 

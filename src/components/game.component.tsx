@@ -13,6 +13,7 @@ import { setRequestHeaders } from '../common/headers'
 import StatusPanel from '../StatusPanel'
 import EventBus from '../common/EventBus'
 import TravelPanel from '../TravelPanel'
+import PopulationPanel from '../PopulationPanel'
 // import PopulationPanel from '../PopulationPanel'
 // import IncomePanel from '../IncomePanel'
 // import MerchantsPanel from '../MerchantsPanel'
@@ -74,13 +75,6 @@ export default class Game extends Component<Props, State> {
     } else {
       this.setState({ seconds: (this.state.seconds + 1) })
     }
-
-    // const previousState = this.state
-    // if (previousState !== null) {
-    //
-    //   console.log(newState)
-    //   this.setState(newState)
-    // }
   }
 
   componentWillUnmount (): void {
@@ -106,14 +100,6 @@ export default class Game extends Component<Props, State> {
   }
 
   render (): any {
-    // return (
-    //   <div className="container">
-    //     <header className="jumbotron">
-    //       <h3>{JSON.stringify(this.state)}</h3>
-    //     </header>
-    //   </div>
-    // )
-
     return (
             <table>
                 <tbody>
@@ -129,16 +115,16 @@ export default class Game extends Component<Props, State> {
                         <StatusPanel model={this.state.userState}/>
                         <TravelPanel model={this.state.userState}/>
                     </td>
-                    {/*  <td> */}
-                    {/*    <PopulationPanel model={this.state.userState} /> */}
-                    {/*    <IncomePanel model={this.state.userState}/> */}
-                    {/*  </td> */}
-                    {/*  <td> */}
-                    {/*    <MerchantsPanel model={this.state.userState} /> */}
-                    {/*  </td> */}
-                    {/*  <td> */}
-                    {/*    <StoresPanel model={this.state.userState} /> */}
-                    {/*  </td> */}
+                    <td>
+                        <PopulationPanel model={this.state.userState}/>
+                        {/*    <IncomePanel model={this.state.userState}/> */}
+                    </td>
+                    <td>
+                        {/*    <MerchantsPanel model={this.state.userState} /> */}
+                    </td>
+                    <td>
+                        {/*    <StoresPanel model={this.state.userState} /> */}
+                    </td>
                 </tr>
                 {/* <tr> */}
                 {/*  <td colSpan="4"> */}

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, ReactNode } from 'react'
 import './EventPanel.css'
 import {
   FeatureType,
@@ -25,7 +25,7 @@ interface Props {
 }
 
 interface State {
-  notifications: UserNotification[]
+  notifications: UserNotification[] | undefined
 }
 
 class EventPanel extends Component<Props, State> {
@@ -33,50 +33,47 @@ class EventPanel extends Component<Props, State> {
 
   constructor (props: Props) {
     super(props)
-
     this.menuBuilder = new Menu()
-    this.state = {
-      notifications: []
-    }
   }
 
-  public buildEventPanel (): any[] {
-    // console.log(this.props.model.notifications)
+  componentDidMount (): void {
+    this.setState({
+      notifications: []
+    })
+  }
 
-    const panelElements: any[] = []
+  public buildNotifications (): UserNotification[] {
+    let priorNotifications: UserNotification[] = []
+    const localNotifications: string | null = localStorage.getItem('notifications')
+    if (localNotifications !== null) {
+      const notifications = JSON.parse(localNotifications)
+      if (notifications !== undefined) {
+        priorNotifications = notifications.notifications
+      }
+    }
 
-    panelElements.push(this.menuBuilder.buildLabel(this.menuBuilder.buildMenuBorderTopWithLabel('events', false, 45), 'div_event_EventPanel_buildMenuBorderTop'))
-    panelElements.push(this.menuBuilder.buildBreak('break_EventPanel_buildMenuBorderTop'))
-    // console.log(JSON.stringify(this.props.model.notifications))
-    const priorNotifications: UserNotification[] = this.state?.notifications
-    const newNotifications: UserNotification[] = (this.props.model?.notifications !== undefined) ? this.props.model.notifications : []
+    // truncate to some limit
+    const newNotifications: UserNotification[] = (this.props?.model?.notifications !== undefined) ? this.props.model.notifications : []
     const completeNotifications = priorNotifications.concat(newNotifications)
     let truncatedNotifications = completeNotifications
     if (completeNotifications.length > 10) {
       truncatedNotifications = completeNotifications.splice(completeNotifications.length - 10, completeNotifications.length)
     }
+    localStorage.setItem('notifications', JSON.stringify({ notifications: truncatedNotifications }))
+    return truncatedNotifications
+  }
 
-    this.state = { notifications: truncatedNotifications }
+  public buildEventPanel (notifications: UserNotification[]): any[] {
+    const panelElements: any[] = []
 
-    // this.setState({ notifications: (this.props.model.notifications != null) ? this.props.model.notifications : [] })
-    // // merge notifications
-    // this.props.model.notifications?.forEach((notification) => {
-    //   const newNotifications = this.state.notifications
-    //   newNotifications.push(notification)
-    //   this.setState({ notifications: newNotifications })
-    // })
-
-    // truncate to some limit
-    // TODO
+    panelElements.push(this.menuBuilder.buildLabel(this.menuBuilder.buildMenuBorderTopWithLabel('events', false, 45), 'div_event_EventPanel_buildMenuBorderTop'))
+    panelElements.push(this.menuBuilder.buildBreak('break_EventPanel_buildMenuBorderTop'))
 
     // render them
-    truncatedNotifications.forEach((notification) => {
-    // this.props.model.notifications?.forEach((notification) => {
+    notifications.forEach((notification) => {
       const noteId: string = crypto.randomUUID()
       const title: string = notification.event.title
       const text: Record<number, string> = notification.event.text
-      // const reward = notification.event.reward
-      // const curse = notification.event.curse
 
       let story: string = ''
       for (const key in text) {
@@ -84,16 +81,6 @@ class EventPanel extends Component<Props, State> {
       }
       panelElements.push(this.menuBuilder.buildLabelWithTitle(this.menuBuilder.buildMenuItem(title, false, 40), story, 'div_event_title_' + noteId))
       panelElements.push(this.menuBuilder.buildBreak('break_event_text_story' + noteId))
-
-      // TODO: add more reward/boon info to the hover text
-      //                    if (reward !== undefined){
-      //                        panelElements.push(this.buildLabel('| ' + JSON.stringify(reward), 'div_event_reward_' + noteId));
-      //                        panelElements.push(this.buildBreak('break_event_reward_' + noteId))
-      //                    }
-      //                    if (curse !== undefined) {
-      //                        panelElements.push(this.buildLabel('| ' + JSON.stringify(curse), 'div_event_curse_' + noteId));
-      //                        panelElements.push(this.buildBreak('break_event_curse_' + noteId))
-      //                    }
     })
 
     panelElements.push(this.menuBuilder.buildLabel(this.menuBuilder.buildMenuBorderBottom(), 'div_event_EventPanel_buildMenuBorderBottom'))
@@ -102,10 +89,13 @@ class EventPanel extends Component<Props, State> {
     return panelElements
   }
 
-  public render (): any {
+  public render (): ReactNode {
+    const notifications = this.buildNotifications()
+    const eventPanel = this.buildEventPanel(notifications)
+
     return (
             <div className="EventPanel" key="EventPanel">
-                {this.buildEventPanel()}
+                {eventPanel}
             </div>
     )
   }

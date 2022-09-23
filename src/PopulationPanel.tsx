@@ -7,7 +7,7 @@ import {
   UserFeatureState, UserIncome,
   UserNotification,
   UserStore
-} from 'rowantree.service.typescript.sdk'
+} from 'rowantree.game.service.typescript.sdk'
 import Menu from './Menu'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

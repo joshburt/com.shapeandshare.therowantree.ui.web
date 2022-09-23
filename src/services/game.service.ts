@@ -1,10 +1,10 @@
-import { CommandOptions, RowanTreeServiceClient } from 'rowantree.service.typescript.sdk'
+import { CommandOptions, RowanTreeServiceClient } from 'rowantree.game.service.typescript.sdk'
 import RowanTreeAuthServiceClient from '../services/auth.service'
 
 const commandOptions: CommandOptions = {
   sleepTime: 3,
   retryCount: 10,
-  endpoint: 'http://localhost:8000',
+  tld: '<<>>',
   timeout: 5
 }
 export default new RowanTreeServiceClient(RowanTreeAuthServiceClient, commandOptions, true)

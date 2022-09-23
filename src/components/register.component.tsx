@@ -5,7 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Token, User } from 'rowantree.auth.typescript.sdk'
 import { setRequestHeaders } from '../common/headers'
 import RowanTreeServiceClient from '../services/game.service'
-import { UserWorld } from 'rowantree.service.typescript.sdk'
+import { UserWorld } from 'rowantree.game.service.typescript.sdk'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {

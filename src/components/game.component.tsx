@@ -7,7 +7,7 @@ import {
   UserNotification,
   UserState,
   UserStore
-} from 'rowantree.service.typescript.sdk'
+} from 'rowantree.game.service.typescript.sdk'
 import RowanTreeServiceClient from '../services/game.service'
 import { setRequestHeaders } from '../common/headers'
 import StatusPanel from '../StatusPanel'

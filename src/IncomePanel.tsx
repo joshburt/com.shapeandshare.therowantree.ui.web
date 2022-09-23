@@ -7,7 +7,7 @@ import {
   UserIncome,
   UserNotification,
   UserStore
-} from 'rowantree.service.typescript.sdk'
+} from 'rowantree.game.service.typescript.sdk'
 
 import RowanTreeServiceClient from './services/game.service'
 import Menu from './Menu'

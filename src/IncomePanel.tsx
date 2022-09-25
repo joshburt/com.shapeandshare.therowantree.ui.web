@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import './IncomePanel.css'
 import {
-  FeatureType, IncomeSourceType,
+  FeatureType,
+  IncomeSourceType,
   StoreType,
   UserFeatureState,
   UserIncome,

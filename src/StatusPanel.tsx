@@ -3,9 +3,11 @@ import './StatusPanel.css'
 import Menu from './Menu'
 import {
   FeatureDetailsType,
-  FeatureType, IncomeSourceType,
+  FeatureType,
+  IncomeSourceType,
   StoreType,
-  UserFeatureState, UserIncome,
+  UserFeatureState,
+  UserIncome,
   UserNotification,
   UserStore
 } from 'rowantree.game.service.typescript.sdk'

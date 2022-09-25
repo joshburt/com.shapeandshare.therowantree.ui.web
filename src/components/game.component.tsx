@@ -1,9 +1,11 @@
-import { Component } from 'react'
+import { Component, ReactNode } from 'react'
 import {
-  FeatureType, IncomeSourceType,
+  FeatureType,
+  IncomeSourceType,
   StoreType,
   UserActiveStatus,
-  UserFeatureState, UserIncome,
+  UserFeatureState,
+  UserIncome,
   UserNotification,
   UserState,
   UserStore
@@ -94,7 +96,7 @@ export default class Game extends Component<Props, State> {
     localStorage.removeItem('state')
   }
 
-  render (): any {
+  render (): ReactNode {
     return (
             <table>
                 <tbody>

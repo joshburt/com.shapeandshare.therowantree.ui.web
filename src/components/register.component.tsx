@@ -38,7 +38,7 @@ export default class Login extends Component<Props, State> {
   validationSchema (): any {
     return Yup.object().shape({
       username: Yup.string().required('This field is required!'),
-      password: Yup.string().required('This field is required!'),
+      password: Yup.string().email().required('This field is required!'),
       email: Yup.string().required('This field is required!')
     })
   }

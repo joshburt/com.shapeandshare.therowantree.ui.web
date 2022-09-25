@@ -4,7 +4,8 @@ import {
   FeatureType,
   IncomeSourceType,
   StoreType,
-  UserFeatureState, UserIncome,
+  UserFeatureState,
+  UserIncome,
   UserNotification,
   UserStore
 } from 'rowantree.game.service.typescript.sdk'

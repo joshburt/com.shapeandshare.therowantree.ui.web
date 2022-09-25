@@ -40,7 +40,7 @@ class App extends Component<Props, State> {
                             <div className="navbar-nav ml-auto">
                                 <li className="nav-item">
                                     <a href="/login" className="nav-link" onClick={this.logOut}>
-                                        LogOut
+                                        Log Out
                                     </a>
                                 </li>
                             </div>
@@ -95,6 +95,7 @@ class App extends Component<Props, State> {
         guid: undefined
       })
     }
+
     EventBus.on('logout', this.logOut)
   }
 
@@ -104,6 +105,7 @@ class App extends Component<Props, State> {
 
   logOut (): void {
     localStorage.removeItem('state')
+    localStorage.removeItem('notifications')
   }
 }
 

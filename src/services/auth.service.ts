@@ -4,6 +4,6 @@ const commandOptions: CommandOptions = {
   sleepTime: 3,
   retryCount: 10,
   tld: '<<>>',
-  timeout: 5
+  timeout: 10
 }
 export default new RowanTreeAuthServiceClient(commandOptions)

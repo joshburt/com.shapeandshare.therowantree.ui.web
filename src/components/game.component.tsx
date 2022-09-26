@@ -1,9 +1,11 @@
-import { Component } from 'react'
+import { Component, ReactNode } from 'react'
 import {
-  FeatureType, IncomeSourceType,
+  FeatureType,
+  IncomeSourceType,
   StoreType,
   UserActiveStatus,
-  UserFeatureState, UserIncome,
+  UserFeatureState,
+  UserIncome,
   UserNotification,
   UserState,
   UserStore
@@ -94,40 +96,30 @@ export default class Game extends Component<Props, State> {
     localStorage.removeItem('state')
   }
 
-  render (): any {
-    return (
-            <table>
-                <tbody>
-                <tr>
-                    <td colSpan={4}>
-                        <div>
-                            [DEBUG] Seconds: {this.state?.seconds} [/DEBUG]
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <StatusPanel model={this.state?.userState}/>
-                        <TravelPanel model={this.state?.userState}/>
-                    </td>
-                    <td>
-                        <PopulationPanel model={this.state?.userState}/>
-                        <IncomePanel model={this.state?.userState}/>
-                    </td>
-                    <td>
-                        <MerchantsPanel model={this.state?.userState}/>
-                    </td>
-                    <td>
-                        <StoresPanel model={this.state?.userState}/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colSpan={4}>
-                        <EventPanel model={this.state?.userState}/>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+  render (): ReactNode {
+    return (<main>
+            <div className="col themed-grid-col">[DEBUG] Seconds: {this.state?.seconds} [/DEBUG]</div>
+            <div className="row">
+                <div className="col themed-grid-col">
+                    <div className="row">
+                        <div className="col-md-6 themed-grid-col"><StatusPanel model={this.state?.userState}/></div>
+                        <div className="col-md-6 themed-grid-col"><TravelPanel model={this.state?.userState}/></div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6 themed-grid-col"><PopulationPanel model={this.state?.userState}/></div>
+                        <div className="col-md-6 themed-grid-col"><IncomePanel model={this.state?.userState}/></div>
+                    </div>
+                </div>
+                <div className="col-lg">
+                    <div className="row">
+                        <div className="col"><MerchantsPanel model={this.state?.userState}/></div>
+                        <div className="col"><StoresPanel model={this.state?.userState}/></div>
+                    </div>
+                </div>
+            </div>
+            <div className="col-lg"><EventPanel model={this.state?.userState}/></div>
+    </main>
+
     )
   }
 }

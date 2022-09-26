@@ -19,11 +19,11 @@ export default class Home extends Component<Props, State> {
 
   render (): any {
     return (
-        <div className="container">
-            <header className="landingPage">
-                <h3>{this.state?.content}</h3>
-            </header>
-        </div>
+            <div className="container">
+                <header className="landingPage">
+                    <h3>{this.state?.content}</h3>
+                </header>
+            </div>
     )
   }
 }

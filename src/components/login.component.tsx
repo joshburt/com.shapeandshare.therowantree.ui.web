@@ -1,11 +1,10 @@
 import { Component } from 'react'
 import RowanTreeAuthServiceClient from '../services/auth.service'
-// import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Token } from 'rowantree.auth.typescript.sdk'
 import { setRequestHeaders } from '../common/headers'
-// import { useNavigate } from 'react-router-dom'
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {
 }
@@ -40,10 +39,6 @@ export default class Login extends Component<Props, State> {
   }
 
   handleLogin (formValue: { username: string, password: string }): any {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const navigate = useNavigate()
-    // navigate('/home')
-
     const { username, password } = formValue
 
     this.setState({
@@ -71,11 +66,6 @@ export default class Login extends Component<Props, State> {
         })
       }
     )
-    // this.navigate('/home')
-    // if (localStorage.getItem('state') !== null) {
-    //   return redirect('/home') // TODO: redirect to game page
-    // }
-    // return redirect('/home') // TODO: redirect to game page
   }
 
   render (): any {
@@ -92,7 +82,6 @@ export default class Login extends Component<Props, State> {
     }
 
     return (
-
             <div className="col-md-12">
                 <div className="card card-container">
                     <img

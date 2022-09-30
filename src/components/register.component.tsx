@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { useEffect, useState } from 'react'
 import RowanTreeAuthServiceClient from '../services/auth.service'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -6,47 +6,41 @@ import { Token, User } from 'rowantree.auth.typescript.sdk'
 import { setRequestHeaders } from '../common/headers'
 import RowanTreeServiceClient from '../services/game.service'
 import { UserWorld } from 'rowantree.game.service.typescript.sdk'
+import { useNavigate } from 'react-router-dom'
+import { LoginState } from '../types/LoginState'
+import { AuthState } from '../types/AuthState'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-}
+export function Register (): any {
+  const navigate = useNavigate()
 
-interface State {
-  username: string
-  password: string
-  email: string
-  loading: boolean
-  message: string
-}
+  const [redirect, setRedirect] = useState(false)
+  const [loginState, setLoginState] = useState<LoginState>({
+    username: '',
+    password: '',
+    email: '',
+    loading: false,
+    message: ''
+  })
 
-export default class Login extends Component<Props, State> {
-  constructor (props: Props) {
-    super(props)
-    this.handleLogin = this.handleLogin.bind(this)
-  }
+  useEffect(() => {
+    if (redirect) {
+      return navigate('/game')
+    }
+  })
 
-  componentDidMount (): void {
-    this.setState({
-      username: '',
-      password: '',
-      email: '',
-      loading: false,
-      message: ''
-    })
-  }
-
-  validationSchema (): any {
+  function validationSchema (): any {
     return Yup.object().shape({
       username: Yup.string().required('This field is required!'),
-      password: Yup.string().email().required('This field is required!'),
-      email: Yup.string().required('This field is required!')
+      password: Yup.string().required('This field is required!'),
+      email: Yup.string().email().required('This field is required!')
     })
   }
 
-  handleLogin (formValue: { username: string, password: string, email: string }): any {
+  function handleLogin (formValue: { username: string, password: string, email: string }): any {
     const { username, password, email } = formValue
 
-    this.setState({
+    setLoginState({
+      ...loginState,
       message: '',
       loading: true
     })
@@ -56,18 +50,21 @@ export default class Login extends Component<Props, State> {
         RowanTreeAuthServiceClient.authUser(username, password).then(
           (token: Token) => {
             // Store details in local storage
-            const localState = {
+            const authState: AuthState = {
               jwt: token.accessToken,
               guid: RowanTreeAuthServiceClient.decodeJwt(token.accessToken).sub
             }
-            localStorage.setItem('state', JSON.stringify(localState))
+            localStorage.setItem('state', JSON.stringify(authState))
 
             // Set headers
             setRequestHeaders()
 
             // Create the player within the game
-            RowanTreeServiceClient.userCreate(localState.guid).then((userWorld: UserWorld) => {
+            RowanTreeServiceClient.userCreate(authState.guid).then((userWorld: UserWorld) => {
               console.log(userWorld)
+
+              // load the game
+              setRedirect(true)
             }, error => {
               console.log(error)
             })
@@ -76,7 +73,8 @@ export default class Login extends Component<Props, State> {
             // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-optional-chain
             const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
 
-            this.setState({
+            setLoginState({
+              ...loginState,
               loading: false,
               message: resMessage
             })
@@ -87,7 +85,8 @@ export default class Login extends Component<Props, State> {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-optional-chain
         const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
 
-        this.setState({
+        setLoginState({
+          ...loginState,
           loading: false,
           message: resMessage
         })
@@ -95,16 +94,15 @@ export default class Login extends Component<Props, State> {
     )
   }
 
-  render (): any {
-    const loading: boolean = (this.state?.loading !== undefined) ? this.state.loading : false
-    const message: string = (this.state?.message !== undefined) ? this.state.message : ''
-    const initialValues = {
-      username: '',
-      password: '',
-      email: ''
-    }
+  // const loading: boolean = (this.state?.loading !== undefined) ? this.state.loading : false
+  // const message: string = (this.state?.message !== undefined) ? this.state.message : ''
+  const initialValues = {
+    username: loginState.username,
+    password: loginState.password,
+    email: loginState.email as string
+  }
 
-    return (
+  return (
             <div className="col-md-12">
                 <div className="card card-container">
                     <img
@@ -115,8 +113,8 @@ export default class Login extends Component<Props, State> {
 
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={this.validationSchema}
-                        onSubmit={this.handleLogin}
+                        validationSchema={validationSchema}
+                        onSubmit={handleLogin}
                     >
                         <Form>
                             <div className="form-group">
@@ -150,18 +148,18 @@ export default class Login extends Component<Props, State> {
                             </div>
 
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                                    {loading && (
+                                <button type="submit" className="btn btn-primary btn-block" disabled={loginState.loading}>
+                                    {loginState.loading && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                     )}
                                     <span>Login</span>
                                 </button>
                             </div>
 
-                            {message !== '' && (
+                            {loginState.message !== '' && (
                                 <div className="form-group">
                                     <div className="alert alert-danger" role="alert">
-                                        {message}
+                                        {loginState.message}
                                     </div>
                                 </div>
                             )}
@@ -169,6 +167,5 @@ export default class Login extends Component<Props, State> {
                     </Formik>
                 </div>
             </div>
-    )
-  }
+  )
 }

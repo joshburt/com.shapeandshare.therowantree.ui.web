@@ -6,13 +6,7 @@ import { Token } from 'rowantree.auth.typescript.sdk'
 import { setRequestHeaders } from '../common/headers'
 import { useNavigate } from 'react-router-dom'
 import { AuthState } from '../types/AuthState'
-
-interface LoginState {
-  username: string
-  password: string
-  loading: boolean
-  message: string
-}
+import { LoginState } from '../types/LoginState'
 
 export default function Login (): any {
   const navigate = useNavigate()
@@ -21,6 +15,7 @@ export default function Login (): any {
   const [loginState, setLoginState] = useState<LoginState>({
     username: '',
     password: '',
+    email: undefined,
     loading: false,
     message: ''
   })

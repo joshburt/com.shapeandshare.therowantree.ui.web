@@ -1,30 +1,11 @@
 import { Component } from 'react'
 import './MerchantsPanel.css'
 import {
-  FeatureType,
-  IncomeSourceType,
-  StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
-  UserStore
+  StoreType
 } from 'rowantree.game.service.typescript.sdk'
 import Menu from './Menu'
-import RowanTreeServiceClient from './services/game.service'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import RowanTreeServiceClient from '../../services/game.service'
+import { Props } from './game.props'
 
 class MerchantsPanel extends Component<Props> {
   public buildButton (storeType: StoreType, label: string, keySuffix: string): any {
@@ -46,12 +27,12 @@ class MerchantsPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('Merchants', false, 15), 'div_event_MerchantsPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_MerchantsPanel_buildMenuBorderTop'))
 
-    if (this.props.model?.merchants === undefined) {
+    if (this.props.state?.merchants === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('You are a lone figure at the trading grounds.'))
       panelElements.push(menuBuilder.buildMenuItem('The wind your only company.'))
       panelElements.push(menuBuilder.buildBreak('break_MerchantsPanel_nothing_todo'))
     } else {
-      this.props.model.merchants.forEach((element) => {
+      this.props.state?.merchants.forEach((element) => {
         // const name = element.name
         panelElements.push(menuBuilder.buildMenuItem(''))
         panelElements.push(this.buildButton(element, element, element))

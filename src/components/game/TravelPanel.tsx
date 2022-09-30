@@ -1,30 +1,11 @@
 import { Component } from 'react'
 import './TravelPanel.css'
 import {
-  FeatureType,
-  IncomeSourceType,
-  StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
-  UserStore
+  FeatureType
 } from 'rowantree.game.service.typescript.sdk'
 import Menu from './Menu'
-import RowanTreeServiceClient from './services/game.service'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import RowanTreeServiceClient from '../../services/game.service'
+import { Props } from './game.props'
 
 class TravelPanel extends Component<Props> {
   public buildButton (location: FeatureType, label: string, keySuffix: string): any {
@@ -47,13 +28,13 @@ class TravelPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('travel', false, 15), 'div_event_TravelPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_TravelPanel_buildMenuBorderTop'))
 
-    if (this.props.model?.features === undefined) {
+    if (this.props.state?.features === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('You are nowhere..'))
       panelElements.push(menuBuilder.buildBreak('break_event_TravelPanel_active_feature'))
     } else {
-      this.props.model?.features.forEach((element) => {
+      this.props.state?.features.forEach((element) => {
         // panelElements.push(this.props.menu.buildLabel('| ', name));
-        if (this.props.model?.activeFeatureState?.name === element) {
+        if (this.props.state?.activeFeatureState?.name === element) {
           panelElements.push(menuBuilder.buildMenuItem(element))
         } else {
           panelElements.push(this.buildButton(element, element, element))

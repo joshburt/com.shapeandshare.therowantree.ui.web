@@ -1,29 +1,11 @@
 import { Component } from 'react'
 import './StoresPanel.css'
 import {
-  FeatureType,
-  IncomeSourceType,
   StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
   UserStore
 } from 'rowantree.game.service.typescript.sdk'
 import Menu from './Menu'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import { Props } from './game.props'
 
 class StoresPanel extends Component<Props> {
   public buildStoresPanel (): any[] {
@@ -34,13 +16,13 @@ class StoresPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('Inventory', false, 15), 'div_event_StoresPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_StoresPanel_buildMenuBorderTop'))
 
-    if (this.props.model?.stores === undefined) {
+    if (this.props.state?.stores === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('Your pockets are empty..'))
       panelElements.push(menuBuilder.buildBreak('break_StoresPanel_nothing_todo'))
     } else {
-      for (const item in this.props.model.stores) {
+      for (const item in this.props.state.stores) {
         let storesString = ''
-        const store: UserStore = this.props.model.stores[item as keyof typeof this.props.model.stores]
+        const store: UserStore = this.props.state.stores[item as keyof typeof this.props.state.stores]
         const name: StoreType = store.name
         const amount: number = store.amount
         const description: string | undefined = store.description

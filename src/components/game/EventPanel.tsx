@@ -1,29 +1,10 @@
 import { Component, ReactNode } from 'react'
 import './EventPanel.css'
 import {
-  FeatureType,
-  IncomeSourceType,
-  StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
-  UserStore
+  UserNotification
 } from 'rowantree.game.service.typescript.sdk'
 import Menu from './Menu'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import { Props } from './game.props'
 
 interface State {
   notifications: UserNotification[] | undefined
@@ -54,7 +35,7 @@ class EventPanel extends Component<Props, State> {
     }
 
     // truncate to some limit
-    const newNotifications: UserNotification[] = (this.props?.model?.notifications !== undefined) ? this.props.model.notifications : []
+    const newNotifications: UserNotification[] = (this.props?.state?.notifications !== undefined) ? this.props.state.notifications : []
     const completeNotifications = priorNotifications.concat(newNotifications)
     let truncatedNotifications = completeNotifications
     if (completeNotifications.length > 10) {

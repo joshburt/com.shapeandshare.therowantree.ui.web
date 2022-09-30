@@ -1,50 +1,44 @@
-import { Component } from 'react'
+import { useEffect, useState } from 'react'
 import RowanTreeAuthServiceClient from '../services/auth.service'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Token } from 'rowantree.auth.typescript.sdk'
 import { setRequestHeaders } from '../common/headers'
+import { useNavigate } from 'react-router-dom'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-}
-
-interface State {
+interface LoginState {
   username: string
   password: string
   loading: boolean
   message: string
 }
 
-export default class Login extends Component<Props, State> {
-  constructor (props: Props) {
-    super(props)
-    this.handleLogin = this.handleLogin.bind(this)
-  }
+export default function Login (): any {
+  const navigate = useNavigate()
+  const [redirect, setRedirect] = useState(false)
+  const [loginState, setLoginState] = useState<LoginState>({
+    username: '',
+    password: '',
+    loading: false,
+    message: ''
+  })
 
-  componentDidMount (): void {
-    this.setState({
-      username: '',
-      password: '',
-      loading: false,
-      message: ''
-    })
-  }
+  useEffect(() => {
+    if (redirect) {
+      return navigate('/game')
+    }
+  })
 
-  validationSchema (): any {
+  function validationSchema (): any {
     return Yup.object().shape({
       username: Yup.string().required('This field is required!'),
       password: Yup.string().required('This field is required!')
     })
   }
 
-  handleLogin (formValue: { username: string, password: string }): any {
+  function handleLogin (formValue: { username: string, password: string }): any {
     const { username, password } = formValue
-
-    this.setState({
-      message: '',
-      loading: true
-    })
+    setLoginState({ ...loginState, message: '', loading: true })
 
     RowanTreeAuthServiceClient.authUser(username, password).then(
       (token: Token) => {
@@ -55,33 +49,25 @@ export default class Login extends Component<Props, State> {
 
         // Set headers
         setRequestHeaders()
+        setRedirect(true)
       },
       error => {
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, @typescript-eslint/prefer-optional-chain
         const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-
-        this.setState({
-          loading: false,
-          message: resMessage
-        })
+        setLoginState({ ...loginState, message: resMessage, loading: false })
       }
     )
   }
 
-  render (): any {
-    let loading: boolean = false
-    let message: string = ''
-    if (this.state != null) {
-      loading = this.state.loading
-      message = this.state.message
-    }
+  const loading = loginState.loading
+  const message = loginState.message
 
-    const initialValues = {
-      username: '',
-      password: ''
-    }
+  const initialValues = {
+    username: '',
+    password: ''
+  }
 
-    return (
+  return (
             <div className="col-md-12">
                 <div className="card card-container">
                     <img
@@ -92,8 +78,8 @@ export default class Login extends Component<Props, State> {
 
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={this.validationSchema}
-                        onSubmit={this.handleLogin}
+                        validationSchema={validationSchema}
+                        onSubmit={handleLogin}
                     >
                         <Form>
                             <div className="form-group">
@@ -136,6 +122,5 @@ export default class Login extends Component<Props, State> {
                     </Formik>
                 </div>
             </div>
-    )
-  }
+  )
 }

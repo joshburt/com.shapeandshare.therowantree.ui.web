@@ -3,28 +3,9 @@ import './StatusPanel.css'
 import Menu from './Menu'
 import {
   FeatureDetailsType,
-  FeatureType,
-  IncomeSourceType,
-  StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
-  UserStore
+  FeatureType
 } from 'rowantree.game.service.typescript.sdk'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import { Props } from './game.props'
 
 class StatusPanel extends Component<Props> {
   buildStatusPanel (): any {
@@ -34,17 +15,17 @@ class StatusPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('status', false, 15), 'div_event_StatusPanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_StatusPanel_buildMenuBorderTop'))
 
-    if (this.props.model?.activeFeatureState === undefined) {
+    if (this.props.state?.activeFeatureState === undefined) {
       panelElements.push(menuBuilder.buildMenuItem('Its dark.'))
       panelElements.push(menuBuilder.buildBreak('break_StatusPanel_nothing_todo'))
     } else {
-      const name: FeatureType | '' = (this.props.model.activeFeatureState.name !== undefined) ? this.props.model.activeFeatureState.name : ''
-      const details: FeatureDetailsType | '' = (this.props.model.activeFeatureState.details !== undefined) ? this.props.model.activeFeatureState.details : ''
+      const name: FeatureType | '' = (this.props.state?.activeFeatureState.name !== undefined) ? this.props.state?.activeFeatureState.name : ''
+      const details: FeatureDetailsType | '' = (this.props.state?.activeFeatureState.details !== undefined) ? this.props.state?.activeFeatureState.details : ''
       panelElements.push(menuBuilder.buildMenuItem(`${name}:${details}`))
       panelElements.push(menuBuilder.buildBreak('break_StatusPanel_active_feature_state_details'))
     }
 
-    const active: boolean = this.props.model?.active
+    const active: boolean | undefined = this.props.state?.active
     switch (active) {
       case false:
         panelElements.push(menuBuilder.buildMenuItem('You are NOT active.'))

@@ -6,9 +6,10 @@ import Register from './components/register.component'
 import Game from './components/game.component'
 import RedirectTest from './components/redirect.component'
 import { useEffect, useState } from 'react'
+import { AppState } from './types/AppState'
 
 export default function App (): any {
-  const [userState, setUserState] = useState({
+  const [userState, setUserState] = useState<AppState>({
     jwt: undefined,
     guid: undefined
   })

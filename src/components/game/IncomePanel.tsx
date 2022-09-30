@@ -1,31 +1,13 @@
 import { Component } from 'react'
 import './IncomePanel.css'
 import {
-  FeatureType,
   IncomeSourceType,
-  StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
-  UserStore
+  UserIncome
 } from 'rowantree.game.service.typescript.sdk'
 
-import RowanTreeServiceClient from './services/game.service'
+import RowanTreeServiceClient from '../../services/game.service'
 import Menu from './Menu'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import { Props } from './game.props'
 
 class IncomePanel extends Component<Props> {
   public addWorker (type: IncomeSourceType): void {
@@ -62,10 +44,10 @@ class IncomePanel extends Component<Props> {
     panelElements.push(menuBuilder.buildLabel(menuBuilder.buildMenuBorderTopWithLabel('workers', false, 15), 'div_event_IncomePanel_buildMenuBorderTop'))
     panelElements.push(menuBuilder.buildBreak('break_IncomePanel_buildMenuBorderTop'))
 
-    if (this.props.model?.incomes !== undefined) {
-      for (const item in this.props.model.incomes) {
+    if (this.props.state?.incomes !== undefined) {
+      for (const item in this.props.state?.incomes) {
         let incomeString: string = ''
-        const income: UserIncome = this.props.model.incomes[item as keyof typeof this.props.model.incomes]
+        const income: UserIncome = this.props.state.incomes[item as keyof typeof this.props.state.incomes]
         const name: IncomeSourceType = income.name
         const amount: number = income.amount
         const description: string | undefined = income.description

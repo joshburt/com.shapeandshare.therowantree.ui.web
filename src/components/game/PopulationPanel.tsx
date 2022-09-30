@@ -1,29 +1,7 @@
 import { Component } from 'react'
 import './PopulationPanel.css'
-import {
-  FeatureType,
-  IncomeSourceType,
-  StoreType,
-  UserFeatureState,
-  UserIncome,
-  UserNotification,
-  UserStore
-} from 'rowantree.game.service.typescript.sdk'
 import Menu from './Menu'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {
-  model: {
-    active: boolean
-    stores: Record<StoreType, UserStore> | undefined
-    incomes: Record<IncomeSourceType, UserIncome> | undefined
-    features: Set<FeatureType> | undefined
-    activeFeatureState: UserFeatureState | undefined
-    population: number | undefined
-    merchants: Set<StoreType> | undefined
-    notifications: UserNotification[] | undefined
-  }
-}
+import { Props } from './game.props'
 
 class PopulationPanel extends Component<Props> {
   public buildPanel (): any[] {
@@ -34,8 +12,8 @@ class PopulationPanel extends Component<Props> {
     panelElements.push(menuBuilder.buildBreak('break_PopulationPanel_buildMenuBorderTop'))
 
     let popString = 0
-    if (this.props.model?.population !== undefined) {
-      popString = this.props.model.population
+    if (this.props.state?.population !== undefined) {
+      popString = this.props.state.population
     }
     panelElements.push(menuBuilder.buildMenuItem(String(popString)))
     panelElements.push(menuBuilder.buildBreak('break_PopulationPanel_population'))

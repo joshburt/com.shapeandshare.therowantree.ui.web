@@ -5,15 +5,15 @@ import {
 } from 'rowantree.game.service.typescript.sdk'
 import RowanTreeServiceClient from '../services/game.service'
 import { setRequestHeaders } from '../common/headers'
-import StatusPanel from '../StatusPanel'
-import TravelPanel from '../TravelPanel'
-import PopulationPanel from '../PopulationPanel'
-import IncomePanel from '../IncomePanel'
-import MerchantsPanel from '../MerchantsPanel'
-import StoresPanel from '../StoresPanel'
-import EventPanel from '../EventPanel'
+import StatusPanel from './game/StatusPanel'
+import TravelPanel from './game/TravelPanel'
+import PopulationPanel from './game/PopulationPanel'
+import IncomePanel from './game/IncomePanel'
+import MerchantsPanel from './game/MerchantsPanel'
+import StoresPanel from './game/StoresPanel'
+import EventPanel from './game/EventPanel'
 
-export default function Game (props: any): any {
+export default function Game (props: { guid: string }): any {
   const [seconds, setSeconds] = useState<number>(0)
   const [userState, setUserState] = useState<UserState | undefined>(undefined)
 
@@ -42,30 +42,30 @@ export default function Game (props: any): any {
         console.log(error)
       })
     }
-    setSeconds(seconds + 10)
-  }, 10000)
+    setSeconds(seconds + 1)
+  }, 1000)
 
   return (<>
             <div className="col themed-grid-col">[DEBUG] Seconds: {seconds} [/DEBUG]</div>
             <div className="row">
                 <div className="col themed-grid-col">
                     <div className="row">
-                        <div className="col-md-6 themed-grid-col"><StatusPanel model={userState as any}/></div>
-                        <div className="col-md-6 themed-grid-col"><TravelPanel model={userState as any}/></div>
+                        <div className="col-md-6 themed-grid-col"><StatusPanel state={userState}/></div>
+                        <div className="col-md-6 themed-grid-col"><TravelPanel state={userState}/></div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 themed-grid-col"><PopulationPanel model={userState as any}/></div>
-                        <div className="col-md-6 themed-grid-col"><IncomePanel model={userState as any}/></div>
+                        <div className="col-md-6 themed-grid-col"><PopulationPanel state={userState}/></div>
+                        <div className="col-md-6 themed-grid-col"><IncomePanel state={userState}/></div>
                     </div>
                 </div>
                 <div className="col-lg">
                     <div className="row">
-                        <div className="col"><MerchantsPanel model={userState as any}/></div>
-                        <div className="col"><StoresPanel model={userState as any}/></div>
+                        <div className="col"><MerchantsPanel state={userState}/></div>
+                        <div className="col"><StoresPanel state={userState}/></div>
                     </div>
                 </div>
             </div>
-            <div className="col-lg"><EventPanel model={userState as any}/></div>
+            <div className="col-lg"><EventPanel state={userState}/></div>
         </>)
 }
 

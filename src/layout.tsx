@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom'
 import { Navbar } from './Navbar'
+import { AuthState } from './types/AuthState'
 
-export default function Layout (props: any): any {
+export default function Layout (props: { authState: AuthState }): any {
   return (
         <>
-            <Navbar jwt={props.userState.jwt} guid={props.userState.guid} />
+            <Navbar jwt={props.authState.jwt} guid={props.authState.guid} />
             <div className="container">
                 <Outlet />
             </div>

@@ -5,6 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Token } from 'rowantree.auth.typescript.sdk'
 import { setRequestHeaders } from '../common/headers'
 import { useNavigate } from 'react-router-dom'
+import { AuthState } from '../types/AuthState'
 
 interface LoginState {
   username: string
@@ -15,6 +16,7 @@ interface LoginState {
 
 export default function Login (): any {
   const navigate = useNavigate()
+
   const [redirect, setRedirect] = useState(false)
   const [loginState, setLoginState] = useState<LoginState>({
     username: '',
@@ -42,13 +44,16 @@ export default function Login (): any {
 
     RowanTreeAuthServiceClient.authUser(username, password).then(
       (token: Token) => {
-        localStorage.setItem('state', JSON.stringify({
+        const authState: AuthState = {
           jwt: token.accessToken,
           guid: RowanTreeAuthServiceClient.decodeJwt(token.accessToken).sub
-        }))
+        }
+        localStorage.setItem('state', JSON.stringify(authState))
 
         // Set headers
         setRequestHeaders()
+
+        // load the game
         setRedirect(true)
       },
       error => {
@@ -61,11 +66,7 @@ export default function Login (): any {
 
   const loading = loginState.loading
   const message = loginState.message
-
-  const initialValues = {
-    username: '',
-    password: ''
-  }
+  const initialValues = { username: loginState.username, password: loginState.password }
 
   return (
             <div className="col-md-12">

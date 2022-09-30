@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom'
+import { AuthState } from './types/AuthState'
 
-interface Props {
-  jwt: string | undefined
-  guid: string | undefined
-}
-
-export function Navbar (props: Props): any {
+export function Navbar (props: AuthState): any {
   return (
         <>
             <nav className="navbar navbar-expand navbar-dark bg-dark">

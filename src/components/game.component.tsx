@@ -15,35 +15,69 @@ import EventPanel from './game/EventPanel'
 
 export default function Game (props: { guid: string }): any {
   const [seconds, setSeconds] = useState<number>(0)
+  const [isActive, setIsActive] = useState(false)
   const [userState, setUserState] = useState<UserState | undefined>(undefined)
 
   useEffect(() => {
-    console.log('useEffect')
-    if (props.guid !== undefined) {
-      console.log('Setting user active ..')
-      RowanTreeServiceClient.userActiveSet(true).then((status: UserActiveStatus) => {
-      }, error => {
-        console.log(`Failed to set active, error: (${(JSON.stringify(error))})`)
-      })
-      setRequestHeaders()
+    if (!isActive) {
+      if (props.guid !== undefined) {
+        console.log('Setting user active ..')
+        RowanTreeServiceClient.userActiveSet(true).then((status: UserActiveStatus) => {
+        }, error => {
+          console.log(`Failed to set active, error: (${(JSON.stringify(error))})`)
+        })
+        setRequestHeaders()
+      }
+      setIsActive(true)
     }
-  }, [])
 
-  setTimeout(() => {
-    console.log('setTimeout')
-    if (props.guid !== undefined) {
-      console.log('Getting user state ..')
-      RowanTreeServiceClient.userStateGet(props.guid).then((newUserState: UserState) => {
-        if (newUserState !== undefined) {
-          setUserState(newUserState)
-          console.log('Updated')
+    let interval: NodeJS.Timer | undefined
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds(seconds => seconds + 1)
+        if ((props.guid !== undefined) && (seconds % 5 === 0)) {
+          RowanTreeServiceClient.userStateGet(props.guid).then((newUserState: UserState) => {
+            if (newUserState !== undefined) {
+              setUserState(newUserState)
+            }
+          }, error => {
+            console.log(error)
+          })
         }
-      }, error => {
-        console.log(error)
-      })
+      }, 1000)
     }
-    setSeconds(seconds + 1)
-  }, 1000)
+
+    return () => clearInterval(interval)
+  }, [isActive, seconds])
+
+  //
+  // useEffect(() => {
+  //   // console.log('useEffect')
+  //   if (props.guid !== undefined) {
+  //     console.log('Setting user active ..')
+  //     RowanTreeServiceClient.userActiveSet(true).then((status: UserActiveStatus) => {
+  //     }, error => {
+  //       console.log(`Failed to set active, error: (${(JSON.stringify(error))})`)
+  //     })
+  //     setRequestHeaders()
+  //   }
+  // }, [seconds, isActive])
+  //
+  // setTimeout(() => {
+  //   console.log('setTimeout')
+  //   if (props.guid !== undefined) {
+  //     console.log('Getting user state ..')
+  //     RowanTreeServiceClient.userStateGet(props.guid).then((newUserState: UserState) => {
+  //       if (newUserState !== undefined) {
+  //         setUserState(newUserState)
+  //         console.log('Updated')
+  //       }
+  //     }, error => {
+  //       console.log(error)
+  //     })
+  //   }
+  //   setSeconds(seconds + 1)
+  // }, 1000)
 
   return (<>
             <div className="col themed-grid-col">[DEBUG] Seconds: {seconds} [/DEBUG]</div>

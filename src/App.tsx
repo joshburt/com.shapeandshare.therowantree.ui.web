@@ -26,13 +26,6 @@ export default function App (): any {
         jwt: undefined,
         guid: undefined
       })
-      // see if we were previously logged in since by the presence of notifications
-      const notifications: string | null = localStorage.getItem('notifications')
-      if (notifications !== null) {
-        setRedirect('login')
-      } else {
-        setRedirect('register')
-      }
     }
   }, 5000)
 

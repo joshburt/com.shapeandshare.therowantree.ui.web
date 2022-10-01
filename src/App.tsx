@@ -6,6 +6,7 @@ import { Register } from './components/register.component'
 import Game from './components/game.component'
 import { useEffect, useState } from 'react'
 import { AuthState } from './types/AuthState'
+import './App.css'
 
 export default function App (): any {
   const navigate = useNavigate()

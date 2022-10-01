@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom'
 import { AuthState } from './types/AuthState'
 
 export function Navbar (props: { authState: AuthState }): any {
+  //  TODO: THERE HAS TO BE A BETTER WAY
+  function logOut (): any {
+    localStorage.removeItem('state')
+  }
+
   return (
         <>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -20,9 +25,9 @@ export function Navbar (props: { authState: AuthState }): any {
                   ? (
                         <div className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                {/* <a href="/login" className="nav-link" onClick={this.logOut}> */}
-                                {/*    Log Out */}
-                                {/* </a> */}
+                                 <a href="/login" className="nav-link" onClick={logOut}>
+                                    Log Out
+                                 </a>
                             </li>
                         </div>
                     )

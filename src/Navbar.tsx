@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { AuthState } from './types/AuthState'
 
-export function Navbar (props: AuthState): any {
+export function Navbar (props: { authState: AuthState }): any {
   return (
         <>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -16,7 +16,7 @@ export function Navbar (props: AuthState): any {
                     </li>
                 </div>
 
-                {props.jwt !== undefined
+                {props.authState.jwt !== undefined
                   ? (
                         <div className="navbar-nav ml-auto">
                             <li className="nav-item">
@@ -42,7 +42,7 @@ export function Navbar (props: AuthState): any {
                         </div>
                     )}
 
-                {(props.guid !== undefined && props.jwt !== undefined) && (
+                {(props.authState.guid !== undefined && props.authState.jwt !== undefined) && (
                     <div className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link to={'/game'} className="nav-link">

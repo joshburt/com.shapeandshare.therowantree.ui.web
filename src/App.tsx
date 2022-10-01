@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Layout from './layout'
 import Home from './components/home.component'
 import Login from './components/login.component'
@@ -8,17 +8,38 @@ import { useEffect, useState } from 'react'
 import { AuthState } from './types/AuthState'
 
 export default function App (): any {
+  const navigate = useNavigate()
+  const [redirect, setRedirect] = useState<string | undefined>(undefined)
   const [authState, setAuthState] = useState<AuthState>({
     jwt: undefined,
     guid: undefined
   })
 
-  useEffect(() => {
+  setTimeout(() => {
     const rawState: string | null = localStorage.getItem('state')
     if (rawState !== null) {
       setAuthState(JSON.parse(rawState))
+      setRedirect('game')
+    } else {
+      setAuthState({
+        jwt: undefined,
+        guid: undefined
+      })
+      // see if we were previously logged in since by the presence of notifications
+      const notifications: string | null = localStorage.getItem('notifications')
+      if (notifications !== null) {
+        setRedirect('login')
+      } else {
+        setRedirect('register')
+      }
     }
-  }, [])
+  }, 5000)
+
+  useEffect(() => {
+    if (redirect !== undefined) {
+      return navigate(`/${redirect}`)
+    }
+  }, [redirect])
 
   return (<Routes>
         <Route element={<Layout authState={authState}/>}>

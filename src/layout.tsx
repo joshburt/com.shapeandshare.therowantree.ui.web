@@ -5,7 +5,7 @@ import { AuthState } from './types/AuthState'
 export default function Layout (props: { authState: AuthState }): any {
   return (
         <>
-            <Navbar jwt={props.authState.jwt} guid={props.authState.guid} />
+            <Navbar authState={props.authState} />
             <div className="container">
                 <Outlet />
             </div>
